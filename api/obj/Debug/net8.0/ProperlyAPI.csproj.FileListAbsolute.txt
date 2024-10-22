@@ -152,3 +152,5 @@
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ProperlyAPI.genruntimeconfig.cache
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ref/ProperlyAPI.dll
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ProperlyAPI.sourcelink.json
+/home/hristo/Projects/personal/properly/api/bin/Debug/net8.0/Castle.Core.dll
+/home/hristo/Projects/personal/properly/api/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Proxies.dll
