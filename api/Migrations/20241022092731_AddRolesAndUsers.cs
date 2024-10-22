@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProperlyAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddApplicationUser : Migration
+    public partial class AddRolesAndUsers : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,20 +50,6 @@ namespace ProperlyAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "IdentityRole",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,13 +159,13 @@ namespace ProperlyAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "IdentityRole",
+                table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0293c0de-4a6f-4a81-8bc1-fd850ec65ccb", null, "Broker", "BROKER" },
-                    { "0e0629b2-694c-4e1a-a873-1f047b054cfc", null, "Admin", "ADMIN" },
-                    { "535d5c2e-832c-46b2-ac0a-ed17b5ce2456", null, "User", "USER" }
+                    { new Guid("7d24a848-29d3-4165-9506-5d58f2da9915"), null, "User", "USER" },
+                    { new Guid("d69187c3-e619-4f1b-b264-985e9c0e4386"), null, "Admin", "ADMIN" },
+                    { new Guid("eebe6971-8ba7-46ac-b5f0-b9658c11a594"), null, "Broker", "BROKER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -239,9 +225,6 @@ namespace ProperlyAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "IdentityRole");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

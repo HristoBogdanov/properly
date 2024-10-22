@@ -7,6 +7,7 @@ using api.Data;
 using api.Interfaces;
 using api.Services;
 using api.Models;
+using api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -102,6 +103,7 @@ builder.Services.AddAuthentication(options =>
 
 //Dependancy Injection
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 var app = builder.Build();

@@ -151,3 +151,4 @@
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ProperlyAPI.pdb
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ProperlyAPI.genruntimeconfig.cache
 /home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ref/ProperlyAPI.dll
+/home/hristo/Projects/personal/properly/api/obj/Debug/net8.0/ProperlyAPI.sourcelink.json
