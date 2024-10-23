@@ -1,4 +1,3 @@
-using System.Net.Http.Headers;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,10 +8,14 @@ namespace api.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
 
-        public ApplicationDbContext(DbContextOptions dbContextOptions)
-        : base(dbContextOptions)
-        {
+        private readonly IConfiguration _configuration;
 
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> dbContextOptions, 
+            IConfiguration configuration)
+            : base(dbContextOptions)
+        {
+            _configuration = configuration;
         }
 
         // Enable lazy loading for all virtual properties
@@ -48,6 +51,7 @@ namespace api.Data
                 },
             };
             builder.Entity<IdentityRole<Guid>>().HasData(roles);
+            
 
             // Configurting the many-to-many relationship between properties and categories
             builder.Entity<PropertyCategories>()

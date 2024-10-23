@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ProperlyAPI-UserSecrets")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProperlyAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e12841ddc116fdc44bcdc8b5d81ad73a16fe0b8b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0e19aa4405f2b33297ec4f05cf7904523c033db")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProperlyAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProperlyAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

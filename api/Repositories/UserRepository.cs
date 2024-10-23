@@ -1,5 +1,6 @@
 using api.Constants;
 using api.Dtos.Account;
+using api.DTOs.User;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
@@ -10,13 +11,13 @@ namespace api.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ITokenService _tokenService;
         private readonly SignInManager<ApplicationUser> _signinManager;
-        public UserRepository(UserManager<ApplicationUser> userManager, ITokenService tokenService, SignInManager<ApplicationUser> signInManager)
+        private readonly ITokenService _tokenService;
+        public UserRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ITokenService tokenService)
         {
             _userManager = userManager;
-            _tokenService = tokenService;
             _signinManager = signInManager;
+            _tokenService = tokenService;
         }
 
         public async Task<NewUserDto> Login(LoginDto loginDto)
@@ -68,6 +69,69 @@ namespace api.Repositories
             {
                 throw new Exception(string.Join("\n", createdUser.Errors.Select(e => e.Description)));
             }
+        }
+
+        public async Task<NewUserDto> RegisterBroker(RegisterDto registerDto)
+        {
+            var broker = new ApplicationUser
+            {
+                UserName = registerDto.Username,
+                Email = registerDto.Email
+            };
+
+            var result = await _userManager.CreateAsync(broker, registerDto.Password);
+            if (!result.Succeeded)
+            {
+                throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
+            }
+
+            await _userManager.AddToRoleAsync(broker, "Broker");
+            return new NewUserDto {
+                UserName = broker.UserName,
+                Email = broker.Email,
+                Token = _tokenService.CreateToken(broker)
+            };
+        }
+
+        // TODO: Remove this and add the admin using seed
+        public async Task<NewUserDto> RegisterAdmin(RegisterDto registerDto)
+        {
+            var admin = new ApplicationUser
+            {
+                UserName = registerDto.Username,
+                Email = registerDto.Email
+            };
+
+            var result = await _userManager.CreateAsync(admin, registerDto.Password);
+            if (!result.Succeeded)
+            {
+                throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
+            }
+
+            await _userManager.AddToRoleAsync(admin, "Admin");
+            return new NewUserDto
+                {
+                    UserName = admin.UserName,
+                    Email = admin.Email,
+                    Token = _tokenService.CreateToken(admin)
+                };
+        }
+
+        public async Task<DeleteDTO> DeleteUser(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            await _userManager.DeleteAsync(user);
+
+            return new DeleteDTO
+            {
+                Username = user.UserName!,
+                Email = user.Email!
+            };
         }
     }
 }

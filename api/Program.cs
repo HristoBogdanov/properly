@@ -11,7 +11,6 @@ using api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -60,7 +59,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 // Configures Entity Framework with SQL Server using a connection string from configuration.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:DevConnection"]);
 });
 
 // Adds and configures Identity services (for user authentication and authorization) with password rules.
@@ -96,10 +95,11 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["JWT:Audience"],  // Gets the audience from configuration.
         ValidateIssuerSigningKey = true,  // Ensures the token has a valid signing key.
         IssuerSigningKey = new SymmetricSecurityKey(  // Signing key used to verify the token.
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"]!)
+            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:DevSigningKey"]!)
         )
     };
 });
+
 
 //Dependancy Injection
 builder.Services.AddScoped<ITokenService, TokenService>();

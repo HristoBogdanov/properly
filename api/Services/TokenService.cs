@@ -9,13 +9,13 @@ namespace api.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly IConfiguration _config;
+        private readonly IConfiguration _configuration;
         private readonly SymmetricSecurityKey _key;
         
         public TokenService(IConfiguration config)
         {
-            _config = config;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SigningKey"]!));
+            _configuration = config;
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:DevSigningKey"]!));
         }
 
         public string CreateToken(ApplicationUser user)
@@ -33,8 +33,8 @@ namespace api.Services
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(7),
                 SigningCredentials = creds,
-                Issuer = _config["JWT:Issuer"],
-                Audience = _config["JWT:Audience"]
+                Issuer = _configuration["JwtSettings:Issuer"],
+                Audience = _configuration["JwtSettings:Audience"]
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
