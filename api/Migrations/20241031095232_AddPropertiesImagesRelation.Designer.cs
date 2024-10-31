@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -11,9 +12,11 @@ using api.Data;
 namespace ProperlyAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241031095232_AddPropertiesImagesRelation")]
+    partial class AddPropertiesImagesRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,19 +58,19 @@ namespace ProperlyAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b48b4c9e-4953-47f2-a82f-f44d27270e01"),
+                            Id = new Guid("39563165-9c35-4eb5-95bd-9fe630a12ed3"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("b2cdec91-7ab2-4778-b5d4-4d78aaa218eb"),
+                            Id = new Guid("f30092ef-8ac4-4179-a38b-c6c42a901d41"),
                             Name = "Broker",
                             NormalizedName = "BROKER"
                         },
                         new
                         {
-                            Id = new Guid("7675ebf3-f186-4da8-93e3-05aafc241306"),
+                            Id = new Guid("09ce8953-af8a-4c8f-9521-091947b425f1"),
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -271,9 +274,10 @@ namespace ProperlyAPI.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("The unique identifier of the feature");
 
-                    b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasComment("The unique identifier of the image of the feature");
+                    b.Property<string>("IconPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("The path to the icon of the feature");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
@@ -286,8 +290,6 @@ namespace ProperlyAPI.Migrations
                         .HasComment("The title of the feature");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Features");
                 });
@@ -488,17 +490,6 @@ namespace ProperlyAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("api.Models.Feature", b =>
-                {
-                    b.HasOne("api.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("api.Models.Property", b =>

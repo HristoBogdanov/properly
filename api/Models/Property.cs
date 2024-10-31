@@ -68,5 +68,6 @@ namespace api.Models
 
         public virtual ICollection<PropertyCategories> PropertiesCategories { get; set; } = new List<PropertyCategories>();
         public virtual ICollection<PropertyFeatures> PropertiesFeatures { get; set; } = new List<PropertyFeatures>();
+        public virtual ICollection<PropertyImages> PropertiesImages { get; set; } = new List<PropertyImages>();
     }
 }

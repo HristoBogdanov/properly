@@ -20,5 +20,7 @@ namespace api.Models
         [MaxLength(500)]
         [Comment("The path to the image.")]
         public string Path { get; set; } = null!;
+
+        public virtual ICollection<PropertyImages> PropertiesImages { get; set; } = new List<PropertyImages>();
     }
 }

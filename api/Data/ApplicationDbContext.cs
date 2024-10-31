@@ -30,8 +30,9 @@ namespace api.Data
         public DbSet<Property> Properties { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Feature> Features { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<PropertyCategories> PropertiesCategories { get; set; }
         public DbSet<PropertyFeatures> PropertiesFeatures { get; set; }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<PropertyImages> PropertiesImages { get; set; }
     }
 }
