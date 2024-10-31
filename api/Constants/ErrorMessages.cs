@@ -10,4 +10,11 @@ namespace api.Constants
         public const string EmailRequired = "Email is required!";
         public const string InvalidUsernameOrPassword = "Invalid username or password!";
     }
+
+    public static class CategoryErrorMessages{
+        public const string CategoryExists = "Category with that name already exists!";
+        public const string TitleRequired = "Title is required!";
+        public const string InvalidTitleLength = "Invalid title length!";
+        public const string CategoryNotFound = "Category not found!";
+    }
 }

@@ -13,6 +13,5 @@ namespace api.DTOs.Property
         public bool IsFurnished { get; set; }
         public int Area { get; set; } = 0;
         public int YearOfConstruction { get; set; }
-        public Guid OwnerId { get; set; }
     }
 }

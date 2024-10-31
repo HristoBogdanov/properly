@@ -8,6 +8,6 @@ namespace api.DTOs.Category
         [Required]
         public string Title = null!;
 
-        public virtual ICollection<DisplaySimplePropertyDTO> PropertiesCategories { get; set; } = new List<DisplaySimplePropertyDTO>();
+        public virtual ICollection<DisplaySimplePropertyDTO> Properties { get; set; } = new List<DisplaySimplePropertyDTO>();
     }
 }
