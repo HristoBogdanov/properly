@@ -74,8 +74,9 @@ namespace api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        
         [HttpPost("register-broker")]
+        [Authorize]
         public async Task<IActionResult> RegisterBroker(RegisterDto registerDto)
         {
             if (!ModelState.IsValid)

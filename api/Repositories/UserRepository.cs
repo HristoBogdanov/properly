@@ -3,6 +3,7 @@ using api.Dtos.Account;
 using api.DTOs.User;
 using api.Interfaces;
 using api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,11 +25,11 @@ namespace api.Repositories
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
-            if (user == null) throw new UnauthorizedAccessException(ErrorMessages.InvalidUsernameOrPassword);
+            if (user == null) throw new UnauthorizedAccessException(UserErrorMessages.InvalidUsernameOrPassword);
 
             var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if (!result.Succeeded) throw new UnauthorizedAccessException(ErrorMessages.InvalidUsernameOrPassword);
+            if (!result.Succeeded) throw new UnauthorizedAccessException(UserErrorMessages.InvalidUsernameOrPassword);
 
             return new NewUserDto
                 {
