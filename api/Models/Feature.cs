@@ -14,11 +14,14 @@ namespace api.Models
         [Required]
         [MaxLength(200)]
         [Comment("The title of the feature")]
-        public string Title { get; set; } = String.Empty;
+        public string Title { get; set; } = null!;
 
         [Required]
-        [Comment("The path to the icon of the feature")]
-        public string IconPath { get; set; } = String.Empty;
+        [Comment("The unique identifier of the image of the feature")]
+        public Guid ImageId { get; set; }
+
+        [ForeignKey(nameof(ImageId))]
+        public virtual Image Image { get; set; } = null!;
 
         [Comment("Flag that indicates whether the feature is deleted")]
         public bool IsDeleted { get; set; } = false;
