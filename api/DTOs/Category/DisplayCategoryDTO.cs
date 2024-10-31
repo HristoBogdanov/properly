@@ -1,12 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using api.Constants;
 
 namespace api.DTOs.Category
 {
     public class DisplayCategoryDTO
     {
-        [Required(ErrorMessage = CategoryErrorMessages.TitleRequired)]
-        [StringLength(200, MinimumLength = 3, ErrorMessage = CategoryErrorMessages.InvalidTitleLength)]
+        public Guid Id;
         public string Title = null!;
     }
 }
