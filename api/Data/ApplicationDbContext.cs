@@ -87,5 +87,6 @@ namespace api.Data
         public DbSet<Feature> Features { get; set; }
         public DbSet<PropertyCategories> PropertiesCategories { get; set; }
         public DbSet<PropertyFeatures> PropertiesFeatures { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

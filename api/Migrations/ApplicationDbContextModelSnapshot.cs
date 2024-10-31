@@ -55,19 +55,19 @@ namespace ProperlyAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dc26e9a2-7643-4532-b3df-49e76070987e"),
+                            Id = new Guid("faeec210-22ab-457d-821f-9eef8d75c7dc"),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("b3664a81-a910-444e-bfd0-50f1f3ab593d"),
+                            Id = new Guid("9ba35cb3-852f-4bd8-8700-8af77441ee30"),
                             Name = "Broker",
                             NormalizedName = "BROKER"
                         },
                         new
                         {
-                            Id = new Guid("455f84d4-0f5f-43ed-8064-a804984e9284"),
+                            Id = new Guid("f50214ac-27e7-4ee6-ae69-da5b1630d374"),
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -289,6 +289,30 @@ namespace ProperlyAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Features");
+                });
+
+            modelBuilder.Entity("api.Models.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("The unique identifier for the image.");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("The name of the image.");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("The path to the image.");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("api.Models.Property", b =>
