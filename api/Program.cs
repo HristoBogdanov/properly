@@ -88,16 +88,15 @@ public class Program{
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,  // Validate the token issuer.
-                ValidIssuer = builder.Configuration["JWT:Issuer"],  // Gets the issuer from configuration.
+                ValidIssuer = builder.Configuration["JwtSettings:Issuer"],  // Gets the issuer from configuration.
                 ValidateAudience = true,  // Validate the token audience.
-                ValidAudience = builder.Configuration["JWT:Audience"],  // Gets the audience from configuration.
+                ValidAudience = builder.Configuration["JwtSettings:Audience"],  // Gets the audience from configuration.
                 ValidateIssuerSigningKey = true,  // Ensures the token has a valid signing key.
                 IssuerSigningKey = new SymmetricSecurityKey(  // Signing key used to verify the token.
                     System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:DevSigningKey"]!)
                 )
             };
         });
-
 
         //Dependancy Injection
         builder.Services.AddScoped<ITokenService, TokenService>();
