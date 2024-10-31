@@ -101,6 +101,7 @@ public class Program{
         //Dependancy Injection
         builder.Services.AddScoped<ITokenService, TokenService>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
         var app = builder.Build();

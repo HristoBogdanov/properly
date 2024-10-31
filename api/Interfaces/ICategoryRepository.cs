@@ -5,8 +5,8 @@ namespace api.Interfaces
     public interface ICategoryRepository
     {
         Task<List<DisplayCategoryWithPropertiesDTO>> GetCategoriesAsync();
-        Task<DisplayCategoryDTO> CreateCategoryAsync(DisplayCategoryDTO createCategoryDTO);
-        Task<DisplayCategoryDTO> UpdateCategoryAsync(string id, DisplayCategoryDTO updateCategoryDTO);
+        Task<DisplayCategoryDTO> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO);
+        Task<DisplayCategoryDTO> UpdateCategoryAsync(string id, CreateCategoryDTO updateCategoryDTO);
         Task<DisplayCategoryDTO> DeleteCategoryAsync(string id);
     }
 }

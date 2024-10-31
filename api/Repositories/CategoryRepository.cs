@@ -23,6 +23,7 @@ namespace api.Repositories
             .Where(c => !c.IsDeleted)
             .Select(c => new DisplayCategoryWithPropertiesDTO
             {
+                Id = c.Id,
                 Title = c.Title,
                 Properties = c.PropertiesCategories.Select(pc => new DisplaySimplePropertyDTO
                 {
@@ -45,7 +46,7 @@ namespace api.Repositories
             return categories;
         }
 
-        public async Task<DisplayCategoryDTO> CreateCategoryAsync(DisplayCategoryDTO createCategoryDTO)
+        public async Task<DisplayCategoryDTO> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
         {
             var existingCategory = await _context.Categories
             .Where(c => !c.IsDeleted)
@@ -63,10 +64,14 @@ namespace api.Repositories
             _context.Categories.Add(newCategory);
             await _context.SaveChangesAsync();
 
-            return createCategoryDTO;
+            return new DisplayCategoryDTO
+            {
+                Id = newCategory.Id,
+                Title = newCategory.Title
+            };
         }
 
-        public async Task<DisplayCategoryDTO> UpdateCategoryAsync(string id, DisplayCategoryDTO updateCategoryDTO)
+        public async Task<DisplayCategoryDTO> UpdateCategoryAsync(string id, CreateCategoryDTO updateCategoryDTO)
         {
             Guid IdGuid = Guid.Parse(id);
 
@@ -82,7 +87,11 @@ namespace api.Repositories
             existingCategory.Title = updateCategoryDTO.Title;
             await _context.SaveChangesAsync();
 
-            return updateCategoryDTO;
+            return new DisplayCategoryDTO
+            {
+                Id = existingCategory.Id,
+                Title = existingCategory.Title
+            };
         }
 
         public async Task<DisplayCategoryDTO> DeleteCategoryAsync(string id)
@@ -102,6 +111,7 @@ namespace api.Repositories
             await _context.SaveChangesAsync();
 
             return new DisplayCategoryDTO(){
+                Id = existingCategory.Id,
                 Title = existingCategory.Title
             };
         }
