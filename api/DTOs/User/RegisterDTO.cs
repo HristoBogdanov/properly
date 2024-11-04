@@ -1,19 +1,20 @@
 using System.ComponentModel.DataAnnotations;
 using api.Constants;
 
-namespace api.Dtos.Account
+namespace api.DTOs.User
 {
-    public class NewUserDto
+    public class RegisterDTO
     {
         [Required(ErrorMessage = UserErrorMessages.UsernameRequired)]
         [StringLength(150, MinimumLength = 3, ErrorMessage = UserErrorMessages.InvalidUsernameLength)]
-        public string UserName { get; set; } = null!;
-
+        public string Username { get; set; } = null!;
+        
         [Required(ErrorMessage = UserErrorMessages.EmailRequired)]
         [EmailAddress(ErrorMessage = UserErrorMessages.InvalidEmail)]
         public string Email { get; set; } = null!;
 
-        [Required]
-        public string Token { get; set; } = null!;
+        [Required(ErrorMessage = UserErrorMessages.PasswordRequired)]
+        [StringLength(150, MinimumLength =12, ErrorMessage = UserErrorMessages.InvalidPasswordLength)]
+        public string Password { get; set; } = null!;
     }
 }
