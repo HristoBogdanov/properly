@@ -27,12 +27,12 @@ namespace api.Data
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
-        public DbSet<Property> Properties { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Feature> Features { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<PropertyCategories> PropertiesCategories { get; set; }
-        public DbSet<PropertyFeatures> PropertiesFeatures { get; set; }
-        public DbSet<PropertyImages> PropertiesImages { get; set; }
+        public virtual DbSet<Property> Properties { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<PropertyCategories> PropertiesCategories { get; set; }
+        public virtual DbSet<PropertyFeatures> PropertiesFeatures { get; set; }
+        public virtual DbSet<PropertyImages> PropertiesImages { get; set; }
     }
 }
