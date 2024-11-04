@@ -1,6 +1,5 @@
-using api.Dtos.Account;
-using api.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using api.DTOs.User;
+using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -9,16 +8,16 @@ namespace api.Controllers
     [Route("api/account")]
     public class ApplicationUserController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
         public ApplicationUserController(
-        IUserRepository userRepository)
+        IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginDto loginDto)
+        public async Task<IActionResult> Login(LoginDTO loginDto)
         {
             if(!ModelState.IsValid)
             {
@@ -27,7 +26,7 @@ namespace api.Controllers
 
             try
             {
-                var user = await _userRepository.Login(loginDto);
+                var user = await _userService.Login(loginDto);
                 return Ok(user);
             }
             catch (UnauthorizedAccessException ex)
@@ -37,7 +36,7 @@ namespace api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDto registerDto)
+        public async Task<IActionResult> Register(RegisterDTO registerDto)
         {
             if(!ModelState.IsValid)
             {
@@ -46,8 +45,27 @@ namespace api.Controllers
 
             try
             {
-                var user = await _userRepository.Register(registerDto);
+                var user = await _userService.Register(registerDto);
                 return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("register-broker")]
+        public async Task<IActionResult> RegisterBroker(RegisterDTO registerDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var broker = await _userService.RegisterBroker(registerDto);
+                return Ok(broker);
             }
             catch (Exception ex)
             {
@@ -57,7 +75,7 @@ namespace api.Controllers
 
         // TO DO: REMOVE THIS AND ADD AN ADMIN THROUGH SEED
         [HttpPost("register-admin")]
-        public async Task<IActionResult> RegisterAdmin(RegisterDto registerDto)
+        public async Task<IActionResult> RegisterAdmin(RegisterDTO registerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -66,28 +84,8 @@ namespace api.Controllers
 
             try
             {
-                var admin = await _userRepository.RegisterAdmin(registerDto);
+                var admin = await _userService.RegisterAdmin(registerDto);
                 return Ok(admin);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        
-        [HttpPost("register-broker")]
-        [Authorize]
-        public async Task<IActionResult> RegisterBroker(RegisterDto registerDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                var broker = await _userRepository.RegisterBroker(registerDto);
-                return Ok(broker);
             }
             catch (Exception ex)
             {
@@ -100,7 +98,7 @@ namespace api.Controllers
         {
             try
             {
-                await _userRepository.DeleteUser(id);
+                await _userService.DeleteUser(id);
                 return NoContent();
             }
             catch (Exception ex)
