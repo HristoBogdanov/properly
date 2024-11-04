@@ -1,5 +1,6 @@
 using api.DTOs.Category;
 using api.Interfaces;
+using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -8,11 +9,11 @@ namespace api.Controllers
     [ApiController]
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryRepository categoryRepository)
+        public CategoryController(ICategoryService categoryService)
         {
-            _categoryRepository = categoryRepository;
+            _categoryService = categoryService;
         }
 
         [HttpGet("all")]
@@ -20,7 +21,7 @@ namespace api.Controllers
         {
             try
             {
-                var categories = await _categoryRepository.GetCategoriesAsync();
+                var categories = await _categoryService.GetCategoriesAsync();
                 return Ok(categories);
             }
             catch (Exception ex)
@@ -34,7 +35,7 @@ namespace api.Controllers
         {
             try
             {
-                var category = await _categoryRepository.CreateCategoryAsync(createCategoryDTO);
+                var category = await _categoryService.CreateCategoryAsync(createCategoryDTO);
                 return Ok(category);
             }
             catch (Exception ex)
@@ -48,7 +49,7 @@ namespace api.Controllers
         {
             try
             {
-                var category = await _categoryRepository.UpdateCategoryAsync(id, displayCategoryDTO);
+                var category = await _categoryService.UpdateCategoryAsync(id, displayCategoryDTO);
                 return Ok(category);
             }
             catch (Exception ex)
@@ -62,7 +63,7 @@ namespace api.Controllers
         {
             try
             {
-                var category = await _categoryRepository.DeleteCategoryAsync(id);
+                var category = await _categoryService.DeleteCategoryAsync(id);
                 return Ok(category);
             }
             catch (Exception ex)
