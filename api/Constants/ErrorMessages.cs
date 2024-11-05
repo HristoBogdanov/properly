@@ -28,4 +28,8 @@ namespace api.Constants
         public const string EntityNotFound = "Entity not found!";
         public const string InvalidServiceType = "Service type could not be obtained for the service :";
     }
+
+    public static class ImageErrorMessages{
+        public const string ImageAlreadyExists = "Image on this path already exists!";
+    }
 }
