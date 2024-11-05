@@ -1,5 +1,4 @@
 using api.DTOs.Category;
-using api.Interfaces;
 using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
