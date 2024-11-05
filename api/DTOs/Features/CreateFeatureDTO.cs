@@ -9,6 +9,6 @@ namespace api.DTOs.Features
         [Required(ErrorMessage = FeatureErrorMessages.TitleRequired)]
         [StringLength(200, MinimumLength =3, ErrorMessage = FeatureErrorMessages.InvalidTitleLength)]
         public string Title { get; set; } = null!;
-        public DisplayImageDTO Image { get; set; } = null!;
+        public CreateImageDTO Image { get; set; } = null!;
     }
 }

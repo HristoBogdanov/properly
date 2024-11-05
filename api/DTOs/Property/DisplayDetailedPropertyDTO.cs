@@ -20,6 +20,6 @@ namespace api.DTOs.Property
         public Guid OwnerId { get; set; }
         public virtual ICollection<DisplayCategoryDTO> Categories { get; set; } = new List<DisplayCategoryDTO>();
         public virtual ICollection<DisplayFeatureDTO> PropertiesFeatures { get; set; } = new List<DisplayFeatureDTO>();
-        public virtual ICollection<DisplayImageDTO> PropertiesImages { get; set; } = new List<DisplayImageDTO>();
+        public virtual ICollection<CreateImageDTO> PropertiesImages { get; set; } = new List<CreateImageDTO>();
     }
 }
