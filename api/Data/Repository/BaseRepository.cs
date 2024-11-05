@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Linq.Expressions;
 using api.Constants;
 using api.Data.Repository.Interfaces;
@@ -66,6 +67,16 @@ namespace api.Data.Repository
             }
 
             return entity;
+        }
+
+        public bool Contains(Expression<Func<TType, bool>> predicate)
+        {
+            return _dbSet.Any(predicate);
+        }
+
+        public async Task<bool> ContainsAsync(Expression<Func<TType, bool>> predicate)
+        {
+            return await _dbSet.AnyAsync(predicate);
         }
 
         public IEnumerable<TType> GetAll()

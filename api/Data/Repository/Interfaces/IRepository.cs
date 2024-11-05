@@ -11,6 +11,8 @@ namespace api.Data.Repository.Interfaces
         IEnumerable<TType> GetAll();
         Task<IEnumerable<TType>> GetAllAsync();
         IQueryable<TType> GetAllAttached();
+        bool Contains(Expression<Func<TType, bool>> predicate);
+        Task<bool> ContainsAsync(Expression<Func<TType, bool>> predicate);
         void Add(TType item);
         Task AddAsync(TType item);
         void AddRange(TType[] items);
