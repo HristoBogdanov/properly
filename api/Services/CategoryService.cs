@@ -1,11 +1,10 @@
-using System.Security.Cryptography.X509Certificates;
 using api.Constants;
 using api.Data.Repository.Interfaces;
 using api.DTOs.Category;
 using api.DTOs.Property;
 using api.Models;
-using api.Services;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Services
@@ -48,7 +47,7 @@ namespace api.Services
             return categories;
         }
 
-        public async Task<bool> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
+        public async Task<bool> CreateCategoryAsync([FromBody]CreateCategoryDTO createCategoryDTO)
         {
             var existingCategory = await _categoryRepository.GetAllAttached()
             .Where(c => !c.IsDeleted)
@@ -67,18 +66,12 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> UpdateCategoryAsync(string id, CreateCategoryDTO updateCategoryDTO)
+        public async Task<bool> UpdateCategoryAsync([FromRoute]string id, [FromBody]CreateCategoryDTO updateCategoryDTO)
         {
             Guid IdGuid = Guid.Parse(id);
 
-            var existingCategory = await _categoryRepository.GetAllAttached()
-            .Where(c => !c.IsDeleted)
+            var existingCategory = await _categoryRepository
             .FirstOrDefaultAsync(c => c.Id == IdGuid);
-
-            if(existingCategory == null)
-            {
-                throw new Exception(CategoryErrorMessages.CategoryNotFound);
-            }
 
             existingCategory.Title = updateCategoryDTO.Title;
             await _categoryRepository.UpdateAsync(existingCategory);
@@ -86,7 +79,7 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> DeleteCategoryAsync(string id)
+        public async Task<bool> DeleteCategoryAsync([FromRoute]string id)
         {
             Guid IdGuid = Guid.Parse(id);
 
