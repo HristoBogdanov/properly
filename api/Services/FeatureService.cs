@@ -28,7 +28,7 @@ namespace api.Services
             {
                 Id = f.Id.ToString(),
                 Title = f.Title,
-                Image = new DisplayImageDTO
+                Image = new CreateImageDTO
                 {
                     Name = f.Image.Name,
                     Path = f.Image.Path
