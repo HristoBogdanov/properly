@@ -49,9 +49,9 @@ namespace api.DTOs.Property
         //TODO: Refactor this after Broker is separate entity
         public string OwnerId { get; set; } = null!;
 
-        public virtual IEnumerable<CreateCategoryDTO> Categories { get; set; } = new List<CreateCategoryDTO>();
+        public virtual IEnumerable<string> Categories { get; set; } = new List<string>();
 
-        public virtual IEnumerable<CreateFeatureDTO> Features { get; set; } = new List<CreateFeatureDTO>();
+        public virtual IEnumerable<string> Features { get; set; } = new List<string>();
 
         public virtual IEnumerable<CreateImageDTO> Images { get; set; } = new List<CreateImageDTO>();
     }

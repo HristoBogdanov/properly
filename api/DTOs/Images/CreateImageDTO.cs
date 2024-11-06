@@ -1,15 +1,16 @@
 using System.ComponentModel.DataAnnotations;
+using api.Constants;
 
 namespace api.DTOs.Images
 {
     public class CreateImageDTO
     {
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = ImageErrorMessages.ImageNameRequired)]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = ImageErrorMessages.InvalidImageNameLength)]
         public string Name { get; set; } = null!;
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = ImageErrorMessages.ImagePathRequired)]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = ImageErrorMessages.InvalidImagePathLength)]
         public string Path { get; set; } = null!;
     }
 }
