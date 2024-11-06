@@ -4,7 +4,6 @@ using api.DTOs.Category;
 using api.DTOs.Property;
 using api.Models;
 using api.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Services
@@ -26,8 +25,9 @@ namespace api.Services
             {
                 Id = c.Id,
                 Title = c.Title,
-                Properties = c.PropertiesCategories.Select(pc => new DisplaySimplePropertyDTO
+                Properties = c.PropertiesCategories.Select(pc => new DisplayPropertyDTO
                 {
+                    Id = pc.Property.Id.ToString(),
                     Title = pc.Property.Title,
                     Description = pc.Property.Description,
                     Address = pc.Property.Address,
@@ -39,6 +39,7 @@ namespace api.Services
                     IsFurnished = pc.Property.IsFurnished,
                     Area = pc.Property.Area,
                     YearOfConstruction = pc.Property.YearOfConstruction,
+                    OwnerId = pc.Property.OwnerId.ToString(),
                 }).ToList()
             })
             .AsNoTracking()
@@ -47,11 +48,11 @@ namespace api.Services
             return categories;
         }
 
-        public async Task<bool> CreateCategoryAsync([FromBody]CreateCategoryDTO createCategoryDTO)
+        public async Task<bool> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
         {
-            var existingCategory = await _categoryRepository.GetAllAttached()
-            .Where(c => !c.IsDeleted)
-            .FirstOrDefaultAsync(c => c.Title == createCategoryDTO.Title);
+            var existingCategory = await _categoryRepository
+            .FirstOrDefaultAsync(c => c.Title == createCategoryDTO.Title && !c.IsDeleted);
+
             if(existingCategory != null)
             {
                 throw new Exception(CategoryErrorMessages.CategoryExists);
@@ -66,12 +67,12 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> UpdateCategoryAsync([FromRoute]string id, [FromBody]CreateCategoryDTO updateCategoryDTO)
+        public async Task<bool> UpdateCategoryAsync(string id, CreateCategoryDTO updateCategoryDTO)
         {
             Guid IdGuid = Guid.Parse(id);
 
             var existingCategory = await _categoryRepository
-            .FirstOrDefaultAsync(c => c.Id == IdGuid);
+            .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
 
             existingCategory.Title = updateCategoryDTO.Title;
             await _categoryRepository.UpdateAsync(existingCategory);
@@ -79,13 +80,12 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> DeleteCategoryAsync([FromRoute]string id)
+        public async Task<bool> DeleteCategoryAsync(string id)
         {
             Guid IdGuid = Guid.Parse(id);
 
-            var existingCategory = await _categoryRepository.GetAllAttached()
-            .Where(c => !c.IsDeleted)
-            .FirstOrDefaultAsync(c => c.Id == IdGuid);
+            var existingCategory = await _categoryRepository
+            .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
 
             if(existingCategory == null)
             {

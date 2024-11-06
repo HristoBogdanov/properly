@@ -40,9 +40,9 @@ namespace api.Services
             return features;
         }
 
-        public async Task<bool> CreateFeatureAsync([FromBody]CreateFeatureDTO createFeatureDTO)
+        public async Task<bool> CreateFeatureAsync(CreateFeatureDTO createFeatureDTO)
         {
-            if(await _featureRepository.ContainsAsync(i => i.Title == createFeatureDTO.Title))
+            if(await _featureRepository.ContainsAsync(i => i.Title == createFeatureDTO.Title && !i.IsDeleted))
             {
                 throw new Exception(FeatureErrorMessages.FeatureAlreadyExists);
             }
@@ -66,10 +66,10 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> UpdateFeatureAsync([FromRoute]string id, [FromBody]CreateFeatureDTO updateFeatureDTO)
+        public async Task<bool> UpdateFeatureAsync(string id, CreateFeatureDTO updateFeatureDTO)
         {
             Guid idGuid = Guid.Parse(id);
-            var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid);
+            var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid && !f.IsDeleted);
 
             var newImage = new Image
             {
@@ -87,10 +87,10 @@ namespace api.Services
             return true;
         }
 
-        public async Task<bool> DeleteFeatureAsync([FromRoute]string id)
+        public async Task<bool> DeleteFeatureAsync(string id)
         {
             Guid idGuid = Guid.Parse(id);
-            var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid);
+            var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid && !f.IsDeleted);
 
             await _featureRepository.SoftDeleteAsync(existingFeature);
             return true;
