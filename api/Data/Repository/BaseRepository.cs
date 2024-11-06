@@ -59,13 +59,7 @@ namespace api.Data.Repository
         public async Task<TType> FirstOrDefaultAsync(Expression<Func<TType, bool>> predicate)
         {
             TType? entity = await _dbSet.FirstOrDefaultAsync(predicate);
-
-            if(entity == null)
-            {
-                throw new Exception(CommonErrorMessages.EntityNotFound);
-            }
-
-            return entity;
+            return entity!;
         }
 
         public bool Contains(Expression<Func<TType, bool>> predicate)
