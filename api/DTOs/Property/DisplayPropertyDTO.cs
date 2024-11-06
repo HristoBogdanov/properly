@@ -1,7 +1,12 @@
+using api.DTOs.Category;
+using api.DTOs.Features;
+using api.DTOs.Images;
+
 namespace api.DTOs.Property
 {
-    public class DisplaySimplePropertyDTO
+    public class DisplayPropertyDTO
     {
+        public string Id { get; set; } = null!;
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Address { get; set; } = null!;
@@ -13,5 +18,9 @@ namespace api.DTOs.Property
         public bool IsFurnished { get; set; }
         public int Area { get; set; } = 0;
         public int YearOfConstruction { get; set; }
+        public string OwnerId { get; set; } = null!;
+        public virtual IEnumerable<DisplayCategoryDTO> Categories { get; set; } = new List<DisplayCategoryDTO>();
+        public virtual IEnumerable<DisplayFeatureDTO> Features { get; set; } = new List<DisplayFeatureDTO>();
+        public virtual IEnumerable<CreateImageDTO> Images { get; set; } = new List<CreateImageDTO>();
     }
 }

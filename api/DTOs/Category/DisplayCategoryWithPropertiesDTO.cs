@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using api.DTOs.Property;
 
 namespace api.DTOs.Category
@@ -7,6 +6,6 @@ namespace api.DTOs.Category
     {
         public Guid Id { get; set; }
         public string Title = null!;
-        public virtual ICollection<DisplaySimplePropertyDTO> Properties { get; set; } = new List<DisplaySimplePropertyDTO>();
+        public virtual ICollection<DisplayPropertyDTO> Properties { get; set; } = new List<DisplayPropertyDTO>();
     }
 }
