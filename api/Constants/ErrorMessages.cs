@@ -31,6 +31,10 @@ namespace api.Constants
 
     public static class ImageErrorMessages{
         public const string ImageAlreadyExists = "Image on this path already exists!";
+        public const string ImageNameRequired = "Image name is required!";
+        public const string InvalidImageNameLength = "Invalid image name length!";
+        public const string ImagePathRequired = "Image path is required!";
+        public const string InvalidImagePathLength = "Invalid image path length!";
     }
 
     public static class PropertiesErrorMessages{
