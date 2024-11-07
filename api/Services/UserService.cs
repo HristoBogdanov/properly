@@ -1,4 +1,5 @@
 using api.Constants;
+using api.Data.Repository.Interfaces;
 using api.DTOs.User;
 using api.Interfaces;
 using api.Models;
@@ -13,13 +14,64 @@ namespace api.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signinManager;
         private readonly ITokenService _tokenService;
-        public UserService(UserManager<ApplicationUser> userManager,
+        private readonly IRepository<Property, Guid> _propertyRepository;
+        public UserService(
+        UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        ITokenService tokenService)
+        ITokenService tokenService,
+        IRepository<Property, Guid> propertyRepository)
         {
             _userManager = userManager;
             _signinManager = signInManager;
             _tokenService = tokenService;
+            _propertyRepository = propertyRepository;
+        }
+
+        public async Task<List<DisplayUserDTO>> GetUsersAsync()
+        {
+            var users = await _userManager.Users
+                .Select(user => new DisplayUserDTO
+                {
+                    Id = user.Id.ToString(),
+                    Username = user.UserName!,
+                    Email = user.Email!
+                })
+                .AsNoTracking()
+                .ToListAsync();
+
+            foreach (var user in users)
+            {
+                var appUser = await _userManager.FindByIdAsync(user.Id);
+                user.Role = (await _userManager.GetRolesAsync(appUser!)).FirstOrDefault()!;
+                int propertyCount = _propertyRepository.GetAll().Count(p => p.OwnerId == Guid.Parse(user.Id));
+                user.NumberOfProperties = propertyCount;
+            }
+
+            return users;
+        }
+
+        public async Task<DisplayUserDTO> GetUserByIdAsync(string id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id.ToString() == id);
+
+            if (user == null)
+            {
+                throw new Exception(UserErrorMessages.UserNotFound);
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault();
+
+            var userDTO = new DisplayUserDTO
+            {
+                Id = user.Id.ToString(),
+                Username = user.UserName!,
+                Email = user.Email!,
+                Role = role!,
+                NumberOfProperties = _propertyRepository.GetAll().Count(p => p.OwnerId == user.Id)
+            };
+
+            return userDTO;
         }
 
         public async Task<NewUserDTO> Login(LoginDTO loginDto)
@@ -87,13 +139,18 @@ namespace api.Services
                 throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
-            await _userManager.AddToRoleAsync(broker, "Broker");
+            var roleResult = await _userManager.AddToRoleAsync(broker, "Broker");
+            if (!roleResult.Succeeded)
+            {
+                throw new Exception(string.Join(", ", roleResult.Errors.Select(e => e.Description)));
+            }
+
             return new NewUserDTO
-                {
-                    UserName = broker.UserName,
-                    Email = broker.Email,
-                    Token = _tokenService.CreateToken(broker)
-                };
+            {
+                UserName = broker.UserName,
+                Email = broker.Email,
+                Token = _tokenService.CreateToken(broker)
+            };
         }
 
         // TODO: Remove this and add the admin using seed
@@ -120,21 +177,22 @@ namespace api.Services
                 };
         }
 
-        public async Task<DeleteDTO> DeleteUser(Guid id)
+        public async Task<bool> DeleteUser(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
-                throw new Exception("User not found");
+                throw new Exception(UserErrorMessages.UserNotFound);
             }
 
+            var properties = _propertyRepository.GetAll().Where(p => p.OwnerId == user.Id).ToList();
+            foreach (var property in properties)
+            {
+                await _propertyRepository.DeleteAsync(property);
+            }
             await _userManager.DeleteAsync(user);
 
-            return new DeleteDTO
-            {
-                Username = user.UserName!,
-                Email = user.Email!
-            };
+            return true;
         }
     }
 }

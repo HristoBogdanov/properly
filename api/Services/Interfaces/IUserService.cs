@@ -4,10 +4,12 @@ namespace api.Services.Interfaces
 {
     public interface IUserService
     {
+        Task<List<DisplayUserDTO>> GetUsersAsync();
+        Task<DisplayUserDTO> GetUserByIdAsync(string id);
         Task<NewUserDTO> Login(LoginDTO loginDto);
         Task<NewUserDTO> Register(RegisterDTO registerDto);
         Task<NewUserDTO> RegisterBroker(RegisterDTO registerDto);
         Task<NewUserDTO> RegisterAdmin(RegisterDTO registerDto);
-        Task<DeleteDTO> DeleteUser(Guid id);
+        Task<bool> DeleteUser(Guid id);
     }
 }

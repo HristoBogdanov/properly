@@ -1,5 +1,6 @@
 using api.DTOs.User;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -14,6 +15,34 @@ namespace api.Controllers
         IUserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpGet("users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            try
+            {
+                var users = await _userService.GetUsersAsync();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("users/{id}")]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            try
+            {
+                var user = await _userService.GetUserByIdAsync(id);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("login")]
@@ -45,6 +74,7 @@ namespace api.Controllers
         }
 
         [HttpPost("register-broker")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterBroker(RegisterDTO registerDto)
         {
             try
@@ -74,12 +104,13 @@ namespace api.Controllers
         }
 
         [HttpDelete("users/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
             try
             {
                 await _userService.DeleteUser(id);
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
