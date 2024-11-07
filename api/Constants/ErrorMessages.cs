@@ -56,5 +56,13 @@ namespace api.Constants
         public const string AddressRequired = "Address is required!";
         public const string ForSaleRequired = "Mark the property as for sale or not!";
         public const string ForRentRequired = "Mark the property as for rent ot not!";
+        public const string InvalidSearchQueryLength = "Enter at least 3 characters!";
+        public const string InvalidSortParameter = "Sorting can be done only by price, area or year of construction!";
+        public const string InvalidPageParameter = "Invalid parameter entered for page!";
+        public const string InvalidPerPageParameter = "Invalid parameter entered for page size!";
+    }
+
+    public static class Regexes{
+        public const string SortParamRegex = "^(price|area|yearOfConstruction)$";
     }
 }

@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using api.Constants;
-using api.DTOs.Category;
-using api.DTOs.Features;
 using api.DTOs.Images;
 
 namespace api.DTOs.Property
