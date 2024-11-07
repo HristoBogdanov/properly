@@ -8,6 +8,7 @@ namespace api.Constants
         public const string InvalidEmail = "Invalid email!";
         public const string EmailRequired = "Email is required!";
         public const string InvalidUsernameOrPassword = "Invalid username or password!";
+        public const string UserNotFound = "User not found!";
     }
 
     public static class CategoryErrorMessages{
