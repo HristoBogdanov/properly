@@ -6,7 +6,7 @@ namespace api.Controllers
 {
     [Route("api/categories")]
     [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
 
@@ -30,7 +30,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateCategory([FromBody]CreateCategoryDTO createCategoryDTO)
+        public async Task<IActionResult> CreateCategory(CreateCategoryDTO createCategoryDTO)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateCategory([FromRoute]string id, [FromBody]CreateCategoryDTO displayCategoryDTO)
+        public async Task<IActionResult> UpdateCategory(string id, CreateCategoryDTO displayCategoryDTO)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute]string id)
+        public async Task<IActionResult> DeleteCategory(string id)
         {
             try
             {

@@ -6,7 +6,7 @@ namespace api.Controllers
 {
     [Route("api/properties")]
     [ApiController]
-    public class PropertyController : Controller
+    public class PropertyController : ControllerBase
     {
         private readonly IPropertyService _propertyService;
 
@@ -30,7 +30,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateProperty([FromBody]CreatePropertyDTO createPropertyDTO)
+        public async Task<IActionResult> CreateProperty(CreatePropertyDTO createPropertyDTO)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateProperty([FromRoute]string id, [FromBody]CreatePropertyDTO createPropertyDTO)
+        public async Task<IActionResult> UpdateProperty(string id, CreatePropertyDTO createPropertyDTO)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        public async Task<IActionResult> DeleteProperty([FromRoute]string id)
+        public async Task<IActionResult> DeleteProperty(string id)
         {
             try
             {

@@ -6,7 +6,7 @@ namespace api.Controllers
 {
     [Route("api/features")]
     [ApiController]
-    public class FeatureController : Controller
+    public class FeatureController : ControllerBase
     {
         private readonly IFeatureService _featureService;
 
@@ -30,7 +30,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateFeature([FromBody]CreateFeatureDTO createFeatureDTO)
+        public async Task<IActionResult> CreateFeature(CreateFeatureDTO createFeatureDTO)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateFeature([FromRoute]string id, [FromBody]CreateFeatureDTO displayFeatureDTO)
+        public async Task<IActionResult> UpdateFeature(string id, CreateFeatureDTO displayFeatureDTO)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace api.Controllers
         }
 
         [HttpPost("delete/{id}")]
-        public async Task<IActionResult> DeleteFeature([FromRoute]string id)
+        public async Task<IActionResult> DeleteFeature(string id)
         {
             try
             {

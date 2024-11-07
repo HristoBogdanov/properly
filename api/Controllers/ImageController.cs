@@ -6,7 +6,7 @@ namespace api.Controllers
 {
     [Route("api/images")]
     [ApiController]
-    public class ImageController : Controller
+    public class ImageController : ControllerBase
     {
         private readonly IImageService _imageService;
         public ImageController(IImageService imageService)
@@ -29,7 +29,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateImage([FromBody]CreateImageDTO createImageDTO)
+        public async Task<IActionResult> CreateImage(CreateImageDTO createImageDTO)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateImage([FromRoute]string id, [FromBody]CreateImageDTO updateImageDTO)
+        public async Task<IActionResult> UpdateImage(string id, CreateImageDTO updateImageDTO)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteImage([FromRoute]string id)
+        public async Task<IActionResult> DeleteImage(string id)
         {
             try
             {

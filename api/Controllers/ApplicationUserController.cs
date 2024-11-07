@@ -6,7 +6,7 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("api/account")]
-    public class ApplicationUserController : Controller
+    public class ApplicationUserController : ControllerBase
     {
         private readonly IUserService _userService;
 
@@ -19,11 +19,6 @@ namespace api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDTO loginDto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
                 var user = await _userService.Login(loginDto);
@@ -38,11 +33,6 @@ namespace api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDTO registerDto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
                 var user = await _userService.Register(registerDto);
@@ -57,11 +47,6 @@ namespace api.Controllers
         [HttpPost("register-broker")]
         public async Task<IActionResult> RegisterBroker(RegisterDTO registerDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
                 var broker = await _userService.RegisterBroker(registerDto);
@@ -77,11 +62,6 @@ namespace api.Controllers
         [HttpPost("register-admin")]
         public async Task<IActionResult> RegisterAdmin(RegisterDTO registerDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
                 var admin = await _userService.RegisterAdmin(registerDto);
