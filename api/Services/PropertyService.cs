@@ -7,6 +7,8 @@ using api.Models;
 using api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using api.Constants;
+using api.Helpers;
+using System.Linq.Expressions;
 
 namespace api.Services
 {
@@ -38,10 +40,97 @@ namespace api.Services
             _propertyImagesRepository = propertyImagesRepository;
         }
 
-        public async Task<List<DisplayPropertyDTO>> GetPropertiesAsync()
+        public async Task<List<DisplayPropertyDTO>> GetPropertiesAsync(PropertyQueryParams queryParams)
         {
-            var properties = await _propertyRepository.GetAllAttached()
-            .Where(p => p.IsDeleted == false)
+            var properties = GetDisplayProperties(p => !p.IsDeleted);
+
+            FilterProperties(properties, queryParams);
+            SortProperties(properties, queryParams);
+            PaginateProperties(properties, queryParams);
+
+            return await properties.ToListAsync();
+        }
+
+        public async Task<DisplayPropertyDTO> GetPropertyByIdAsync(string id)
+        {
+            Guid idGuid = Guid.Parse(id);
+
+            var property = await GetDisplayProperties(p => p.Id == idGuid && !p.IsDeleted)
+            .FirstOrDefaultAsync();
+
+            if(property == null)
+            {
+                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+            }
+
+            return property;
+        }
+
+        public async Task<bool> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
+        {
+            var newProperty = new Property();
+            MapPropertyFields(newProperty, createPropertyDTO);
+
+            await _propertyRepository.AddAsync(newProperty);
+            await AddDataToProperty(createPropertyDTO, newProperty);
+
+            return true;
+        }
+
+        public async Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO)
+        {
+            Guid idGuid = Guid.Parse(id);
+
+            var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
+
+            if(existingProperty == null)
+            {
+                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+            }
+
+            MapPropertyFields(existingProperty, updatePropertyDTO);
+
+            await _propertyRepository.UpdateAsync(existingProperty);
+            await AddDataToProperty(updatePropertyDTO, existingProperty);
+            
+            return true;
+        }
+
+        public async Task<bool> DeletePropertyAsync(string id)
+        {
+            Guid idGuid = Guid.Parse(id);
+
+            var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
+
+            if(existingProperty == null)
+            {
+                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+            }
+
+            await _propertyRepository.SoftDeleteAsync(existingProperty);
+            return true;
+        }
+
+        private void MapPropertyFields(Property property, CreatePropertyDTO propertyDTO)
+        {
+            property.Title = propertyDTO.Title;
+            property.Description = propertyDTO.Description;
+            property.Address = propertyDTO.Address;
+            property.Price = propertyDTO.Price;
+            property.ForSale = propertyDTO.ForSale;
+            property.ForRent = propertyDTO.ForRent;
+            property.Area = propertyDTO.Area;
+            property.YearOfConstruction = propertyDTO.YearOfConstruction;
+            property.Bedrooms = propertyDTO.Bedrooms;
+            property.Bathrooms = propertyDTO.Bathrooms;
+            property.IsFurnished = propertyDTO.IsFurnished;
+            property.OwnerId = Guid.Parse(propertyDTO.OwnerId);
+        }
+
+        private IQueryable<DisplayPropertyDTO> GetDisplayProperties(Expression<Func<Property, bool>> predicate)
+        {
+            var properties = _propertyRepository.GetAllAttached()
+            .Where(predicate)
             .Select(p => new DisplayPropertyDTO
             {
                 Id = p.Id.ToString(),
@@ -78,77 +167,107 @@ namespace api.Services
                     Path = i.Image.Path
                 })
             })
-            .AsNoTracking()
-            .ToListAsync();
+            .AsNoTracking();
 
             return properties;
         }
-        public async Task<bool> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
+
+        private void FilterProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
-            var newProperty = new Property
+            if(!string.IsNullOrEmpty(queryParams.search))
             {
-                Title = createPropertyDTO.Title,
-                Description = createPropertyDTO.Description,
-                Address = createPropertyDTO.Address,
-                Price = createPropertyDTO.Price,
-                ForSale = createPropertyDTO.ForSale,
-                ForRent = createPropertyDTO.ForRent,
-                Area = createPropertyDTO.Area,
-                YearOfConstruction = createPropertyDTO.YearOfConstruction,
-                Bedrooms = createPropertyDTO.Bedrooms,
-                Bathrooms = createPropertyDTO.Bathrooms,
-                IsFurnished = createPropertyDTO.IsFurnished,
-                OwnerId = Guid.Parse(createPropertyDTO.OwnerId),
-            };
-
-            await _propertyRepository.AddAsync(newProperty);
-            await AddDataToProperty(createPropertyDTO, newProperty);
-
-            return true;
-        }
-
-        public async Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO)
-        {
-            Guid idGuid = Guid.Parse(id);
-
-            var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
-
-            if(existingProperty == null)
-            {
-                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+                properties = properties
+                .Where(p => p.Title.ToLower().Contains(queryParams.search.ToLower()) 
+                || p.Description.ToLower().Contains(queryParams.search.ToLower())
+                || p.Address.ToLower().Contains(queryParams.search.ToLower()));
             }
 
-            existingProperty.Title = updatePropertyDTO.Title;
-            existingProperty.Description = updatePropertyDTO.Description;
-            existingProperty.Address = updatePropertyDTO.Address;
-            existingProperty.Price = updatePropertyDTO.Price;
-            existingProperty.ForSale = updatePropertyDTO.ForSale;
-            existingProperty.ForRent = updatePropertyDTO.ForRent;
-            existingProperty.Area = updatePropertyDTO.Area;
-            existingProperty.YearOfConstruction = updatePropertyDTO.YearOfConstruction;
-            existingProperty.Bedrooms = updatePropertyDTO.Bedrooms;
-            existingProperty.Bathrooms = updatePropertyDTO.Bathrooms;
-            existingProperty.IsFurnished = updatePropertyDTO.IsFurnished;
-            existingProperty.OwnerId = Guid.Parse(updatePropertyDTO.OwnerId);
-
-            await _propertyRepository.UpdateAsync(existingProperty);
-            await AddDataToProperty(updatePropertyDTO, existingProperty);
-            return true;
-        }
-
-        public async Task<bool> DeletePropertyAsync(string id)
-        {
-            Guid idGuid = Guid.Parse(id);
-
-            var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
-
-            if(existingProperty == null)
+            if(queryParams.minPrice != null)
             {
-                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+                properties = properties
+                .Where(p => p.Price >= queryParams.minPrice);
             }
 
-            await _propertyRepository.SoftDeleteAsync(existingProperty);
-            return true;
+            if(queryParams.maxPrice != null)
+            {
+                properties = properties
+                .Where(p => p.Price <= queryParams.maxPrice);
+            }
+
+            if(queryParams.numberOfBedrooms != null)
+            {
+                properties = properties
+                .Where(p => p.Bedrooms == queryParams.numberOfBedrooms);
+            }
+
+            if(queryParams.numberOfBathrooms != null)
+            {
+                properties = properties
+                .Where(p => p.Bathrooms == queryParams.numberOfBathrooms);
+            }
+
+            if(queryParams.minArea != null)
+            {
+                properties = properties
+                .Where(p => p.Area >= queryParams.minArea);
+            }
+
+            if(queryParams.maxArea != null)
+            {
+                properties = properties
+                .Where(p => p.Area <= queryParams.maxArea);
+            }
+
+            if(queryParams.minYearOfConstruction != null)
+            {
+                properties = properties
+                .Where(p => p.YearOfConstruction >= queryParams.minYearOfConstruction);
+            }
+
+            if(queryParams.maxYearOfConstruction != null)
+            {
+                properties = properties
+                .Where(p => p.YearOfConstruction <= queryParams.maxYearOfConstruction);
+            }
+
+            if(queryParams.forSale != null)
+            {
+                properties = properties
+                .Where(p => p.ForSale == queryParams.forSale);
+            }
+
+            if(queryParams.forRent != null)
+            {
+                properties = properties
+                .Where(p => p.ForRent == queryParams.forRent);
+            }
+
+            if(queryParams.isFurnished != null)
+            {
+                properties = properties
+                .Where(p => p.IsFurnished == queryParams.isFurnished);
+            }
+        }
+
+        private void SortProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
+        {
+            if(queryParams.sortBy != null)
+            {
+                properties = queryParams.sortBy switch
+                {
+                    "price" => queryParams.descending ? properties.OrderByDescending(p => p.Price) : properties.OrderBy(p => p.Price),
+                    "area" => queryParams.descending ? properties.OrderByDescending(p => p.Area) : properties.OrderBy(p => p.Area),
+                    "yearOfConstruction" => queryParams.descending ? properties.OrderByDescending(p => p.YearOfConstruction) : properties.OrderBy(p => p.YearOfConstruction),
+                    _ => properties
+                };
+            }
+        }
+
+        private void PaginateProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
+        {
+            properties = properties
+            .Skip((queryParams.page - 1) * queryParams.perPage)
+            .Take(queryParams.perPage);
         }
 
         private async Task AddDataToProperty(CreatePropertyDTO propertyDTO, Property newProperty)

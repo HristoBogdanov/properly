@@ -1,4 +1,5 @@
 using api.DTOs.Property;
+using api.Helpers;
 using api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,11 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PropertyQueryParams queryParams)
         {
             try
             {
-                var properties = await _propertyService.GetPropertiesAsync();
+                var properties = await _propertyService.GetPropertiesAsync(queryParams);
                 return Ok(properties);
             }
             catch (Exception ex)
