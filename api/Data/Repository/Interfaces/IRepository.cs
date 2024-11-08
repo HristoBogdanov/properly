@@ -15,8 +15,8 @@ namespace api.Data.Repository.Interfaces
         Task<bool> ContainsAsync(Expression<Func<TType, bool>> predicate);
         void Add(TType item);
         Task AddAsync(TType item);
-        void AddRange(TType[] items);
-        Task AddRangeAsync(TType[] items);
+        void AddRange(List<TType> items);
+        Task AddRangeAsync(List<TType> items);
         bool Delete(TType entity);
         Task<bool> DeleteAsync(TType entity);
         bool SoftDelete(TType entity);

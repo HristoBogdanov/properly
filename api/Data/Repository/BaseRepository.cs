@@ -99,13 +99,13 @@ namespace api.Data.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public void AddRange(TType[] items)
+        public void AddRange(List<TType> items)
         {
             _dbSet.AddRange(items);
             _dbContext.SaveChanges();
         }
 
-        public async Task AddRangeAsync(TType[] items)
+        public async Task AddRangeAsync(List<TType> items)
         {
             await _dbSet.AddRangeAsync(items);
             await _dbContext.SaveChangesAsync();
