@@ -62,6 +62,14 @@ namespace api.Constants
         public const string InvalidPerPageParameter = "Invalid parameter entered for page size!";
     }
 
+    public static class DataSeederErrorMessages{
+        public const string ErrorSeedingData = "Error seeding data: ";
+        public const string AddAdminCredentials = "Add admin credentials to user secrets!";
+        public const string NoDataInFile = "No valid data was found in the provided path for entity: ";
+        public const string CollectionNotEmpty = "The data could not be added, bacause the collection is not empty for entity: ";
+        public const string SuccessSeedingData = "Seeded data successfully for entity: ";
+    }
+
     public static class Regexes{
         public const string SortParamRegex = "^(price|area|yearOfConstruction)$";
     }
