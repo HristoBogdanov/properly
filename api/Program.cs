@@ -5,6 +5,7 @@ using api.Entensions;
 using api.Services.Interfaces;
 using Extensions;
 using api.Configurations;
+using api.Services;
 
 public class Program{
     public static void Main(string[] args){
@@ -41,6 +42,13 @@ public class Program{
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            // Seed data from SeedData/json files in development mode.
+            using (var scope = app.Services.CreateScope())
+            {
+                var seeder = scope.ServiceProvider.GetRequiredService<IDataSeederService>();
+                seeder.SeedDataAsync().GetAwaiter().GetResult();
+            }
         }
 
         app.UseHttpsRedirection();
