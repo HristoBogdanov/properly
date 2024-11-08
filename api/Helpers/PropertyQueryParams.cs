@@ -16,16 +16,10 @@ namespace api.Helpers
         public decimal? maxPrice { get; set; } = null;
 
         [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBedrooms)]
-        public int? minBedrooms { get; set; } = null;
-        
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBedrooms)]
-        public int? maxBedrooms { get; set; } = null;
+        public int? numberOfBedrooms { get; set; } = null;
 
         [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBathrooms)]
-        public int? minBathrooms { get; set; } = null;
-
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBedrooms)]
-        public int? maxBathrooms { get; set; } = null;
+        public int? numberOfBathrooms { get; set; } = null;
 
         [Range(0, 10000, ErrorMessage = PropertiesErrorMessages.InvalidArea)]
         public int? minArea { get; set; } = null;
