@@ -1,0 +1,275 @@
+[
+  {
+    "Title": "Air Conditioning",
+    "Image": {
+      "Name": "air_conditioning_icon",
+      "Path": "/icons/air_conditioning.png"
+    }
+  },
+  {
+    "Title": "Wi-Fi",
+    "Image": {
+      "Name": "wifi_icon",
+      "Path": "/icons/wifi.png"
+    }
+  },
+  {
+    "Title": "Swimming Pool",
+    "Image": {
+      "Name": "swimming_pool_icon",
+      "Path": "/icons/swimming_pool.png"
+    }
+  },
+  {
+    "Title": "Gym",
+    "Image": {
+      "Name": "gym_icon",
+      "Path": "/icons/gym.png"
+    }
+  },
+  {
+    "Title": "Parking",
+    "Image": {
+      "Name": "parking_icon",
+      "Path": "/icons/parking.png"
+    }
+  },
+  {
+    "Title": "Garden",
+    "Image": {
+      "Name": "garden_icon",
+      "Path": "/icons/garden.png"
+    }
+  },
+  {
+    "Title": "Pet Friendly",
+    "Image": {
+      "Name": "pet_friendly_icon",
+      "Path": "/icons/pet_friendly.png"
+    }
+  },
+  {
+    "Title": "Balcony",
+    "Image": {
+      "Name": "balcony_icon",
+      "Path": "/icons/balcony.png"
+    }
+  },
+  {
+    "Title": "Fireplace",
+    "Image": {
+      "Name": "fireplace_icon",
+      "Path": "/icons/fireplace.png"
+    }
+  },
+  {
+    "Title": "Washer/Dryer",
+    "Image": {
+      "Name": "washer_dryer_icon",
+      "Path": "/icons/washer_dryer.png"
+    }
+  },
+  {
+    "Title": "Security System",
+    "Image": {
+      "Name": "security_system_icon",
+      "Path": "/icons/security_system.png"
+    }
+  },
+  {
+    "Title": "Elevator",
+    "Image": {
+      "Name": "elevator_icon",
+      "Path": "/icons/elevator.png"
+    }
+  },
+  {
+    "Title": "Hardwood Floors",
+    "Image": {
+      "Name": "hardwood_floors_icon",
+      "Path": "/icons/hardwood_floors.png"
+    }
+  },
+  {
+    "Title": "Smart Home",
+    "Image": {
+      "Name": "smart_home_icon",
+      "Path": "/icons/smart_home.png"
+    }
+  },
+  {
+    "Title": "Home Theater",
+    "Image": {
+      "Name": "home_theater_icon",
+      "Path": "/icons/home_theater.png"
+    }
+  },
+  {
+    "Title": "BBQ Area",
+    "Image": {
+      "Name": "bbq_area_icon",
+      "Path": "/icons/bbq_area.png"
+    }
+  },
+  {
+    "Title": "Sauna",
+    "Image": {
+      "Name": "sauna_icon",
+      "Path": "/icons/sauna.png"
+    }
+  },
+  {
+    "Title": "Tennis Court",
+    "Image": {
+      "Name": "tennis_court_icon",
+      "Path": "/icons/tennis_court.png"
+    }
+  },
+  {
+    "Title": "Spa",
+    "Image": {
+      "Name": "spa_icon",
+      "Path": "/icons/spa.png"
+    }
+  },
+  {
+    "Title": "Playground",
+    "Image": {
+      "Name": "playground_icon",
+      "Path": "/icons/playground.png"
+    }
+  },
+  {
+    "Title": "Rooftop Deck",
+    "Image": {
+      "Name": "rooftop_deck_icon",
+      "Path": "/icons/rooftop_deck.png"
+    }
+  },
+  {
+    "Title": "Solar Panels",
+    "Image": {
+      "Name": "solar_panels_icon",
+      "Path": "/icons/solar_panels.png"
+    }
+  },
+  {
+    "Title": "Wine Cellar",
+    "Image": {
+      "Name": "wine_cellar_icon",
+      "Path": "/icons/wine_cellar.png"
+    }
+  },
+  {
+    "Title": "Library",
+    "Image": {
+      "Name": "library_icon",
+      "Path": "/icons/library.png"
+    }
+  },
+  {
+    "Title": "Guest House",
+    "Image": {
+      "Name": "guest_house_icon",
+      "Path": "/icons/guest_house.png"
+    }
+  },
+  {
+    "Title": "In-Unit Laundry",
+    "Image": {
+      "Name": "in_unit_laundry_icon",
+      "Path": "/icons/in_unit_laundry.png"
+    }
+  },
+  {
+    "Title": "Bicycle Storage",
+    "Image": {
+      "Name": "bicycle_storage_icon",
+      "Path": "/icons/bicycle_storage.png"
+    }
+  },
+  {
+    "Title": "Recycling Center",
+    "Image": {
+      "Name": "recycling_center_icon",
+      "Path": "/icons/recycling_center.png"
+    }
+  },
+  {
+    "Title": "Accessible",
+    "Image": {
+      "Name": "accessible_icon",
+      "Path": "/icons/accessible.png"
+    }
+  },
+  {
+    "Title": "Electric Vehicle Charger",
+    "Image": {
+      "Name": "ev_charger_icon",
+      "Path": "/icons/ev_charger.png"
+    }
+  },
+  {
+    "Title": "Waterfront",
+    "Image": {
+      "Name": "waterfront_icon",
+      "Path": "/icons/waterfront.png"
+    }
+  },
+  {
+    "Title": "Mountain View",
+    "Image": {
+      "Name": "mountain_view_icon",
+      "Path": "/icons/mountain_view.png"
+    }
+  },
+  {
+    "Title": "Concierge Service",
+    "Image": {
+      "Name": "concierge_service_icon",
+      "Path": "/icons/concierge_service.png"
+    }
+  },
+  {
+    "Title": "Golf Course",
+    "Image": {
+      "Name": "golf_course_icon",
+      "Path": "/icons/golf_course.png"
+    }
+  },
+  {
+    "Title": "Boat Dock",
+    "Image": {
+      "Name": "boat_dock_icon",
+      "Path": "/icons/boat_dock.png"
+    }
+  },
+  {
+    "Title": "Walk-In Closet",
+    "Image": {
+      "Name": "walk_in_closet_icon",
+      "Path": "/icons/walk_in_closet.png"
+    }
+  },
+  {
+    "Title": "Wine Tasting Room",
+    "Image": {
+      "Name": "wine_tasting_room_icon",
+      "Path": "/icons/wine_tasting_room.png"
+    }
+  },
+  {
+    "Title": "Conference Room",
+    "Image": {
+      "Name": "conference_room_icon",
+      "Path": "/icons/conference_room.png"
+    }
+  },
+  {
+    "Title": "Helipad",
+    "Image": {
+      "Name": "helipad_icon",
+      "Path": "/icons/helipad.png"
+    }
+  }
+]

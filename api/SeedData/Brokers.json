@@ -1,0 +1,27 @@
+[
+  {
+    "Username": "broker_james",
+    "Email": "james.broker@example.com",
+    "Password": "JamesBroker123!"
+  },
+  {
+    "Username": "broker_linda",
+    "Email": "linda.broker@example.com",
+    "Password": "LindaBroker123!"
+  },
+  {
+    "Username": "broker_robert",
+    "Email": "robert.broker@example.com",
+    "Password": "RobertBroker123!"
+  },
+  {
+    "Username": "broker_patricia",
+    "Email": "patricia.broker@example.com",
+    "Password": "PatriciaBroker123!"
+  },
+  {
+    "Username": "broker_charles",
+    "Email": "charles.broker@example.com",
+    "Password": "CharlesBroker123!"
+  }
+]
