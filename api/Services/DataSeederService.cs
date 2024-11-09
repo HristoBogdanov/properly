@@ -98,31 +98,6 @@ namespace api.Services
         Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Features");
     }
 
-    private async Task SeedPropertiesAsync()
-    {
-        var existingProperties = await _propertyRepository.GetAllAsync();
-        if (existingProperties.Count() == 0)
-        {
-            var propertiesData = await File.ReadAllTextAsync(propertyJsonDataPath);
-            var properties = JsonSerializer.Deserialize<List<Property>>(propertiesData);
-            properties?.Select(s => s.OwnerId = GetRandomBrokerId());
-            if (properties != null)
-            {
-                await _propertyRepository.AddRangeAsync(properties);
-            }
-            else
-            {
-                throw new Exception(DataSeederErrorMessages.NoDataInFile + "Properties");
-            }
-        }
-        else 
-        {
-            Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Properties");
-        }
-
-        Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Properties");
-    }
-
     private async Task SeedUsersAsync()
         {
             if (_userManager.Users.Count() == 0)
@@ -186,9 +161,38 @@ namespace api.Services
             }
         }
 
-        private Guid GetRandomBrokerId()
+        private async Task SeedPropertiesAsync()
         {
-            var brokers = _userManager.GetUsersInRoleAsync("Broker").Result;
+            var existingProperties = await _propertyRepository.GetAllAsync();
+            if (existingProperties.Count() == 0)
+            {
+                var propertiesData = await File.ReadAllTextAsync(propertyJsonDataPath);
+
+                var properties = JsonSerializer.Deserialize<List<Property>>(propertiesData);
+                if (properties != null)
+                {
+                    foreach (var property in properties)
+                    {
+                        property.OwnerId = await GetRandomBrokerIdAsync();
+                    }
+                    await _propertyRepository.AddRangeAsync(properties);
+                }
+                else
+                {
+                    throw new Exception(DataSeederErrorMessages.NoDataInFile + "Properties");
+                }
+            }
+            else 
+            {
+                Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Properties");
+            }
+
+            Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Properties");
+        }
+
+        private async Task<Guid> GetRandomBrokerIdAsync()
+        {
+            var brokers = await _userManager.GetUsersInRoleAsync("Broker");
             var random = new Random();
             var randomIndex = random.Next(0, brokers.Count());
             return brokers[randomIndex].Id;
