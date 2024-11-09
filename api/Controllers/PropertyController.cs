@@ -30,6 +30,20 @@ namespace api.Controllers
             }
         }
 
+        [HttpGet("all/{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            try
+            {
+                var property = await _propertyService.GetPropertyByIdAsync(id);
+                return Ok(property);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateProperty(CreatePropertyDTO createPropertyDTO)
         {
