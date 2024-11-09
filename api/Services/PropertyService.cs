@@ -44,9 +44,9 @@ namespace api.Services
         {
             var properties = GetDisplayProperties(p => !p.IsDeleted);
 
-            FilterProperties(properties, queryParams);
-            SortProperties(properties, queryParams);
-            PaginateProperties(properties, queryParams);
+            properties = FilterProperties(properties, queryParams);
+            properties = SortProperties(properties, queryParams);
+            properties = PaginateProperties(properties, queryParams);
 
             return await properties.ToListAsync();
         }
@@ -172,7 +172,7 @@ namespace api.Services
             return properties;
         }
 
-        private void FilterProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
+        private IQueryable<DisplayPropertyDTO> FilterProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
             if(!string.IsNullOrEmpty(queryParams.search))
             {
@@ -247,9 +247,11 @@ namespace api.Services
                 properties = properties
                 .Where(p => p.IsFurnished == queryParams.isFurnished);
             }
+
+            return properties;
         }
 
-        private void SortProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
+        private IQueryable<DisplayPropertyDTO> SortProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
             if(queryParams.sortBy != null)
             {
@@ -261,11 +263,13 @@ namespace api.Services
                     _ => properties
                 };
             }
+
+            return properties;
         }
 
-        private void PaginateProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
+        private IQueryable<DisplayPropertyDTO> PaginateProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
-            properties = properties
+            return properties
             .Skip((queryParams.page - 1) * queryParams.perPage)
             .Take(queryParams.perPage);
         }
