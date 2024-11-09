@@ -7,6 +7,6 @@ namespace api.DTOs.Category
     {
         [Required(ErrorMessage = CategoryErrorMessages.TitleRequired)]
         [StringLength(200, MinimumLength = 3, ErrorMessage = CategoryErrorMessages.InvalidTitleLength)]
-        public string Title = null!;
+        public string Title { get; set; } = null!;
     }
 }
