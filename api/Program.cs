@@ -37,20 +37,6 @@ public class Program{
 
         //MIDDLEWARES:
 
-        // Configure the HTTP request pipeline. Only enables Swagger in development mode.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
-            // Seed data from SeedData/json files in development mode.
-            using (var scope = app.Services.CreateScope())
-            {
-                var seeder = scope.ServiceProvider.GetRequiredService<IDataSeederService>();
-                seeder.SeedDataAsync().GetAwaiter().GetResult();
-            }
-        }
-
         app.UseHttpsRedirection();
 
         // Configures CORS policy to allow any method, header, and credentials.
@@ -68,6 +54,16 @@ public class Program{
         app.MapControllers();
 
         app.ApplyMigrations();
+        
+        if (app.Environment.IsDevelopment())
+        {
+            // Only enables Swagger in development mode.
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            // Only seed data in development mode.
+            app.SeedData();
+        }
 
         app.Run();
     }

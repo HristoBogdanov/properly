@@ -1,4 +1,5 @@
 using api.Data;
+using api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Extensions
@@ -13,6 +14,17 @@ namespace Extensions
                 .ServiceProvider
                 .GetRequiredService<ApplicationDbContext>()!;
             dbContext.Database.Migrate();
+
+            return app;
+        }
+
+        public static IApplicationBuilder SeedData(this IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var seeder = scope.ServiceProvider.GetRequiredService<IDataSeederService>();
+                seeder.SeedDataAsync().GetAwaiter().GetResult();
+            }
 
             return app;
         }
