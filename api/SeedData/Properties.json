@@ -10,16 +10,7 @@
     "YearOfConstruction": 1990,
     "Bedrooms": 2,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "b33ef1f4-3e49-476f-b34e-928b03d97fce",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Gym", "Elevator", "Air Conditioning", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -32,20 +23,7 @@
     "YearOfConstruction": 2010,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "312e2f10-19c6-4510-9b5b-f51fc5e12c46",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Parking", "Wi-Fi", "Gym", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -58,20 +36,7 @@
     "YearOfConstruction": 2014,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "f6c86266-61df-4f1e-8525-a5472ad0b54e",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Balcony", "Parking", "Swimming Pool", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -84,24 +49,7 @@
     "YearOfConstruction": 2020,
     "Bedrooms": 0,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "ae197ad7-8435-43de-ace9-6dd1af911c14",
-    "Categories": ["Townhouse"],
-    "Features": ["Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -114,24 +62,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 2,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "203720cd-da59-49b4-915f-bda2ce664455",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Swimming Pool", "Rooftop Deck", "Garden", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -144,20 +75,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "a495bfe9-e905-4a08-a773-4a3f737c8fce",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Wi-Fi", "Swimming Pool", "Elevator", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -170,20 +88,7 @@
     "YearOfConstruction": 2011,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "17215c27-4a61-4140-80f7-c57c64719bd0",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Elevator", "Garden", "Parking", "Gym", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -196,20 +101,7 @@
     "YearOfConstruction": 2023,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "c26505a2-c571-4c7e-b1cd-14cb974c27be",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -222,20 +114,7 @@
     "YearOfConstruction": 2007,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "39e5d823-d94e-454d-97b8-8aa8e06ca99b",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Garden", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -248,16 +127,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 5,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "c88065b0-25bc-48d8-b3fa-2bc67d147f6a",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Gym", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -270,20 +140,7 @@
     "YearOfConstruction": 2018,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "84110f9f-881d-41a5-ab70-52e6fa63c76a",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Parking", "Air Conditioning", "Balcony", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -296,20 +153,7 @@
     "YearOfConstruction": 1994,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "705700a4-c73c-4b22-b338-755dce5c02f7",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Swimming Pool", "Balcony", "Elevator", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -322,16 +166,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "548a7704-edd1-4225-877e-ac232c02bd41",
-    "Categories": ["Villa"],
-    "Features": ["Parking", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -344,30 +179,7 @@
     "YearOfConstruction": 1996,
     "Bedrooms": 3,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "c5505cd0-c3ce-4042-b231-82e8ba9a6bc0",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": [
-      "Parking",
-      "Balcony",
-      "Air Conditioning",
-      "Swimming Pool",
-      "Garden"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -380,16 +192,7 @@
     "YearOfConstruction": 1997,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "d024aa81-4424-4772-a632-3e185bf66995",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Gym", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Luxury Penthouse",
@@ -402,20 +205,7 @@
     "YearOfConstruction": 2021,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "9c56e003-c602-4b8e-bffe-edfd75f8199c",
-    "Categories": ["Townhouse"],
-    "Features": ["Air Conditioning", "Balcony", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -428,20 +218,7 @@
     "YearOfConstruction": 2015,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "49ffadd4-c39a-4136-a0e1-4576f8cfad82",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Gym", "Balcony", "Swimming Pool", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -454,24 +231,7 @@
     "YearOfConstruction": 1991,
     "Bedrooms": 4,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "c3f1b48b-cd90-4ecc-8b7f-dcd861799f42",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Wi-Fi", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -484,20 +244,7 @@
     "YearOfConstruction": 1999,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "ccebc8cd-dc43-4c1f-b22e-82f87bec6f61",
-    "Categories": ["Townhouse"],
-    "Features": ["Gym", "Swimming Pool", "Balcony", "Wi-Fi", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -510,25 +257,7 @@
     "YearOfConstruction": 1990,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "14968f5c-ed83-4615-88b6-3009c70d7b40",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": [
-      "Parking",
-      "Air Conditioning",
-      "Swimming Pool",
-      "Rooftop Deck"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -541,24 +270,7 @@
     "YearOfConstruction": 1999,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "9018c7a7-b99b-4357-a2f3-b8199a0dc50c",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Parking", "Garden", "Balcony", "Wi-Fi", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -571,30 +283,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 0,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "9900a9d1-aae0-40c3-b193-94e55966768f",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": [
-      "Parking",
-      "Balcony",
-      "Air Conditioning",
-      "Elevator",
-      "Swimming Pool"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -607,20 +296,7 @@
     "YearOfConstruction": 2014,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "43e562d2-1930-42d4-b31a-d117038be2fa",
-    "Categories": ["Townhouse"],
-    "Features": ["Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -633,20 +309,7 @@
     "YearOfConstruction": 1991,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "b02733ac-b19f-4f44-add0-2d2dabb59a31",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Parking", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Beautiful Villa",
@@ -659,20 +322,7 @@
     "YearOfConstruction": 2002,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "e2f2dba6-25b7-4bee-85bd-7e72e3eb3541",
-    "Categories": ["Townhouse"],
-    "Features": ["Balcony", "Gym", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Beautiful Villa",
@@ -685,24 +335,7 @@
     "YearOfConstruction": 2010,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "b5a08612-6ebb-43af-b2f2-8e598040b53d",
-    "Categories": ["Villa"],
-    "Features": ["Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -715,16 +348,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 2,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "00f759d0-bf2c-4d0f-a59d-f914b2775ed7",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Garden", "Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -737,30 +361,7 @@
     "YearOfConstruction": 1993,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "76560fee-40d0-4634-a0e4-5d0a7e9062e9",
-    "Categories": ["Studio", "Apartment"],
-    "Features": [
-      "Balcony",
-      "Gym",
-      "Swimming Pool",
-      "Wi-Fi",
-      "Air Conditioning"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -773,20 +374,7 @@
     "YearOfConstruction": 2008,
     "Bedrooms": 4,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "42fa65e3-9a50-4e60-adda-5f8aebf1c716",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Air Conditioning", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -799,24 +387,7 @@
     "YearOfConstruction": 2020,
     "Bedrooms": 3,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "33fab49c-6406-45a0-b891-d804ba295ec6",
-    "Categories": ["Townhouse"],
-    "Features": ["Balcony", "Rooftop Deck", "Air Conditioning", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -829,20 +400,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 5,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "99544727-3299-4195-bba3-63e088e3b0a3",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -855,24 +413,7 @@
     "YearOfConstruction": 2017,
     "Bedrooms": 4,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "19443fb3-75da-4560-b3a8-bbaae3803801",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Balcony", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -885,24 +426,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 5,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "60443cd5-ed0b-4760-aab6-a91934741923",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -915,20 +439,7 @@
     "YearOfConstruction": 2002,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "627511da-3245-4ed0-8674-a5a8815a5420",
-    "Categories": ["Villa"],
-    "Features": ["Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -941,16 +452,7 @@
     "YearOfConstruction": 1991,
     "Bedrooms": 0,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "426ee9d5-b63b-4d94-b818-38d3867a742b",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Swimming Pool", "Balcony", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -963,24 +465,7 @@
     "YearOfConstruction": 2007,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "1f575e90-be76-45e5-b717-030696fda01a",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Air Conditioning", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Luxury Penthouse",
@@ -993,24 +478,7 @@
     "YearOfConstruction": 2023,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "7bac630e-ace5-4757-b8e9-fe33f50548ab",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Garden", "Rooftop Deck", "Swimming Pool", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -1023,24 +491,7 @@
     "YearOfConstruction": 2002,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "05cf2c52-43c5-42e6-ade6-01cb385b4b06",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Wi-Fi", "Rooftop Deck", "Garden", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -1053,24 +504,7 @@
     "YearOfConstruction": 1996,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "aa705edc-d659-47eb-982a-f99b0833176e",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Elevator", "Rooftop Deck", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1083,26 +517,7 @@
     "YearOfConstruction": 2010,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "e0417c71-ca71-4d8a-874f-1af59eaec6ea",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": [
-      "Rooftop Deck",
-      "Swimming Pool",
-      "Gym",
-      "Balcony",
-      "Air Conditioning"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Luxury Penthouse",
@@ -1115,24 +530,7 @@
     "YearOfConstruction": 2023,
     "Bedrooms": 1,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "7ebab852-3935-4e69-a673-8af532b13f1e",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Balcony", "Rooftop Deck", "Air Conditioning", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -1145,16 +543,7 @@
     "YearOfConstruction": 1998,
     "Bedrooms": 0,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "3996656c-7dcb-4744-882e-bc238fd3d592",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Garden", "Swimming Pool", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -1167,30 +556,7 @@
     "YearOfConstruction": 1995,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "fc20f63a-e61a-428a-b3f6-1cb9d5309b9c",
-    "Categories": ["Townhouse"],
-    "Features": [
-      "Wi-Fi",
-      "Garden",
-      "Elevator",
-      "Air Conditioning",
-      "Swimming Pool"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -1203,30 +569,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "32f784a6-e55c-47f7-a4fc-6116d3ad0611",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": [
-      "Wi-Fi",
-      "Rooftop Deck",
-      "Balcony",
-      "Air Conditioning",
-      "Swimming Pool"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -1239,24 +582,7 @@
     "YearOfConstruction": 2015,
     "Bedrooms": 0,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "68194056-5079-419d-a5b7-be8aee4faa14",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -1269,24 +595,7 @@
     "YearOfConstruction": 2006,
     "Bedrooms": 0,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "42fdb8e8-381c-4f79-bbd4-633d4663b91f",
-    "Categories": ["Townhouse"],
-    "Features": ["Wi-Fi", "Air Conditioning", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Beautiful Villa",
@@ -1299,16 +608,7 @@
     "YearOfConstruction": 2022,
     "Bedrooms": 5,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "04716361-1e30-4a9d-91fa-8f49a5d053fe",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Wi-Fi", "Gym", "Garden", "Air Conditioning", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -1321,20 +621,7 @@
     "YearOfConstruction": 1992,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "70ce407e-0c37-4b60-95a4-57273cf04d96",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Balcony", "Parking", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -1347,24 +634,7 @@
     "YearOfConstruction": 2020,
     "Bedrooms": 0,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "62beafe2-45db-4284-879a-8326f99b8e76",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Wi-Fi", "Parking", "Garden", "Air Conditioning", "Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -1377,24 +647,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "db2f45f5-fe17-4236-b216-a85a00277977",
-    "Categories": ["Villa"],
-    "Features": ["Parking", "Balcony", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -1407,16 +660,7 @@
     "YearOfConstruction": 2003,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "dd05dbaa-0603-4e76-b42e-37e97d1acbc3",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Elevator", "Parking", "Gym", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -1429,24 +673,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "c02b1355-d882-4a7f-9447-efc6036ade94",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -1459,26 +686,7 @@
     "YearOfConstruction": 2020,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "91bd113b-204f-4c5a-9a7e-c27eb958a30e",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": [
-      "Gym",
-      "Parking",
-      "Wi-Fi",
-      "Swimming Pool",
-      "Air Conditioning"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1491,16 +699,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 3,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "f3a42614-6c94-472a-bed1-6c04e1e20cb4",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Garden", "Gym", "Parking", "Elevator", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Luxury Penthouse",
@@ -1513,20 +712,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "e3a9e0a4-b409-483f-822f-ef01b7f45dc8",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Rooftop Deck", "Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -1539,20 +725,7 @@
     "YearOfConstruction": 2008,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "7eadb024-8907-4170-97aa-d330bee848bc",
-    "Categories": ["Villa"],
-    "Features": ["Rooftop Deck", "Elevator", "Parking", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -1565,16 +738,7 @@
     "YearOfConstruction": 2023,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "bcc99b83-87aa-47e1-848e-11a380ebe448",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Balcony", "Garden", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1587,16 +751,7 @@
     "YearOfConstruction": 2023,
     "Bedrooms": 4,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "b1ccff4e-6617-4c58-bd57-86c749647ddf",
-    "Categories": ["Villa"],
-    "Features": ["Elevator", "Wi-Fi", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -1609,16 +764,7 @@
     "YearOfConstruction": 2003,
     "Bedrooms": 5,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "687d542b-6095-479e-a63f-06248be88854",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Balcony", "Swimming Pool", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -1631,20 +777,7 @@
     "YearOfConstruction": 2011,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "0cb50fef-adec-430d-9c7f-008f548da863",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Rooftop Deck", "Elevator", "Wi-Fi", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Luxury Penthouse",
@@ -1657,20 +790,7 @@
     "YearOfConstruction": 1995,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "1c7b971a-9695-4c68-99ec-15d5f1f662a2",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Parking", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -1683,24 +803,7 @@
     "YearOfConstruction": 1998,
     "Bedrooms": 5,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "d6bdb4df-1094-47b5-9c68-e25f808aff2f",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Gym", "Wi-Fi", "Air Conditioning", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -1713,16 +816,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "b352d89a-8b97-4986-a87e-ee3063d0f857",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Garden", "Swimming Pool", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -1735,20 +829,7 @@
     "YearOfConstruction": 2019,
     "Bedrooms": 0,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "b5e25cb5-6f90-4425-83b4-4aaed08d7496",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Rooftop Deck", "Parking", "Garden", "Elevator", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -1761,16 +842,7 @@
     "YearOfConstruction": 1999,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "ef811eb5-aa89-4ed0-b9f5-e5596a394618",
-    "Categories": ["Townhouse"],
-    "Features": ["Garden", "Rooftop Deck", "Elevator", "Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Family Townhouse",
@@ -1783,20 +855,7 @@
     "YearOfConstruction": 1993,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "c0d278ca-1b47-4c67-b2b6-246b169380ad",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Gym", "Balcony", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Family Townhouse",
@@ -1809,20 +868,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 0,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "ab63dfb5-dd53-418e-85e2-0140ee930c72",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Parking", "Wi-Fi", "Swimming Pool", "Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1835,16 +881,7 @@
     "YearOfConstruction": 1996,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "f727e9ce-8281-4ec1-8f43-b237c746aa95",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Rooftop Deck", "Wi-Fi", "Parking", "Balcony", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Beautiful Villa",
@@ -1857,16 +894,7 @@
     "YearOfConstruction": 2000,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "0dbb6285-b7bb-463c-ab88-660e5b86c36a",
-    "Categories": ["Townhouse"],
-    "Features": ["Parking", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -1879,20 +907,7 @@
     "YearOfConstruction": 2008,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "5b1a470e-975e-41ea-bf56-19601ebf94d2",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Gym", "Garden", "Parking", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1905,24 +920,7 @@
     "YearOfConstruction": 2012,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "541db239-2ef4-4725-8f42-509da90664a7",
-    "Categories": ["Villa"],
-    "Features": ["Air Conditioning", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Family Townhouse",
@@ -1935,16 +933,7 @@
     "YearOfConstruction": 1994,
     "Bedrooms": 3,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "4e5ba1aa-ca63-4cfc-926e-11206ace1bed",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -1957,24 +946,7 @@
     "YearOfConstruction": 2017,
     "Bedrooms": 3,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "cb4d10a1-fe9d-40f6-8447-07f4fb3065d4",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Balcony", "Rooftop Deck", "Swimming Pool", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Luxury Penthouse",
@@ -1987,26 +959,7 @@
     "YearOfConstruction": 1995,
     "Bedrooms": 2,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "7b395274-0fb8-43d2-8aa5-9df97df65efd",
-    "Categories": ["Villa"],
-    "Features": [
-      "Parking",
-      "Rooftop Deck",
-      "Garden",
-      "Swimming Pool",
-      "Balcony"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -2019,20 +972,7 @@
     "YearOfConstruction": 2018,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "a9ed84bd-e200-435e-95cc-0015adf57728",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Air Conditioning", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Beautiful Villa",
@@ -2045,16 +985,7 @@
     "YearOfConstruction": 2005,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "7012b799-2216-4449-a516-313cdeaa55af",
-    "Categories": ["Villa"],
-    "Features": ["Air Conditioning", "Balcony", "Gym", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -2067,20 +998,7 @@
     "YearOfConstruction": 2018,
     "Bedrooms": 1,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "6a9b9a17-9381-41f2-bd31-4844cac58012",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Swimming Pool", "Rooftop Deck", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Luxury Penthouse",
@@ -2093,20 +1011,7 @@
     "YearOfConstruction": 1997,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "590c79cd-6af5-4522-8bdd-e7178c660775",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Elevator", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -2119,24 +1024,7 @@
     "YearOfConstruction": 2002,
     "Bedrooms": 0,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "85e43bfb-7a7b-497b-a93e-77396dee11db",
-    "Categories": ["Villa"],
-    "Features": ["Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -2149,20 +1037,7 @@
     "YearOfConstruction": 2007,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "3cb95b94-974a-4a11-a463-49630cccba01",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Parking", "Air Conditioning", "Garden", "Balcony", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -2175,24 +1050,7 @@
     "YearOfConstruction": 1999,
     "Bedrooms": 3,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "29ee5fb0-ba38-41c6-9fcc-efe786155a3c",
-    "Categories": ["Villa"],
-    "Features": ["Gym"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -2205,24 +1063,7 @@
     "YearOfConstruction": 2019,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "64049c45-5b33-4e2a-bc0e-ac275c162425",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Wi-Fi", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -2235,20 +1076,7 @@
     "YearOfConstruction": 2007,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "1dbbad4f-340f-4e86-938d-5a9b8bacaebd",
-    "Categories": ["1-bedroom", "Apartment"],
-    "Features": ["Balcony", "Gym", "Air Conditioning"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -2261,16 +1089,7 @@
     "YearOfConstruction": 2007,
     "Bedrooms": 0,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "4db23cb9-c813-481c-8e83-c4c0462ab7fc",
-    "Categories": ["Villa"],
-    "Features": ["Wi-Fi", "Swimming Pool", "Rooftop Deck", "Gym", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -2283,20 +1102,7 @@
     "YearOfConstruction": 2022,
     "Bedrooms": 0,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "3b1cefd8-67e0-48a3-a2c7-9b03f4ca7325",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Elevator", "Air Conditioning", "Gym", "Rooftop Deck"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -2309,22 +1115,7 @@
     "YearOfConstruction": 2001,
     "Bedrooms": 4,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "966064de-0a1d-48aa-a1e3-effa886ab861",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": [
-      "Elevator",
-      "Rooftop Deck",
-      "Swimming Pool",
-      "Air Conditioning",
-      "Garden"
-    ],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Spacious Apartment",
@@ -2337,24 +1128,7 @@
     "YearOfConstruction": 2008,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "504cf860-3f7e-42dd-b54f-ca9bb3480337",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Balcony", "Garden", "Gym", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -2367,24 +1141,7 @@
     "YearOfConstruction": 1990,
     "Bedrooms": 4,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "0c3fdfa1-693d-4939-85ec-2928e563720e",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Elevator", "Garden"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -2397,20 +1154,7 @@
     "YearOfConstruction": 2006,
     "Bedrooms": 1,
     "Bathrooms": 1,
-    "IsFurnished": false,
-    "OwnerId": "e30e5c41-bb87-4026-b24c-2d2e36ab98f9",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Wi-Fi", "Swimming Pool", "Garden", "Elevator", "Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Family Townhouse",
@@ -2423,20 +1167,7 @@
     "YearOfConstruction": 2009,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "93de7b2f-71f6-45a9-bfe8-16ef98417274",
-    "Categories": ["Townhouse"],
-    "Features": ["Air Conditioning", "Balcony", "Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Luxury Penthouse",
@@ -2449,16 +1180,7 @@
     "YearOfConstruction": 2017,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "ee0bb13b-393b-4f3d-938f-aae37bd35081",
-    "Categories": ["Townhouse"],
-    "Features": ["Elevator", "Parking", "Rooftop Deck", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -2471,20 +1193,7 @@
     "YearOfConstruction": 2010,
     "Bedrooms": 3,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "b03c4de2-a093-40c4-b505-c50a4d2e4686",
-    "Categories": ["Studio", "Apartment"],
-    "Features": ["Garden", "Parking", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -2497,20 +1206,7 @@
     "YearOfConstruction": 2017,
     "Bedrooms": 2,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "84eefd05-91ef-4261-be76-1b126391fb4a",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Gym", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Cozy 1-Bedroom",
@@ -2523,20 +1219,7 @@
     "YearOfConstruction": 1996,
     "Bedrooms": 2,
     "Bathrooms": 3,
-    "IsFurnished": true,
-    "OwnerId": "eb070150-0a9f-4b45-bdef-3222e817f9b2",
-    "Categories": ["3-bedroom", "Apartment"],
-    "Features": ["Gym", "Garden", "Elevator", "Swimming Pool", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Family Townhouse",
@@ -2549,20 +1232,7 @@
     "YearOfConstruction": 2003,
     "Bedrooms": 4,
     "Bathrooms": 3,
-    "IsFurnished": false,
-    "OwnerId": "fabd253a-58d8-45b2-86ac-32af7013ab4a",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Elevator", "Air Conditioning", "Garden", "Swimming Pool"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088876/pexels-expect-best-79873-323780_gszhht.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Elegant Condo",
@@ -2575,16 +1245,7 @@
     "YearOfConstruction": 2010,
     "Bedrooms": 4,
     "Bathrooms": 2,
-    "IsFurnished": false,
-    "OwnerId": "6b6c2b22-d86e-4bd3-adb0-38d558fb9a54",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Swimming Pool", "Gym", "Wi-Fi"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": false
   },
   {
     "Title": "Modern Studio",
@@ -2597,24 +1258,7 @@
     "YearOfConstruction": 2020,
     "Bedrooms": 2,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "d95150a6-b35b-4bce-ad97-2146b3003589",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Wi-Fi", "Gym", "Air Conditioning", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_3",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Modern Studio",
@@ -2627,20 +1271,7 @@
     "YearOfConstruction": 2013,
     "Bedrooms": 1,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "1efbdd6c-07db-45fe-9f8b-b4fdb8717d67",
-    "Categories": ["2-bedroom", "Apartment"],
-    "Features": ["Parking"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Spacious Apartment",
@@ -2653,16 +1284,7 @@
     "YearOfConstruction": 1992,
     "Bedrooms": 4,
     "Bathrooms": 1,
-    "IsFurnished": true,
-    "OwnerId": "2ddfe668-050f-4e39-bf31-5c26ed9dae30",
-    "Categories": ["Villa"],
-    "Features": ["Elevator", "Gym", "Balcony"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088877/pexels-pixabay-208736_tmmgpb.jpg"
-      }
-    ]
+    "IsFurnished": true
   },
   {
     "Title": "Beautiful Villa",
@@ -2675,19 +1297,6 @@
     "YearOfConstruction": 2003,
     "Bedrooms": 5,
     "Bathrooms": 2,
-    "IsFurnished": true,
-    "OwnerId": "d79d8a11-6ece-40d9-aa51-99f1f1b3d6be",
-    "Categories": ["4-bedroom", "Penthouse"],
-    "Features": ["Elevator"],
-    "Images": [
-      {
-        "Name": "image_1",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088883/pexels-pixabay-280222_qjy793.jpg"
-      },
-      {
-        "Name": "image_2",
-        "Path": "https://res.cloudinary.com/dyzl9o82q/image/upload/v1731088884/pexels-thgusstavo-2102587_m72ma3.jpg"
-      }
-    ]
+    "IsFurnished": true
   }
 ]
