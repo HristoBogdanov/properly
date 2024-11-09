@@ -276,48 +276,34 @@ namespace api.Services
             foreach (var category in propertyDTO.Categories)
             {
                 var existingCategory = await _categoryRepository.FirstOrDefaultAsync(c => c.Title == category);
-                if (existingCategory == null)
+                if (existingCategory != null && !newProperty.PropertiesCategories.Any(pc => pc.CategoryId == existingCategory.Id))
                 {
-                    throw new NullReferenceException(CategoryErrorMessages.CategoryNotFound);
+                    var propertyCategory = new PropertyCategories
+                    {
+                        CategoryId = existingCategory.Id,
+                        PropertyId = newProperty.Id
+                    };
+
+                    await _propertyCategoriesRepository.AddAsync(propertyCategory);
+                    newProperty.PropertiesCategories.Add(propertyCategory);
                 }
-
-                if(newProperty.PropertiesCategories.Any(pc => pc.CategoryId == existingCategory.Id))
-                {
-                    continue;
-                }
-
-                var propertyCategory = new PropertyCategories
-                {
-                    CategoryId = existingCategory.Id,
-                    PropertyId = newProperty.Id
-                };
-
-                await _propertyCategoriesRepository.AddAsync(propertyCategory);
-                newProperty.PropertiesCategories.Add(propertyCategory);
             }
 
             // Adding all features from the dto to the property and the join table
             foreach (var feature in propertyDTO.Features)
             {
                 var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Title == feature);
-                if (existingFeature == null)
+                if (existingFeature != null && !newProperty.PropertiesFeatures.Any(pf => pf.FeatureId == existingFeature.Id))
                 {
-                    throw new NullReferenceException(FeatureErrorMessages.FeatureNotFound);
+                    var propertyFeature = new PropertyFeatures
+                    {
+                        FeatureId = existingFeature.Id,
+                        PropertyId = newProperty.Id
+                    };
+
+                    await _propertyFeaturesRepository.AddAsync(propertyFeature);
+                    newProperty.PropertiesFeatures.Add(propertyFeature);
                 }
-
-                if(newProperty.PropertiesFeatures.Any(pf => pf.FeatureId == existingFeature.Id))
-                {
-                    continue;
-                }
-
-                var propertyFeature = new PropertyFeatures
-                {
-                    FeatureId = existingFeature.Id,
-                    PropertyId = newProperty.Id
-                };
-
-                await _propertyFeaturesRepository.AddAsync(propertyFeature);
-                newProperty.PropertiesFeatures.Add(propertyFeature);
             }
 
             // Adding all images from the dto to the property and the join table
@@ -335,15 +321,15 @@ namespace api.Services
                     await _imageRepository.AddAsync(existingImage);
                 }
 
+                var propertyImage = new PropertyImages
+                {
+                    ImageId = existingImage.Id,
+                    PropertyId = newProperty.Id
+                };
+
                 var existingPropertyImage = await _propertyImagesRepository.FirstOrDefaultAsync(pi => pi.PropertyId == newProperty.Id && pi.ImageId == existingImage.Id);
                 if (existingPropertyImage == null)
                 {
-                    var propertyImage = new PropertyImages
-                    {
-                        ImageId = existingImage.Id,
-                        PropertyId = newProperty.Id
-                    };
-
                     await _propertyImagesRepository.AddAsync(propertyImage);
                     newProperty.PropertiesImages.Add(propertyImage);
                 }
