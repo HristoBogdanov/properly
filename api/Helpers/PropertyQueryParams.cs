@@ -50,6 +50,6 @@ namespace api.Helpers
         public int page { get; set; } = 1;
 
         [Range(1, int.MaxValue, ErrorMessage = PropertiesErrorMessages.InvalidPerPageParameter)]
-        public int perPage { get; set; } = 20;
+        public int perPage { get; set; } = 10;
     }
 }
