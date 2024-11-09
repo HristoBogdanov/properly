@@ -203,6 +203,7 @@ namespace api.Services
         private async Task<List<CreateImageDTO>> GetRandomImageAsync()
         {
             List<CreateImageDTO> images = new();
+            int minNumberOfImages = 2;
             int maxNumberOfImages = 10;
 
             var allImagesData = await File.ReadAllTextAsync(imagesJsonDataPath);
@@ -211,7 +212,7 @@ namespace api.Services
             if(allImages != null)
             {
                 var random = new Random();
-                var numberOfImages = random.Next(0, maxNumberOfImages + 1);
+                var numberOfImages = random.Next(minNumberOfImages, maxNumberOfImages + 1);
                 
                 for(int i = 0; i < numberOfImages; i++)
                 {
