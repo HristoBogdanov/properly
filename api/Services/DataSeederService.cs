@@ -1,6 +1,9 @@
 using System.Text.Json;
 using api.Constants;
-using api.Data.Repository.Interfaces;
+using api.DTOs.Category;
+using api.DTOs.Features;
+using api.DTOs.Images;
+using api.DTOs.Property;
 using api.DTOs.User;
 using api.Models;
 using api.Services.Interfaces;
@@ -10,9 +13,10 @@ namespace api.Services
 {
     public class DataSeederService : IDataSeederService
     {
-        private readonly IRepository<Category, Guid> _categoryRepository;
-        private readonly IRepository<Feature, Guid> _featureRepository;
-        private readonly IRepository<Property, Guid> _propertyRepository;
+        private readonly ICategoryService _categoryService;
+        private readonly IFeatureService _featureService;
+        private readonly IPropertyService _propertyService;
+        private readonly IUserService _userService;
         private readonly UserManager<ApplicationUser> _userManager;
 
         private readonly string featureJsonDataPath = "SeedData/Features.json";
@@ -20,85 +24,75 @@ namespace api.Services
         private readonly string propertyJsonDataPath = "SeedData/Properties.json";
         private readonly string userJsonDataPath = "SeedData/Users.json";
         private readonly string brokerJsonDataPath = "SeedData/Brokers.json";
+        private readonly string imagesJsonDataPath = "SeedData/Images.json";
 
-    public DataSeederService(
-    IRepository<Category, Guid> categoryRepository,
-    IRepository<Feature, Guid> featureRepository,
-    IRepository<Property, Guid> propertyRepository,
-    UserManager<ApplicationUser> userManager)
-    {
-        _categoryRepository = categoryRepository;
-        _featureRepository = featureRepository;
-        _propertyRepository = propertyRepository;
-        _userManager = userManager;
-    }
-
-    public async Task SeedDataAsync()
-    {
-        try
+        public DataSeederService(
+            ICategoryService categoryService,
+            IFeatureService featureService,
+            IPropertyService propertyService,
+            IUserService userService,
+            UserManager<ApplicationUser> userManager)
         {
-            await SeedCategoriesAsync();
-            await SeedFeaturesAsync();
-            await SeedUsersAsync();
-            await SeedBrokersAsync();
-            await SeedPropertiesAsync();
+            _categoryService = categoryService;
+            _featureService = featureService;
+            _propertyService = propertyService;
+            _userService = userService;
+            _userManager = userManager;
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(DataSeederErrorMessages.ErrorSeedingData + ex.Message);
-        }
-    }
 
-    private async Task SeedCategoriesAsync()
-    {
-        var existingCategories = await _categoryRepository.GetAllAsync();
-        if (existingCategories.Count() == 0)
+        public async Task SeedDataAsync()
+        {
+            try
+            {
+                await SeedCategoriesAsync();
+                await SeedFeaturesAsync();
+                await SeedUsersAsync();
+                await SeedBrokersAsync();
+                await SeedPropertiesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(DataSeederErrorMessages.ErrorSeedingData + ex.Message);
+            }
+        }
+
+        private async Task SeedCategoriesAsync()
         {
             var categoriesData = await File.ReadAllTextAsync(categoryJsonDataPath);
-            var categories = JsonSerializer.Deserialize<List<Category>>(categoriesData);
+            var categories = JsonSerializer.Deserialize<List<CreateCategoryDTO>>(categoriesData);
             if (categories != null)
             {
-                await _categoryRepository.AddRangeAsync(categories);
+                foreach (var category in categories)
+                {
+                    await _categoryService.CreateCategoryAsync(category);
+                }
+                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Categories");
             }
-            else 
+            else
             {
                 throw new Exception(DataSeederErrorMessages.NoDataInFile + "Categories");
             }
-
-        }
-        else 
-        {
-            Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Categories");
         }
 
-        Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Categories");
-    }
-
-    private async Task SeedFeaturesAsync()
-    {
-        var existingFeatures = await _featureRepository.GetAllAsync();
-        if (existingFeatures.Count() == 0)
+        private async Task SeedFeaturesAsync()
         {
             var featuresData = await File.ReadAllTextAsync(featureJsonDataPath);
-            var features = JsonSerializer.Deserialize<List<Feature>>(featuresData);
+            var features = JsonSerializer.Deserialize<List<CreateFeatureDTO>>(featuresData);
             if (features != null)
             {
-                await _featureRepository.AddRangeAsync(features);
+                foreach (var feature in features)
+                {
+                    await _featureService.CreateFeatureAsync(feature);
+                }
+                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Features");
             }
-            else 
+            else
             {
                 throw new Exception(DataSeederErrorMessages.NoDataInFile + "Features");
             }
         }
-        else 
-        {
-            Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Features");
-        }
 
-        Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Features");
-    }
-
-    private async Task SeedUsersAsync()
+        private async Task SeedUsersAsync()
         {
             if (_userManager.Users.Count() == 0)
             {
@@ -108,18 +102,9 @@ namespace api.Services
                 {
                     foreach (var user in users)
                     {
-                        var appUser = new ApplicationUser
-                        {
-                            UserName = user.Username,
-                            Email = user.Email
-                        };
-
-                        var result = await _userManager.CreateAsync(appUser, user.Password);
-                        if (result.Succeeded)
-                        {
-                            await _userManager.AddToRoleAsync(appUser, "User");
-                        }
+                        await _userService.Register(user);
                     }
+                    Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Users");
                 }
                 else
                 {
@@ -130,8 +115,6 @@ namespace api.Services
             {
                 Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Users");
             }
-
-            Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Users");
         }
 
         private async Task SeedBrokersAsync()
@@ -142,18 +125,9 @@ namespace api.Services
             {
                 foreach (var broker in brokers)
                 {
-                    var appUser = new ApplicationUser
-                    {
-                        UserName = broker.Username,
-                        Email = broker.Email
-                    };
-
-                    var result = await _userManager.CreateAsync(appUser, broker.Password);
-                    if (result.Succeeded)
-                    {
-                        await _userManager.AddToRoleAsync(appUser, "Broker");
-                    }
+                    await _userService.RegisterBroker(broker);
                 }
+                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Brokers");
             }
             else
             {
@@ -163,39 +137,94 @@ namespace api.Services
 
         private async Task SeedPropertiesAsync()
         {
-            var existingProperties = await _propertyRepository.GetAllAsync();
-            if (existingProperties.Count() == 0)
+            var propertiesData = await File.ReadAllTextAsync(propertyJsonDataPath);
+            var properties = JsonSerializer.Deserialize<List<CreatePropertyDTO>>(propertiesData);
+            if (properties != null)
             {
-                var propertiesData = await File.ReadAllTextAsync(propertyJsonDataPath);
+                foreach (var property in properties)
+                {
+                    property.OwnerId = await GetRandomBrokerIdAsync();
+                    property.Categories = await GetRandomCategoriesAsync();
+                    property.Features = await GetRandomFeaturesAsync();
+                    property.Images = await GetRandomImageAsync();
 
-                var properties = JsonSerializer.Deserialize<List<Property>>(propertiesData);
-                if (properties != null)
-                {
-                    foreach (var property in properties)
-                    {
-                        property.OwnerId = await GetRandomBrokerIdAsync();
-                    }
-                    await _propertyRepository.AddRangeAsync(properties);
+                    await _propertyService.CreatePropertyAsync(property);
                 }
-                else
-                {
-                    throw new Exception(DataSeederErrorMessages.NoDataInFile + "Properties");
-                }
+                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Properties");
             }
-            else 
+            else
             {
-                Console.WriteLine(DataSeederErrorMessages.CollectionNotEmpty + "Properties");
+                throw new Exception(DataSeederErrorMessages.NoDataInFile + "Properties");
             }
-
-            Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Properties");
         }
 
-        private async Task<Guid> GetRandomBrokerIdAsync()
+        private async Task<string> GetRandomBrokerIdAsync()
         {
             var brokers = await _userManager.GetUsersInRoleAsync("Broker");
             var random = new Random();
             var randomIndex = random.Next(0, brokers.Count());
-            return brokers[randomIndex].Id;
+            return brokers[randomIndex].Id.ToString();
+        }
+
+        private async Task<List<string>> GetRandomCategoriesAsync()
+        {
+            List<string> categories = new();
+
+            var allCategories = await _categoryService.GetCategoriesAsync();
+            var random = new Random();
+            var numberOfCategories = random.Next(0, allCategories.Count());
+
+            for(int i = 0; i < numberOfCategories; i++)
+            {
+                var randomIndex = random.Next(0, categories.Count());
+                categories.Add(allCategories[randomIndex].Title);
+            }
+
+            return categories;
+        }
+
+        private async Task<List<string>> GetRandomFeaturesAsync()
+        {
+            List<string> features = new();
+
+            var allFeatures = await _featureService.GetFeaturesAsync();
+            var random = new Random();
+            var numberOfFeatures = random.Next(0, allFeatures.Count());
+
+            for(int i = 0; i < numberOfFeatures; i++)
+            {
+                var randomIndex = random.Next(0, features.Count());
+                features.Add(allFeatures[randomIndex].Title);
+            }
+
+            return features;
+        }
+
+        private async Task<List<CreateImageDTO>> GetRandomImageAsync()
+        {
+            List<CreateImageDTO> images = new();
+            int maxNumberOfImages = 10;
+
+            var allImagesData = await File.ReadAllTextAsync(imagesJsonDataPath);
+            var allImages = JsonSerializer.Deserialize<List<CreateImageDTO>>(allImagesData);
+
+            if(allImages != null)
+            {
+                var random = new Random();
+                var numberOfImages = random.Next(0, maxNumberOfImages + 1);
+                
+                for(int i = 0; i < numberOfImages; i++)
+                {
+                    var randomIndex = random.Next(0, allImages.Count());
+                    images.Add(allImages[randomIndex]);
+                }
+
+                return images;
+            }
+            else
+            {
+                throw new Exception(DataSeederErrorMessages.NoDataInFile + "Images");
+            }
         }
     }
 }
