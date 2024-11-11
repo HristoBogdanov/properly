@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/useAuth";
 import CustomButton from "@/components/CustomButton";
 import Input from "@/components/Input";
 import { registerSchema } from "@/lib/schemas";
+import { z } from "zod";
 
 type FormData = z.infer<typeof registerSchema>;
 
@@ -22,8 +23,11 @@ export default function RegisterPage() {
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
-          className="bg-primary flex flex-col w-fit gap-10 p-6 md:p-10 text-lg md:text-xl rounded-xl"
+          className="bg-gradient-to-tr from-[#274ABB] to-primary flex flex-col w-full max-w-[500px] gap-6 md:gap-10 p-6 md:p-10 text-md md:text-lg rounded-xl"
         >
+          <h2 className="text-3xl md:text-4xl text-white font-black mx-auto">
+            Register
+          </h2>
           <Input id="username" isRequired={true} />
           <Input id="email" type="email" isRequired={true} />
           <Input id="password" type="password" isRequired={true} />
