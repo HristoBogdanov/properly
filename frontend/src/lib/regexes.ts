@@ -1,1 +1,1 @@
-export const passwordRegex = /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{12,}$/;
+export const passwordRegex = /^(?=.*[a-z])(?=.*\d)[\s\S]{12,}$/;
