@@ -70,6 +70,10 @@ namespace api.Constants
         public const string SuccessSeedingData = "Seeded data successfully for entity: ";
     }
 
+    public static class MissingConfigurationMessages {
+        public const string MissingFEUrl = "FrontendUrl is not configured. Please configure it in the user secrets or environment variables.";
+    }
+
     public static class Regexes{
         public const string SortParamRegex = "^(price|area|yearOfConstruction)$";
     }

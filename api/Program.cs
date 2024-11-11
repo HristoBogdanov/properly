@@ -6,6 +6,7 @@ using api.Services.Interfaces;
 using Extensions;
 using api.Configurations;
 using api.Services;
+using api.Constants;
 
 public class Program{
     public static void Main(string[] args){
@@ -40,12 +41,17 @@ public class Program{
         app.UseHttpsRedirection();
 
         // Configures CORS policy to allow any method, header, and credentials.
+        var frontendUrl = builder.Configuration["FrontendUrl"];
+        if (string.IsNullOrEmpty(frontendUrl))
+        {
+            throw new Exception(MissingConfigurationMessages.MissingFEUrl);
+        }
+
         app.UseCors(x => x
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials()
-            // .WithOrigins("https://localhost:44351)) // Uncomment and customize for specific allowed origins.
-            .SetIsOriginAllowed(origin => true));  // Allows any origin (can be customized).
+            .WithOrigins(frontendUrl));
 
         app.UseAuthentication();  // Enables JWT Bearer authentication.
 
