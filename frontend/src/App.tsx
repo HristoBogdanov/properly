@@ -1,9 +1,13 @@
-import { Button } from "./components/ui/button";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "./contexts/useAuth";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      <Button variant="secondary">Click me</Button>
-    </div>
+    <UserProvider>
+      <Outlet />
+      <ToastContainer />
+    </UserProvider>
   );
 }
