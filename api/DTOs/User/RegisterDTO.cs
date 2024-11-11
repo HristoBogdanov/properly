@@ -14,7 +14,7 @@ namespace api.DTOs.User
         public string Email { get; set; } = null!;
 
         [Required(ErrorMessage = UserErrorMessages.PasswordRequired)]
-        [StringLength(150, MinimumLength =12, ErrorMessage = UserErrorMessages.InvalidPasswordLength)]
+        [StringLength(150, MinimumLength = 12, ErrorMessage = UserErrorMessages.InvalidPasswordLength)]
         public string Password { get; set; } = null!;
     }
 }
