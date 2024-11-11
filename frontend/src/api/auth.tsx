@@ -1,6 +1,6 @@
 import axios from "axios";
-import { handleError } from "@/helpers/ErrorHandler";
 import { UserProfileToken } from "@/types/user";
+import { handleError } from "@/helpers/ErrorHandler";
 
 export const loginAPI = async (username: string, password: string) => {
   try {
@@ -13,7 +13,7 @@ export const loginAPI = async (username: string, password: string) => {
     );
     return data;
   } catch (error) {
-    handleError(error);
+    handleError(error, "Error logging in user");
   }
 };
 
@@ -33,7 +33,6 @@ export const registerAPI = async (
     );
     return data;
   } catch (error) {
-    console.error("registerAPI error:", error);
-    handleError(error);
+    handleError(error, "Error registering user");
   }
 };

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { UserProfile } from "@/types/user";
 import { loginAPI, registerAPI } from "@/api/auth";
+import { handleError } from "@/helpers/ErrorHandler";
 
 type UserContextType = {
   user: UserProfile | null;
@@ -52,12 +53,11 @@ export const UserProvider = ({ children }: Props) => {
           setToken(res.data.token);
           setUser(userObj!);
           toast.success("Login Success!");
-          navigate("/login");
+          navigate("/");
         }
       })
       .catch((error) => {
-        console.error("registerUser error:", error);
-        toast.warning("Server error occurred");
+        handleError(error, "Error registering user");
       });
   };
 
@@ -77,7 +77,9 @@ export const UserProvider = ({ children }: Props) => {
           navigate("/");
         }
       })
-      .catch(() => toast.warning("Server error occured"));
+      .catch((error) => {
+        handleError(error, "Error logging in user");
+      });
   };
 
   const isLoggedIn = () => {
