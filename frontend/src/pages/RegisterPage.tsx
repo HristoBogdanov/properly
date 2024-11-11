@@ -32,16 +32,12 @@ export default function RegisterPage() {
           <Input id="email" type="email" isRequired={true} />
           <Input id="password" type="password" isRequired={true} />
           <div className="w-full flex-col md:flex-row flex justify-between gap-5">
-            <CustomButton
-              text="Register"
-              type="submit"
-              classes="max-md:w-full"
-            />
+            <CustomButton text="Register" type="submit" classes="w-full" />
             <CustomButton
               text="Log in"
-              link="login"
+              link="/login"
               variant="secondary"
-              classes="max-md:w-full"
+              classes="w-full"
             />
           </div>
         </form>
