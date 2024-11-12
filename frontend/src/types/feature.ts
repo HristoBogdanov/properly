@@ -1,12 +1,12 @@
-import { Image } from "./image";
+import { CreateImage } from "./image";
 
 export type Feature = {
   id: string;
   title: string;
-  image: Image;
+  image: CreateImage;
 };
 
 export type CreateFeature = {
   title: string;
-  image: Image;
+  image: CreateImage;
 };
