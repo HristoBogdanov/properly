@@ -34,8 +34,8 @@ namespace api.Controllers
         {
             try
             {
-                await _featureService.CreateFeatureAsync(createFeatureDTO);
-                return Ok();
+                var feature = await _featureService.CreateFeatureAsync(createFeatureDTO);
+                return Ok(feature);
             }
             catch (Exception ex)
             {

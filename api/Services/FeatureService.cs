@@ -40,7 +40,7 @@ namespace api.Services
             return features;
         }
 
-        public async Task<bool> CreateFeatureAsync(CreateFeatureDTO createFeatureDTO)
+        public async Task<DisplayFeatureDTO> CreateFeatureAsync(CreateFeatureDTO createFeatureDTO)
         {
             if(await _featureRepository.ContainsAsync(i => i.Title == createFeatureDTO.Title && !i.IsDeleted))
             {
@@ -63,7 +63,15 @@ namespace api.Services
 
             await _featureRepository.AddAsync(feature);
 
-            return true;
+            return new DisplayFeatureDTO {
+                Id = feature.Id.ToString(),
+                Title = feature.Title,
+                Image = new CreateImageDTO
+                {
+                    Name = newImage.Name,
+                    Path = newImage.Path
+                }
+            };
         }
 
         public async Task<bool> UpdateFeatureAsync(string id, CreateFeatureDTO updateFeatureDTO)
