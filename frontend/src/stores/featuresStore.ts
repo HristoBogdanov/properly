@@ -37,9 +37,10 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
   addFeature: async (feature: CreateFeature) => {
     try {
       const response = await addFeature(feature);
-      if (response.data) {
+      const newFeature: Feature = { ...feature, id: response.data.id };
+      if (response?.data) {
         set((state) => ({
-          features: [...state.features, feature],
+          features: [...state.features, [...newFeature]],
         }));
       }
     } catch (error) {
@@ -50,7 +51,7 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
   updateFeature: async (feature: CreateFeature, id: string) => {
     try {
       const response = await updateFeature(feature, id);
-      if (response.data) {
+      if (response?.data) {
         set((state) => ({
           features: state.features.map((f) =>
             f.id === id ? { ...f, ...feature } : f
@@ -65,7 +66,7 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
   removeFeature: async (id: string) => {
     try {
       const response = await removeFeature(id);
-      if (response.data) {
+      if (response?.data) {
         set((state) => ({
           features: state.features.filter((f) => f.id !== id),
         }));
