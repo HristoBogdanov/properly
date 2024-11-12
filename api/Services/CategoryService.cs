@@ -48,7 +48,7 @@ namespace api.Services
             return categories;
         }
 
-        public async Task<bool> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
+        public async Task<DisplayCategoryDTO> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
         {
             var existingCategory = await _categoryRepository
             .FirstOrDefaultAsync(c => c.Title == createCategoryDTO.Title && !c.IsDeleted);
@@ -64,7 +64,12 @@ namespace api.Services
             };
 
             await _categoryRepository.AddAsync(newCategory);
-            return true;
+            
+            return new DisplayCategoryDTO
+            {
+                Id = newCategory.Id.ToString(),
+                Title = newCategory.Title
+            };
         }
 
         public async Task<bool> UpdateCategoryAsync(string id, CreateCategoryDTO updateCategoryDTO)
