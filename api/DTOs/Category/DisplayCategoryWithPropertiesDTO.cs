@@ -6,6 +6,6 @@ namespace api.DTOs.Category
     {
         public Guid Id { get; set; }
         public string Title = null!;
-        public virtual ICollection<DisplayPropertyDTO> Properties { get; set; } = new List<DisplayPropertyDTO>();
+        public virtual ICollection<DisplaySimplePropertyDTO> Properties { get; set; } = new List<DisplaySimplePropertyDTO>();
     }
 }

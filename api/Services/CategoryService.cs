@@ -25,7 +25,7 @@ namespace api.Services
             {
                 Id = c.Id,
                 Title = c.Title,
-                Properties = c.PropertiesCategories.Select(pc => new DisplayPropertyDTO
+                Properties = c.PropertiesCategories.Select(pc => new DisplaySimplePropertyDTO
                 {
                     Id = pc.Property.Id.ToString(),
                     Title = pc.Property.Title,
