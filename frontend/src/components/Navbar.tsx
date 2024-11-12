@@ -4,8 +4,9 @@ import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   return (
-    <nav className="w-[100vw] absolute overflow-hidden left-1/2 -translate-x-1/2 text-white h-fit py-10 md:py-10 px-5 md:px-10 z-50">
-      <div className="container mx-auto flex justify-between items-center text-lg uppercase">
+    <nav className="w-[100vw] absolute overflow-hidden left-1/2 -translate-x-1/2 text-white h-fit py-10 lg:py-16 px-5 md:px-10 z-40">
+      <div className="absolute w-full h-full inset-0 py-10 opacity-30 bg-[#8A8D8E]"></div>
+      <div className="absolute inset-0 container my-10 mx-auto flex justify-between items-center text-lg uppercase">
         <div className="w-fit hidden lg:flex gap-10 justify-center items-center">
           <Link to={"/"}>
             <img
