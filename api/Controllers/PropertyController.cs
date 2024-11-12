@@ -49,8 +49,8 @@ namespace api.Controllers
         {
             try
             {
-                await _propertyService.CreatePropertyAsync(createPropertyDTO);
-                return Ok();
+                var property = await _propertyService.CreatePropertyAsync(createPropertyDTO);
+                return Ok(property);
             }
             catch (Exception ex)
             {

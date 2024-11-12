@@ -66,7 +66,7 @@ namespace api.Services
             return property;
         }
 
-        public async Task<bool> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
+        public async Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
         {
             var newProperty = new Property();
             MapPropertyFields(newProperty, createPropertyDTO);
@@ -74,7 +74,42 @@ namespace api.Services
             await _propertyRepository.AddAsync(newProperty);
             await AddDataToProperty(createPropertyDTO, newProperty);
 
-            return true;
+            return new DisplayPropertyDTO
+            {
+                Id = newProperty.Id.ToString(),
+                Title = newProperty.Title,
+                Description = newProperty.Description,
+                Address = newProperty.Address,
+                Price = newProperty.Price,
+                ForSale = newProperty.ForSale,
+                ForRent = newProperty.ForRent,
+                Bedrooms = newProperty.Bedrooms,
+                Bathrooms = newProperty.Bathrooms,
+                IsFurnished = newProperty.IsFurnished,
+                Area = newProperty.Area,
+                YearOfConstruction = newProperty.YearOfConstruction,
+                OwnerId = newProperty.OwnerId.ToString(),
+                Categories = newProperty.PropertiesCategories.Select(c => new DisplayCategoryDTO
+                {
+                    Id = c.CategoryId.ToString(),
+                    Title = c.Category.Title
+                }),
+                Features = newProperty.PropertiesFeatures.Select(f => new DisplayFeatureDTO
+                {
+                    Id = f.FeatureId.ToString(),
+                    Title = f.Feature.Title,
+                    Image = new CreateImageDTO
+                    {
+                        Name = f.Feature.Image.Name,
+                        Path = f.Feature.Image.Path
+                    }
+                }),
+                Images = newProperty.PropertiesImages.Select(i => new CreateImageDTO
+                {
+                    Name = i.Image.Name,
+                    Path = i.Image.Path
+                })
+            };
         }
 
         public async Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO)

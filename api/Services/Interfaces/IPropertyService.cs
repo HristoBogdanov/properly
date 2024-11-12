@@ -7,7 +7,7 @@ namespace api.Services.Interfaces
     {
         Task<List<DisplayPropertyDTO>> GetPropertiesAsync(PropertyQueryParams queryParams);
         Task<DisplayPropertyDTO> GetPropertyByIdAsync(string id);
-        Task<bool> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO);
+        Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO);
         Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO);
         Task<bool> DeletePropertyAsync(string id);
     }
