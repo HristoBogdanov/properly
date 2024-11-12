@@ -33,8 +33,8 @@ namespace api.Controllers
         {
             try
             {
-                await _imageService.CreateImageAsync(createImageDTO);
-                return Ok();
+                var image = await _imageService.CreateImageAsync(createImageDTO);
+                return Ok(image);
             }
             catch (Exception ex)
             {

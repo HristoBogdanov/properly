@@ -31,7 +31,7 @@ namespace api.Services
             return images;
         }
 
-        public async Task<bool> CreateImageAsync(CreateImageDTO createImageDTO)
+        public async Task<DisplayImageDTO> CreateImageAsync(CreateImageDTO createImageDTO)
         {
             if(await _imageRepository.ContainsAsync(i => i.Path == createImageDTO.Path))
             {
@@ -45,7 +45,12 @@ namespace api.Services
             };
 
             await _imageRepository.AddAsync(image);
-            return true;
+            return new DisplayImageDTO
+            {
+                Id = image.Id.ToString(),
+                Name = image.Name,
+                Path = image.Path
+            };
         }
 
         public async Task<bool> UpdateImageAsync(string id, CreateImageDTO updateImageDTO)
