@@ -32,11 +32,8 @@ export const useImagesStore = create<ImagesStore>((set) => ({
   addImage: async (image: CreateImage) => {
     try {
       const response = await addImage(image);
-      const newImage: Image = { ...image, id: response.data.id };
       if (response?.data) {
-        set((state) => ({
-          images: [...state.images, [...newImage]],
-        }));
+        await useImagesStore.getState().getImages();
       }
     } catch (error) {
       handleError(error, "Error adding image");
@@ -47,11 +44,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     try {
       const response = await updateImage(image, id);
       if (response?.data) {
-        set((state) => ({
-          images: state.images.map((i) =>
-            i.id === id ? { ...i, ...image } : i
-          ),
-        }));
+        await useImagesStore.getState().getImages();
       }
     } catch (error) {
       handleError(error, "Error updating image");
@@ -62,9 +55,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     try {
       const response = await removeImage(id);
       if (response?.data) {
-        set((state) => ({
-          images: state.images.filter((i) => i.id !== id),
-        }));
+        await useImagesStore.getState().getImages();
       }
     } catch (error) {
       handleError(error, "Error removing image");
