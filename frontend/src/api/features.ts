@@ -15,8 +15,8 @@ export const getFeatures = async () => {
 
 export const addFeature = async (feature: CreateFeature) => {
   try {
-    const data = await axios.post<boolean>(
-      import.meta.env.VITE_API_URL + "features/add",
+    const data = await axios.post<Feature>(
+      import.meta.env.VITE_API_URL + "features/create",
       feature
     );
     return data;
@@ -39,7 +39,7 @@ export const updateFeature = async (feature: CreateFeature, id: string) => {
 
 export const removeFeature = async (id: string) => {
   try {
-    const data = await axios.delete<boolean>(
+    const data = await axios.post<boolean>(
       import.meta.env.VITE_API_URL + `features/delete/${id}`
     );
     return data;
