@@ -1,6 +1,6 @@
 export default function ParralaxContainer() {
   return (
-    <div className="w-100vw h-[90vh] relative overflow-hidden">
+    <div className="w-100vw h-[90vh] relative overflow-hidden z-10">
       <div
         className="absolute inset-0 z-0 overflow-hidden bg-cover bg-no-repeat  md:bg-fixed"
         style={{

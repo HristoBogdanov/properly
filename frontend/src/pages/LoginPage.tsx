@@ -23,7 +23,7 @@ export default function LoginPage() {
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
-          className="bg-gradient-to-tr from-[#274ABB] to-primary flex flex-col w-full max-w-[500px] gap-6 md:gap-10 p-6 md:p-10 text-md md:text-lg rounded-xl"
+          className="bg-primary flex flex-col w-full max-w-[500px] gap-6 md:gap-10 p-6 md:p-10 text-md md:text-lg rounded-xl"
         >
           <h2 className="text-3xl md:text-4xl text-white font-black mx-auto">
             Log in

@@ -20,8 +20,10 @@ export default function MobileMenu() {
       </div>
       <div
         className={`${
-          isOpen ? "translate-x-0 opacity-100" : "translate-x-[100%] opacity-0"
-        } h-fit lg:hidden overflow-hidden transition-all duration-300 ease-in-out z-0 flex flex-col gap-5 fixed right-0 bg-primary text-white p-5 text-lg uppercase w-[100vw] sm:w-[70vw] max-w-[400px] border-primary border-2`}
+          isOpen
+            ? "translate-x-0 opacity-100 w-[100vw] sm:w-[70vw] max-w-[400px] p-5 gap-5 border-2"
+            : "translate-x-[100%] opacity-0 w-0 p-0 gap-0 border-0"
+        } h-fit lg:hidden overflow-hidden transition-all duration-300 ease-in-out flex flex-col fixed top-[134px] right-0 bg-primary text-white text-lg uppercase border-primary`}
       >
         {navbarItems.map((item, index) => (
           <Link
