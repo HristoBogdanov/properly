@@ -21,3 +21,9 @@ export const loginSchema = z.object({
       "Password must be at least 12 characters, contain a number and a lowercase letter"
     ),
 });
+
+export const simpleSeacrhPropertySchema = z.object({
+  search: z.string().min(3, "Search should be at least 3 characters"),
+  sortBy: z.enum(["price", "area", "yearOfConstruction"]),
+  descending: z.boolean(),
+});

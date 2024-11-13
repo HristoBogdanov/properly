@@ -1,3 +1,5 @@
+import SimpleFilter from "./SimpleFilter";
+
 export default function ParralaxContainer() {
   return (
     <div className="w-100vw h-[90vh] relative overflow-hidden z-10">
@@ -14,6 +16,7 @@ export default function ParralaxContainer() {
         <p className="text-lg md:text-xl">
           We have over a million properties for you.
         </p>
+        <SimpleFilter />
       </div>
     </div>
   );

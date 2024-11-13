@@ -4,9 +4,17 @@ import { useFormContext } from "react-hook-form";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
   isRequired?: boolean;
+  classes?: string;
+  placeholder?: string;
 };
 
-export default function Input({ id, isRequired = false, ...rest }: InputProps) {
+export default function Input({
+  id,
+  isRequired = false,
+  classes,
+  placeholder,
+  ...rest
+}: InputProps) {
   const {
     register,
     formState: { errors },
@@ -14,13 +22,14 @@ export default function Input({ id, isRequired = false, ...rest }: InputProps) {
 
   return (
     <div className="flex flex-col md:flex-row gap-2 md:gap-5 justify-between w-full">
-      <div className="flex flex-col gap-2 w-full">
+      <div className={`${classes} flex flex-col gap-2 w-full`}>
         <input
           className="rounded-md p-2"
           id={id}
           {...register(id)}
           {...rest}
           placeholder={
+            placeholder ||
             id.charAt(0).toUpperCase() + id.slice(1) + (isRequired ? " *" : "")
           }
         />
