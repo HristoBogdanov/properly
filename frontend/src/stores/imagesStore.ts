@@ -22,9 +22,12 @@ export const useImagesStore = create<ImagesStore>((set) => ({
       if (response) {
         set({ images: response.data });
         return response.data;
+      } else {
+        return [];
       }
     } catch (error) {
       handleError(error, "Error getting images");
+      return [];
     } finally {
       set({ loading: false });
     }

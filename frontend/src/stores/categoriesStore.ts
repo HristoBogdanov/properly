@@ -27,9 +27,12 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
       if (response) {
         set({ categories: response.data });
         return response.data;
+      } else {
+        return [];
       }
     } catch (error) {
       handleError(error, "Error getting categories");
+      return [];
     } finally {
       set({ loading: false });
     }

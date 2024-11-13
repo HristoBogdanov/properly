@@ -31,9 +31,12 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
       if (response) {
         set({ properties: response.data });
         return response.data;
+      } else {
+        return [];
       }
     } catch (error) {
       handleError(error, "Error getting properties");
+      return [];
     } finally {
       set({ loading: false });
     }

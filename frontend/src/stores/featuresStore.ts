@@ -27,9 +27,12 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
       if (response) {
         set({ features: response.data });
         return response.data;
+      } else {
+        return [];
       }
     } catch (error) {
       handleError(error, "Error getting features");
+      return [];
     } finally {
       set({ loading: false });
     }
