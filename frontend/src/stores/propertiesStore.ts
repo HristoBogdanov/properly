@@ -14,7 +14,7 @@ import {
 
 type PropertiesStore = {
   properties: Property[];
-  getProperties: (params?: PropertyQueryParams) => Promise<void>;
+  getProperties: (params?: PropertyQueryParams) => Promise<Property[]>;
   addProperty: (property: CreateProperty) => Promise<void>;
   updateProperty: (property: CreateProperty, id: string) => Promise<void>;
   removeProperty: (id: string) => Promise<void>;
@@ -30,6 +30,7 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
       const response = await getProperties(params);
       if (response) {
         set({ properties: response.data });
+        return response.data;
       }
     } catch (error) {
       handleError(error, "Error getting properties");

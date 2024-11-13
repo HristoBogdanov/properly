@@ -10,7 +10,7 @@ import {
 
 type FeaturesStore = {
   features: Feature[];
-  getFeatures: () => Promise<void>;
+  getFeatures: () => Promise<Feature[]>;
   addFeature: (feature: CreateFeature) => Promise<void>;
   updateFeature: (feature: CreateFeature, id: string) => Promise<void>;
   removeFeature: (id: string) => Promise<void>;
@@ -26,6 +26,7 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
       const response = await getFeatures();
       if (response) {
         set({ features: response.data });
+        return response.data;
       }
     } catch (error) {
       handleError(error, "Error getting features");

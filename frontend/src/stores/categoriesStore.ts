@@ -10,7 +10,7 @@ import {
 
 type CategoryStore = {
   categories: Category[];
-  getCategories: () => Promise<void>;
+  getCategories: () => Promise<Category[]>;
   addCategory: (category: CreateCategory) => Promise<void>;
   updateCategory: (category: CreateCategory, id: string) => Promise<void>;
   removeCategory: (id: string) => Promise<void>;
@@ -26,6 +26,7 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
       const response = await getCategories();
       if (response) {
         set({ categories: response.data });
+        return response.data;
       }
     } catch (error) {
       handleError(error, "Error getting categories");

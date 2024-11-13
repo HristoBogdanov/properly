@@ -5,7 +5,7 @@ import { getImages, addImage, updateImage, removeImage } from "@/api/images";
 
 type ImagesStore = {
   images: Image[];
-  getImages: () => Promise<void>;
+  getImages: () => Promise<Image[]>;
   addImage: (image: CreateImage) => Promise<void>;
   updateImage: (image: CreateImage, id: string) => Promise<void>;
   removeImage: (id: string) => Promise<void>;
@@ -21,6 +21,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
       const response = await getImages();
       if (response) {
         set({ images: response.data });
+        return response.data;
       }
     } catch (error) {
       handleError(error, "Error getting images");
