@@ -8,6 +8,7 @@ export type SimpleProperty = {
   description: string;
   address: string;
   price: number;
+  createdAt: string;
   forSale: boolean;
   forRent: boolean;
   bedrooms: number;
