@@ -37,8 +37,8 @@ export default function PropertiesPage() {
         baseUrl={`/properties?${new URLSearchParams(
           paramsWithoutPagination
         ).toString()}`}
-        page={params.page || 1}
-        perPage={params.perPage || 10}
+        page={Number(params.page) || 1}
+        perPage={Number(params.perPage) || 10}
         total={total}
       />
     </div>
