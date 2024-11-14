@@ -15,6 +15,7 @@ type CategoryStore = {
   updateCategory: (category: CreateCategory, id: string) => Promise<void>;
   removeCategory: (id: string) => Promise<void>;
   loading: boolean;
+  total: number;
 };
 
 export const useCategoryStore = create<CategoryStore>((set) => ({

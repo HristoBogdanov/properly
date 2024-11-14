@@ -10,6 +10,7 @@ type ImagesStore = {
   updateImage: (image: CreateImage, id: string) => Promise<void>;
   removeImage: (id: string) => Promise<void>;
   loading: boolean;
+  total: number;
 };
 
 export const useImagesStore = create<ImagesStore>((set) => ({

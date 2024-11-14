@@ -15,6 +15,7 @@ type FeaturesStore = {
   updateFeature: (feature: CreateFeature, id: string) => Promise<void>;
   removeFeature: (id: string) => Promise<void>;
   loading: boolean;
+  total: number;
 };
 
 export const useFeaturesStore = create<FeaturesStore>((set) => ({

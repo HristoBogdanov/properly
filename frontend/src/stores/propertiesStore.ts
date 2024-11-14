@@ -19,6 +19,7 @@ type PropertiesStore = {
   updateProperty: (property: CreateProperty, id: string) => Promise<void>;
   removeProperty: (id: string) => Promise<void>;
   loading: boolean;
+  total: number;
 };
 
 export const usePropertiesStore = create<PropertiesStore>((set) => ({
