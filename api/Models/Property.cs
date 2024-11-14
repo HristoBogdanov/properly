@@ -22,6 +22,11 @@ namespace api.Models
         public string Description { get; set; } = String.Empty;
 
         [Required]
+        [MaxLength(200)]
+        [Comment("The slug of the property")]
+        public string Slug { get; set; } = String.Empty;
+
+        [Required]
         [MaxLength(500)]
         [Comment("The address of the property")]
         public string Address { get; set; } = String.Empty;
@@ -63,7 +68,7 @@ namespace api.Models
         public Guid OwnerId { get; set; }
 
         [ForeignKey(nameof(OwnerId))]
-        public virtual ApplicationUser Owner { get; set;} = null!;
+        public virtual ApplicationUser Owner { get; set; } = null!;
 
         [Comment("Flag that indicates whether the property is deleted")]
         public bool IsDeleted { get; set; } = false;
