@@ -6,6 +6,7 @@ export type SimpleProperty = {
   id: string;
   title: string;
   description: string;
+  slug: string;
   address: string;
   price: number;
   createdAt: string;
@@ -17,6 +18,7 @@ export type SimpleProperty = {
   area: number;
   yearOfConstruction: number;
   ownerId: string;
+  ownerName: string;
 };
 
 export type Property = SimpleProperty & {
