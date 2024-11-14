@@ -60,7 +60,7 @@ export default function PropertyListCard({ property }: { property: Property }) {
         <div className="w-full border-t mt-4 pt-4 flex items-center justify-between text-lg lg:text-xl">
           <div className="flex items-center gap-2">
             <FaHouseUser className="text-primary" />
-            <p>{property.ownerId}</p>
+            <p>{property.ownerName}</p>
           </div>
           <div className="flex items-center gap-2">
             <p>{formatDate(property.createdAt)}</p>
@@ -68,7 +68,7 @@ export default function PropertyListCard({ property }: { property: Property }) {
         </div>
       </div>
       <Link
-        to={`/properties/${property.id}`}
+        to={`/properties/${property.slug}`}
         className="absolute inset-0 w-full h-full"
       ></Link>
     </div>
