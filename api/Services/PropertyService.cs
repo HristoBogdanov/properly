@@ -81,6 +81,7 @@ namespace api.Services
                 Description = newProperty.Description,
                 Address = newProperty.Address,
                 Price = newProperty.Price,
+                CreatedAt = newProperty.CreatedAt,
                 ForSale = newProperty.ForSale,
                 ForRent = newProperty.ForRent,
                 Bedrooms = newProperty.Bedrooms,
@@ -173,6 +174,7 @@ namespace api.Services
                 Description = p.Description,
                 Address = p.Address,
                 Price = p.Price,
+                CreatedAt = p.CreatedAt,
                 ForSale = p.ForSale,
                 ForRent = p.ForRent,
                 Bedrooms = p.Bedrooms,
@@ -202,6 +204,7 @@ namespace api.Services
                     Path = i.Image.Path
                 })
             })
+            .OrderByDescending(p => p.CreatedAt)
             .AsNoTracking();
 
             return properties;

@@ -32,6 +32,7 @@ namespace api.Services
                     Description = pc.Property.Description,
                     Address = pc.Property.Address,
                     Price = pc.Property.Price,
+                    CreatedAt = pc.Property.CreatedAt,
                     ForSale = pc.Property.ForSale,
                     ForRent = pc.Property.ForRent,
                     Bedrooms = pc.Property.Bedrooms,

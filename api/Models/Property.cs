@@ -31,6 +31,8 @@ namespace api.Models
         [Comment("The price of the property")]
         public decimal Price { get; set; }
 
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
         [Required]
         [Comment("Flag that indicates if the property is for sale")]
         public bool ForSale { get; set; }

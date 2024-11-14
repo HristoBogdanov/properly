@@ -77,4 +77,8 @@ namespace api.Constants
     public static class Regexes{
         public const string SortParamRegex = "^(price|area|yearOfConstruction)$";
     }
+
+    public static class Formats{
+        public const string DateFormat = "dd/MM/yyyy";
+    }
 }
