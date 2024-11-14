@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <>
       <ParralaxContainer />
-      <div className="container mx-auto flex flex-col py-10 lg:py-20 justify-center items-center gap-10 lg:gap-20">
+      <div className="container mx-auto flex flex-col py-10 lg:py-20 justify-center items-center gap-10 lg:gap-20 px-6">
         <PropertiesSection
           title="Latest Properties"
           properties={latestProperties}
