@@ -30,6 +30,7 @@ namespace api.Services
                     Id = pc.Property.Id.ToString(),
                     Title = pc.Property.Title,
                     Description = pc.Property.Description,
+                    Slug = pc.Property.Slug,
                     Address = pc.Property.Address,
                     Price = pc.Property.Price,
                     CreatedAt = pc.Property.CreatedAt,
@@ -41,6 +42,7 @@ namespace api.Services
                     Area = pc.Property.Area,
                     YearOfConstruction = pc.Property.YearOfConstruction,
                     OwnerId = pc.Property.OwnerId.ToString(),
+                    OwnerName = pc.Property.Owner.UserName!,
                 }).ToList()
             })
             .AsNoTracking()
@@ -54,7 +56,7 @@ namespace api.Services
             var existingCategory = await _categoryRepository
             .FirstOrDefaultAsync(c => c.Title == createCategoryDTO.Title && !c.IsDeleted);
 
-            if(existingCategory != null)
+            if (existingCategory != null)
             {
                 throw new Exception(CategoryErrorMessages.CategoryExists);
             }
@@ -65,7 +67,7 @@ namespace api.Services
             };
 
             await _categoryRepository.AddAsync(newCategory);
-            
+
             return new DisplayCategoryDTO
             {
                 Id = newCategory.Id.ToString(),
@@ -93,7 +95,7 @@ namespace api.Services
             var existingCategory = await _categoryRepository
             .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
 
-            if(existingCategory == null)
+            if (existingCategory == null)
             {
                 throw new Exception(CategoryErrorMessages.CategoryNotFound);
             }

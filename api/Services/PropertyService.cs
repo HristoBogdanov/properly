@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using api.Constants;
 using api.Helpers;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Identity;
 
 namespace api.Services
 {
@@ -21,6 +22,7 @@ namespace api.Services
         private readonly IRepository<PropertyCategories, object> _propertyCategoriesRepository;
         private readonly IRepository<PropertyFeatures, object> _propertyFeaturesRepository;
         private readonly IRepository<PropertyImages, object> _propertyImagesRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public PropertyService(
         IRepository<Property, Guid> propertyRepository,
@@ -29,7 +31,8 @@ namespace api.Services
         IRepository<Feature, Guid> featureRepository,
         IRepository<PropertyCategories, object> propertyCategoriesRepository,
         IRepository<PropertyFeatures, object> propertyFeaturesRepository,
-        IRepository<PropertyImages, object> propertyImagesRepository)
+        IRepository<PropertyImages, object> propertyImagesRepository,
+        UserManager<ApplicationUser> userManager)
         {
             _propertyRepository = propertyRepository;
             _imageRepository = imageRepository;
@@ -38,6 +41,7 @@ namespace api.Services
             _propertyCategoriesRepository = propertyCategoriesRepository;
             _propertyFeaturesRepository = propertyFeaturesRepository;
             _propertyImagesRepository = propertyImagesRepository;
+            _userManager = userManager;
         }
 
         public async Task<List<DisplayPropertyDTO>> GetPropertiesAsync(PropertyQueryParams queryParams)
@@ -48,26 +52,45 @@ namespace api.Services
             properties = SortProperties(properties, queryParams);
             properties = PaginateProperties(properties, queryParams);
 
-            return await properties.ToListAsync();
+            var propertyList = await properties.ToListAsync();
+
+            foreach (var property in propertyList)
+            {
+                var owner = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(property.OwnerId));
+                property.OwnerName = owner?.UserName ?? "Unknown";
+            }
+
+            return propertyList;
         }
 
         public async Task<DisplayPropertyDTO> GetPropertyByIdAsync(string id)
         {
             Guid idGuid = Guid.Parse(id);
 
-            var property = await GetDisplayProperties(p => p.Id == idGuid && !p.IsDeleted)
-            .FirstOrDefaultAsync();
+            var properties = GetDisplayProperties(p => p.Id == idGuid && !p.IsDeleted);
 
-            if(property == null)
+            var property = await properties.FirstOrDefaultAsync();
+
+            if (property == null)
             {
                 throw new Exception(PropertiesErrorMessages.PropertyNotFound);
             }
+
+            var owner = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(property.OwnerId));
+            property.OwnerName = owner?.UserName ?? "Unknown";
 
             return property;
         }
 
         public async Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
         {
+            var user = await _userManager.FindByIdAsync(createPropertyDTO.OwnerId);
+
+            if (user == null)
+            {
+                throw new Exception(UserErrorMessages.UserNotFound);
+            }
+
             var newProperty = new Property();
             MapPropertyFields(newProperty, createPropertyDTO);
 
@@ -79,6 +102,7 @@ namespace api.Services
                 Id = newProperty.Id.ToString(),
                 Title = newProperty.Title,
                 Description = newProperty.Description,
+                Slug = newProperty.Slug,
                 Address = newProperty.Address,
                 Price = newProperty.Price,
                 CreatedAt = newProperty.CreatedAt,
@@ -90,6 +114,7 @@ namespace api.Services
                 Area = newProperty.Area,
                 YearOfConstruction = newProperty.YearOfConstruction,
                 OwnerId = newProperty.OwnerId.ToString(),
+                OwnerName = user.UserName!,
                 Categories = newProperty.PropertiesCategories.Select(c => new DisplayCategoryDTO
                 {
                     Id = c.CategoryId.ToString(),
@@ -119,7 +144,7 @@ namespace api.Services
 
             var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
 
-            if(existingProperty == null)
+            if (existingProperty == null)
             {
                 throw new Exception(PropertiesErrorMessages.PropertyNotFound);
             }
@@ -128,7 +153,7 @@ namespace api.Services
 
             await _propertyRepository.UpdateAsync(existingProperty);
             await AddDataToProperty(updatePropertyDTO, existingProperty);
-            
+
             return true;
         }
 
@@ -138,7 +163,7 @@ namespace api.Services
 
             var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
 
-            if(existingProperty == null)
+            if (existingProperty == null)
             {
                 throw new Exception(PropertiesErrorMessages.PropertyNotFound);
             }
@@ -151,6 +176,7 @@ namespace api.Services
         {
             property.Title = propertyDTO.Title;
             property.Description = propertyDTO.Description;
+            property.Slug = SlugGenerator.GenerateSlug(propertyDTO.Title);
             property.Address = propertyDTO.Address;
             property.Price = propertyDTO.Price;
             property.ForSale = propertyDTO.ForSale;
@@ -162,125 +188,125 @@ namespace api.Services
             property.IsFurnished = propertyDTO.IsFurnished;
             property.OwnerId = Guid.Parse(propertyDTO.OwnerId);
         }
-
         private IQueryable<DisplayPropertyDTO> GetDisplayProperties(Expression<Func<Property, bool>> predicate)
         {
             var properties = _propertyRepository.GetAllAttached()
-            .Where(predicate)
-            .Select(p => new DisplayPropertyDTO
-            {
-                Id = p.Id.ToString(),
-                Title = p.Title,
-                Description = p.Description,
-                Address = p.Address,
-                Price = p.Price,
-                CreatedAt = p.CreatedAt,
-                ForSale = p.ForSale,
-                ForRent = p.ForRent,
-                Bedrooms = p.Bedrooms,
-                Bathrooms = p.Bathrooms,
-                IsFurnished = p.IsFurnished,
-                Area = p.Area,
-                YearOfConstruction = p.YearOfConstruction,
-                OwnerId = p.OwnerId.ToString(),
-                Categories = p.PropertiesCategories.Select(c => new DisplayCategoryDTO
+                .Where(predicate)
+                .Select(p => new DisplayPropertyDTO
                 {
-                    Id = c.CategoryId.ToString(),
-                    Title = c.Category.Title
-                }),
-                Features = p.PropertiesFeatures.Select(f => new DisplayFeatureDTO
-                {
-                    Id = f.FeatureId.ToString(),
-                    Title = f.Feature.Title,
-                    Image = new CreateImageDTO
+                    Id = p.Id.ToString(),
+                    Title = p.Title,
+                    Description = p.Description,
+                    Slug = p.Slug,
+                    Address = p.Address,
+                    Price = p.Price,
+                    CreatedAt = p.CreatedAt,
+                    ForSale = p.ForSale,
+                    ForRent = p.ForRent,
+                    Bedrooms = p.Bedrooms,
+                    Bathrooms = p.Bathrooms,
+                    IsFurnished = p.IsFurnished,
+                    Area = p.Area,
+                    YearOfConstruction = p.YearOfConstruction,
+                    OwnerId = p.OwnerId.ToString(),
+                    Categories = p.PropertiesCategories.Select(c => new DisplayCategoryDTO
                     {
-                        Name = f.Feature.Image.Name,
-                        Path = f.Feature.Image.Path
-                    }
-                }),
-                Images = p.PropertiesImages.Select(i => new CreateImageDTO
-                {
-                    Name = i.Image.Name,
-                    Path = i.Image.Path
+                        Id = c.CategoryId.ToString(),
+                        Title = c.Category.Title
+                    }).ToList(),
+                    Features = p.PropertiesFeatures.Select(f => new DisplayFeatureDTO
+                    {
+                        Id = f.FeatureId.ToString(),
+                        Title = f.Feature.Title,
+                        Image = new CreateImageDTO
+                        {
+                            Name = f.Feature.Image.Name,
+                            Path = f.Feature.Image.Path
+                        }
+                    }).ToList(),
+                    Images = p.PropertiesImages.Select(i => new CreateImageDTO
+                    {
+                        Name = i.Image.Name,
+                        Path = i.Image.Path
+                    }).ToList()
                 })
-            })
-            .OrderByDescending(p => p.CreatedAt)
-            .AsNoTracking();
+                .OrderByDescending(p => p.CreatedAt)
+                .AsNoTracking();
 
             return properties;
         }
 
         private IQueryable<DisplayPropertyDTO> FilterProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
-            if(!string.IsNullOrEmpty(queryParams.search))
+            if (!string.IsNullOrEmpty(queryParams.search))
             {
                 properties = properties
-                .Where(p => p.Title.ToLower().Contains(queryParams.search.ToLower()) 
+                .Where(p => p.Title.ToLower().Contains(queryParams.search.ToLower())
                 || p.Description.ToLower().Contains(queryParams.search.ToLower())
                 || p.Address.ToLower().Contains(queryParams.search.ToLower()));
             }
 
-            if(queryParams.minPrice != null)
+            if (queryParams.minPrice != null)
             {
                 properties = properties
                 .Where(p => p.Price >= queryParams.minPrice);
             }
 
-            if(queryParams.maxPrice != null)
+            if (queryParams.maxPrice != null)
             {
                 properties = properties
                 .Where(p => p.Price <= queryParams.maxPrice);
             }
 
-            if(queryParams.numberOfBedrooms != null)
+            if (queryParams.numberOfBedrooms != null)
             {
                 properties = properties
                 .Where(p => p.Bedrooms == queryParams.numberOfBedrooms);
             }
 
-            if(queryParams.numberOfBathrooms != null)
+            if (queryParams.numberOfBathrooms != null)
             {
                 properties = properties
                 .Where(p => p.Bathrooms == queryParams.numberOfBathrooms);
             }
 
-            if(queryParams.minArea != null)
+            if (queryParams.minArea != null)
             {
                 properties = properties
                 .Where(p => p.Area >= queryParams.minArea);
             }
 
-            if(queryParams.maxArea != null)
+            if (queryParams.maxArea != null)
             {
                 properties = properties
                 .Where(p => p.Area <= queryParams.maxArea);
             }
 
-            if(queryParams.minYearOfConstruction != null)
+            if (queryParams.minYearOfConstruction != null)
             {
                 properties = properties
                 .Where(p => p.YearOfConstruction >= queryParams.minYearOfConstruction);
             }
 
-            if(queryParams.maxYearOfConstruction != null)
+            if (queryParams.maxYearOfConstruction != null)
             {
                 properties = properties
                 .Where(p => p.YearOfConstruction <= queryParams.maxYearOfConstruction);
             }
 
-            if(queryParams.forSale != null)
+            if (queryParams.forSale != null)
             {
                 properties = properties
                 .Where(p => p.ForSale == queryParams.forSale);
             }
 
-            if(queryParams.forRent != null)
+            if (queryParams.forRent != null)
             {
                 properties = properties
                 .Where(p => p.ForRent == queryParams.forRent);
             }
 
-            if(queryParams.isFurnished != null)
+            if (queryParams.isFurnished != null)
             {
                 properties = properties
                 .Where(p => p.IsFurnished == queryParams.isFurnished);
@@ -291,7 +317,7 @@ namespace api.Services
 
         private IQueryable<DisplayPropertyDTO> SortProperties(IQueryable<DisplayPropertyDTO> properties, PropertyQueryParams queryParams)
         {
-            if(queryParams.sortBy != null)
+            if (queryParams.sortBy != null)
             {
                 properties = queryParams.sortBy switch
                 {
