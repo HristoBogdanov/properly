@@ -1,26 +1,26 @@
 [
   {
-    "Username": "broker_james",
+    "Username": "Broker_James_West",
     "Email": "james.broker@example.com",
     "Password": "JamesBroker123!"
   },
   {
-    "Username": "broker_linda",
+    "Username": "Broker_Linda_Southmore",
     "Email": "linda.broker@example.com",
     "Password": "LindaBroker123!"
   },
   {
-    "Username": "broker_robert",
+    "Username": "Broker_Robert_Whitaker",
     "Email": "robert.broker@example.com",
     "Password": "RobertBroker123!"
   },
   {
-    "Username": "broker_patricia",
+    "Username": "Broker_Patricia_Ivanovic",
     "Email": "patricia.broker@example.com",
     "Password": "PatriciaBroker123!"
   },
   {
-    "Username": "broker_charles",
+    "Username": "Broker_Charles_White",
     "Email": "charles.broker@example.com",
     "Password": "CharlesBroker123!"
   }

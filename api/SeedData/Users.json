@@ -1,26 +1,26 @@
 [
   {
-    "Username": "john_doe",
+    "Username": "John_Doe",
     "Email": "john.doe@example.com",
     "Password": "JohnDoeee123!"
   },
   {
-    "Username": "jane_smith",
+    "Username": "Jane_Smith",
     "Email": "jane.smith@example.com",
     "Password": "JaneSmith123!"
   },
   {
-    "Username": "michael_brown",
+    "Username": "Michael_Scofield",
     "Email": "michael.brown@example.com",
     "Password": "MichaelBrown123!"
   },
   {
-    "Username": "emily_davis",
+    "Username": "Emily_Davis",
     "Email": "emily.davis@example.com",
     "Password": "EmilyDavis123!"
   },
   {
-    "Username": "david_wilson",
+    "Username": "David_Wilson",
     "Email": "david.wilson@example.com",
     "Password": "DavidWilson123!"
   }
