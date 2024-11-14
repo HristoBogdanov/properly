@@ -20,12 +20,14 @@ type FeaturesStore = {
 export const useFeaturesStore = create<FeaturesStore>((set) => ({
   features: [],
   loading: true,
+  total: 0,
 
   getFeatures: async () => {
     try {
       const response = await getFeatures();
       if (response) {
         set({ features: response.data });
+        set({ total: response.data.length });
         return response.data;
       } else {
         return [];

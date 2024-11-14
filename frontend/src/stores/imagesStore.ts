@@ -15,12 +15,14 @@ type ImagesStore = {
 export const useImagesStore = create<ImagesStore>((set) => ({
   images: [],
   loading: true,
+  total: 0,
 
   getImages: async () => {
     try {
       const response = await getImages();
       if (response) {
         set({ images: response.data });
+        set({ total: response.data.length });
         return response.data;
       } else {
         return [];

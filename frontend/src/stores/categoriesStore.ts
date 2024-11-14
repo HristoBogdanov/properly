@@ -20,12 +20,14 @@ type CategoryStore = {
 export const useCategoryStore = create<CategoryStore>((set) => ({
   categories: [],
   loading: true,
+  total: 0,
 
   getCategories: async () => {
     try {
       const response = await getCategories();
       if (response) {
         set({ categories: response.data });
+        set({ total: response.data.length });
         return response.data;
       } else {
         return [];

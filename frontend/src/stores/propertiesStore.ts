@@ -24,12 +24,14 @@ type PropertiesStore = {
 export const usePropertiesStore = create<PropertiesStore>((set) => ({
   properties: [],
   loading: true,
+  total: 0,
 
   getProperties: async (params?: PropertyQueryParams) => {
     try {
       const response = await getProperties(params);
       if (response) {
         set({ properties: response.data });
+        set({ total: response.data.length });
         return response.data;
       } else {
         return [];
