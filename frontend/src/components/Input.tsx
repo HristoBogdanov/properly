@@ -6,6 +6,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   isRequired?: boolean;
   classes?: string;
   placeholder?: string;
+  showError?: boolean;
 };
 
 export default function Input({
@@ -13,6 +14,7 @@ export default function Input({
   isRequired = false,
   classes,
   placeholder,
+  showError = true,
   ...rest
 }: InputProps) {
   const {
@@ -33,7 +35,7 @@ export default function Input({
             id.charAt(0).toUpperCase() + id.slice(1) + (isRequired ? " *" : "")
           }
         />
-        {errors[id] && (
+        {showError && errors[id] && (
           <p className="text-sm text-white font-semibold text-wrap">
             {errors[id]?.message as string}
           </p>

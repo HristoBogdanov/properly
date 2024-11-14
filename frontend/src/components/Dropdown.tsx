@@ -24,9 +24,9 @@ export default function Dropdown({
     <div className="flex flex-col md:flex-row gap-2 md:gap-5 justify-between w-full">
       <div className={`${classes} flex flex-col gap-2 w-full`}>
         <select className="rounded-md p-2" id={id} {...register(id)} {...rest}>
-          {placeholder && (
-            <option value="" disabled className="text-[#9CA3AF]">
-              {placeholder}
+          {(
+            <option value="" disabled selected className="text-[#9CA3AF]">
+              {placeholder || id.charAt(0).toUpperCase() + id.slice(1)}
             </option>
           )}
           {options.map((option) => (
@@ -36,7 +36,7 @@ export default function Dropdown({
           ))}
         </select>
         {errors[id] && (
-          <p className="text-sm text-white font-semibold text-wrap">
+          <p className="text-sm text-red-700 font-semibold text-wrap">
             {errors[id]?.message as string}
           </p>
         )}
