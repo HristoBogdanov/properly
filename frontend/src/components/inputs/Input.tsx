@@ -3,19 +3,26 @@ import { useFormContext } from "react-hook-form";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
-  isRequired?: boolean;
-  classes?: string;
+  name: string;
+  type?: string;
   placeholder?: string;
+  isRequired?: boolean;
+  errorColor?: string;
   showError?: boolean;
+  classes?: string;
+  valueAsNumber?: boolean;
 };
 
 export default function Input({
   id,
-  isRequired = false,
-  classes,
+  name,
+  type = "text",
   placeholder,
+  isRequired,
+  errorColor = "red",
   showError = true,
-  ...rest
+  classes,
+  valueAsNumber,
 }: InputProps) {
   const {
     register,
@@ -23,24 +30,25 @@ export default function Input({
   } = useFormContext();
 
   return (
-    <div className="flex flex-col md:flex-row gap-2 md:gap-5 justify-between w-full">
-      <div className={`${classes} flex flex-col gap-2 w-full`}>
-        <input
-          className="rounded-md p-2"
-          id={id}
-          {...register(id)}
-          {...rest}
-          placeholder={
-            placeholder ||
-            id.charAt(0).toUpperCase() + id.slice(1) + (isRequired ? " *" : "")
-          }
-        />
-        {showError && errors[id] && (
-          <p className="text-sm text-white font-semibold text-wrap">
-            {errors[id]?.message as string}
-          </p>
-        )}
-      </div>
+    <div className={`flex flex-col gap-2 ${classes}`}>
+      <input
+        id={id}
+        type={type}
+        placeholder={
+          (placeholder || name.charAt(0).toUpperCase() + id.slice(1)) +
+          (isRequired ? " *" : "")
+        }
+        {...register(name, {
+          required: isRequired,
+          valueAsNumber: valueAsNumber,
+        })}
+        className="border rounded-md p-2"
+      />
+      {showError && errors[name] && (
+        <p className={`text-sm text-${errorColor} font-semibold text-wrap`}>
+          {errors[name]?.message as string}
+        </p>
+      )}
     </div>
   );
 }
