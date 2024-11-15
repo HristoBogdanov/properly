@@ -8,7 +8,7 @@ import {
   removeCategory,
 } from "@/api/categories";
 
-type CategoryStore = {
+type CategoriesStore = {
   categories: Category[];
   getCategories: () => Promise<Category[]>;
   addCategory: (category: CreateCategory) => Promise<void>;
@@ -18,7 +18,7 @@ type CategoryStore = {
   total: number;
 };
 
-export const useCategoryStore = create<CategoryStore>((set) => ({
+export const useCategoriesStore = create<CategoriesStore>((set) => ({
   categories: [],
   loading: true,
   total: 0,
@@ -45,7 +45,7 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
     try {
       const response = await addCategory(category);
       if (response?.data) {
-        await useCategoryStore.getState().getCategories();
+        await useCategoriesStore.getState().getCategories();
       }
     } catch (error) {
       handleError(error, "Error adding category");
@@ -56,7 +56,7 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
     try {
       const response = await updateCategory(category, id);
       if (response?.data) {
-        await useCategoryStore.getState().getCategories();
+        await useCategoriesStore.getState().getCategories();
       }
     } catch (error) {
       handleError(error, "Error updating category");
@@ -67,7 +67,7 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
     try {
       const response = await removeCategory(id);
       if (response?.data) {
-        await useCategoryStore.getState().getCategories();
+        await useCategoriesStore.getState().getCategories();
       }
     } catch (error) {
       handleError(error, "Error removing category");
@@ -76,4 +76,4 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
 }));
 
 // Initialize the store by calling getCategories
-useCategoryStore.getState().getCategories();
+useCategoriesStore.getState().getCategories();

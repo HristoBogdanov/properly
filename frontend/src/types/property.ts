@@ -32,7 +32,19 @@ export type PropertyPagesResult = {
   properties: Property[];
 };
 
-export type CreateProperty = SimpleProperty & {
+export type CreateProperty = {
+  title: string;
+  description: string;
+  address: string;
+  price: number;
+  forSale: boolean;
+  forRent: boolean;
+  bedrooms: number;
+  bathrooms: number;
+  isFurnished: boolean;
+  area: number;
+  yearOfConstruction: number;
+  ownerId: string;
   categories: string[];
   features: string[];
   images: CreateImage[];
