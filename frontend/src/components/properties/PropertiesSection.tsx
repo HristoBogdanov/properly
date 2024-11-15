@@ -1,7 +1,7 @@
 import { Property } from "@/types/property";
+import Heading from "../common/Heading";
+import SkeletonPropertyCard from "../skeletons/SkeletonPropertyCard";
 import PropertyCard from "./PropertyCard";
-import Heading from "./Heading";
-import SkeletonPropertyCard from "./SkeletonPropertyCard";
 
 type PropertiesSectionProps = {
   title: string;

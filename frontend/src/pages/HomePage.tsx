@@ -1,8 +1,8 @@
-import ParralaxContainer from "@/components/ParralaxContainer";
-import PropertiesSection from "@/components/PropertiesSection";
+import ParralaxContainer from "@/components/common/ParralaxContainer";
 import { usePropertiesStore } from "@/stores/propertiesStore";
 import { useEffect, useState } from "react";
 import { Property } from "@/types/property";
+import PropertiesSection from "@/components/properties/PropertiesSection";
 
 export default function HomePage() {
   const { loading, getProperties } = usePropertiesStore();

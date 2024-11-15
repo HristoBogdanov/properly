@@ -2,6 +2,8 @@ import { handleError } from "@/helpers/ErrorHandler";
 import {
   CreateProperty,
   Property,
+  PropertyPages,
+  PropertyPagesResult,
   PropertyQueryParams,
 } from "@/types/property";
 import axios from "axios";
@@ -9,10 +11,14 @@ import axios from "axios";
 export const getProperties = async (params?: PropertyQueryParams) => {
   try {
     const query = constructQuery(params);
-    const data = await axios.get<Property[]>(
+    const result = await axios.get<PropertyPagesResult>(
       import.meta.env.VITE_API_URL + `properties/all?${query}`
     );
-    return data;
+    if (result) {
+      const pages: PropertyPages = result.data.pages;
+      const properties: Property[] = result.data.properties;
+      return { pages, properties };
+    }
   } catch (error) {
     handleError(error, "Error getting properties");
   }

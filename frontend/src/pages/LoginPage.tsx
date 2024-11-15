@@ -1,5 +1,5 @@
-import CustomButton from "@/components/CustomButton";
-import Input from "@/components/Input";
+import CustomButton from "@/components/common/CustomButton";
+import Input from "@/components/inputs/Input";
 import { useAuth } from "@/contexts/useAuth";
 import { loginSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -1,8 +1,8 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@/contexts/useAuth";
-import CustomButton from "@/components/CustomButton";
-import Input from "@/components/Input";
+import CustomButton from "@/components/common/CustomButton";
+import Input from "@/components/inputs/Input";
 import { registerSchema } from "@/lib/schemas";
 import { z } from "zod";
 

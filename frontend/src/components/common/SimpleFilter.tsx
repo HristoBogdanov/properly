@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
-import Input from "./Input";
-import Dropdown from "./Dropdown";
+import Input from "../inputs/Input";
+import Dropdown from "../inputs/Dropdown";
 import { z } from "zod";
 import { simpleSeacrhPropertySchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,7 +31,9 @@ export default function SimpleFilter() {
     const filteredData = Object.fromEntries(
       Object.entries(data).filter(([_, value]) => value !== "") // eslint-disable-line
     );
-    navigate(`/properties?${new URLSearchParams(filteredData as any).toString()}`);
+    navigate(
+      `/properties?${new URLSearchParams(filteredData as any).toString()}`
+    );
   };
 
   return (
@@ -42,7 +44,11 @@ export default function SimpleFilter() {
             className="flex flex-col lg:flex-row justify-center items-center gap-3 w-fit text-lg text-black"
             onSubmit={methods.handleSubmit(onSubmit)}
           >
-            <Input id="search" showError={false} classes="border border-[#d5d5d2] rounded-md" />
+            <Input
+              id="search"
+              showError={false}
+              classes="border border-[#d5d5d2] rounded-md"
+            />
             <Dropdown
               id="sortBy"
               classes="border border-[#d5d5d2] rounded-md"
@@ -55,7 +61,7 @@ export default function SimpleFilter() {
               options={descendingOptions}
               placeholder="Order"
             />
-            <CustomButton text="Search" type="submit" classes="max-lg:w-full"/>
+            <CustomButton text="Search" type="submit" classes="max-lg:w-full" />
           </form>
         </FormProvider>
       </div>
