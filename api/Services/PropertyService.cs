@@ -44,7 +44,7 @@ namespace api.Services
             _userManager = userManager;
         }
 
-        public async Task<List<DisplayPropertyDTO>> GetPropertiesAsync(PropertyQueryParams queryParams)
+        public async Task<PropertyPagesResult> GetPropertiesAsync(PropertyQueryParams queryParams)
         {
             var properties = GetDisplayProperties(p => !p.IsDeleted);
 
@@ -60,7 +60,22 @@ namespace api.Services
                 property.OwnerName = owner?.UserName ?? "Unknown";
             }
 
-            return propertyList;
+            int Page = queryParams.page == 0 ? 1 : queryParams.page;
+            int PerPage = queryParams.perPage == 0 ? 10 : queryParams.perPage;
+            int TotalPages = (int)Math.Ceiling((double)await _propertyRepository.CountAsync() / PerPage);
+
+            PropertyPages pages = new PropertyPages
+            {
+                Page = Page,
+                PerPage = PerPage,
+                TotalPages = TotalPages
+            };
+
+            return new PropertyPagesResult
+            {
+                Pages = pages,
+                Properties = propertyList
+            };
         }
 
         public async Task<DisplayPropertyDTO> GetPropertyByIdAsync(string id)
