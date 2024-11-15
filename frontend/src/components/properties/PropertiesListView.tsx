@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { usePropertiesStore } from "@/stores/propertiesStore";
 import PropertyListCard from "./PropertyListCard";
+import SkeletonPropertyListCard from "../skeletons/SkeletonPropertyListCard";
 
 export default function PropertiesListView() {
   const { loading, pages, properties, getProperties } = usePropertiesStore();
@@ -34,7 +35,15 @@ export default function PropertiesListView() {
     getProperties(params);
   }, [params, getProperties]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div className="w-full flex flex-col justify-center items-center gap-6 lg:gap-10">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <SkeletonPropertyListCard key={index} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-6 lg:gap-10">

@@ -7,10 +7,10 @@ import {
 } from "react-icons/md";
 import { TbMeterSquare } from "react-icons/tb";
 import { FaHouseUser } from "react-icons/fa";
-import ForSaleTag from "./ForSaleTag";
-import ForRentTag from "./ForRentTag";
 import { formatDate } from "@/helpers/formatDate";
 import { Link } from "react-router-dom";
+import ForSaleTag from "./ForSaleTag";
+import ForRentTag from "./ForRentTag";
 
 export default function PropertyListCard({ property }: { property: Property }) {
   return (

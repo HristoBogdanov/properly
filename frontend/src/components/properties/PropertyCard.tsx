@@ -1,7 +1,7 @@
 import { Property } from "@/types/property";
-import ForSaleTag from "./ForSaleTag";
-import ForRentTag from "./ForRentTag";
 import { Link } from "react-router-dom";
+import ForRentTag from "./ForRentTag";
+import ForSaleTag from "./ForSaleTag";
 
 export default function PropertyCard({ property }: { property: Property }) {
   return (

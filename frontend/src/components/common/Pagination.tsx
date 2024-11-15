@@ -19,12 +19,12 @@ export default function Pagination({
   if (totalPages < 2) return null;
 
   function navigateToPage(page: number) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     navigate(
       `${baseUrl}${
         baseUrl === "/properties" ? "?" : "&"
       }page=${page}&perPage=${perPage}`
     );
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
