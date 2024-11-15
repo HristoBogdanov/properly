@@ -5,6 +5,7 @@ import RegisterPage from "@/pages/RegisterPage";
 import HomePage from "@/pages/HomePage";
 import PropertiesPage from "@/pages/PropertiesPage";
 import ServerErrorPage from "@/pages/ServerErrorPage";
+import AddListingPage from "@/pages/AddListingPage";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <RegisterPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/properties", element: <PropertiesPage /> },
+      { path: "/add-listing", element: <AddListingPage /> },
       { path: "/server-error", element: <ServerErrorPage /> },
     ],
   },
