@@ -9,6 +9,7 @@ import {
 import {
   CreateProperty,
   Property,
+  PropertyPages,
   PropertyQueryParams,
 } from "@/types/property";
 
@@ -19,21 +20,26 @@ type PropertiesStore = {
   updateProperty: (property: CreateProperty, id: string) => Promise<void>;
   removeProperty: (id: string) => Promise<void>;
   loading: boolean;
-  total: number;
+  pages: PropertyPages;
 };
 
 export const usePropertiesStore = create<PropertiesStore>((set) => ({
   properties: [],
   loading: true,
   total: 0,
+  pages: {
+    page: 1,
+    perPage: 10,
+    totalPages: 1,
+  },
 
   getProperties: async (params?: PropertyQueryParams) => {
     try {
       const response = await getProperties(params);
       if (response) {
-        set({ properties: response.data });
-        set({ total: response.data.length });
-        return response.data;
+        set({ properties: response.properties });
+        set({ pages: response.pages });
+        return response.properties;
       } else {
         return [];
       }
