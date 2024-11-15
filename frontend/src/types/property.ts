@@ -39,14 +39,14 @@ export type CreateProperty = {
   price: number;
   forSale: boolean;
   forRent: boolean;
-  bedrooms: number;
-  bathrooms: number;
+  bedrooms?: number;
+  bathrooms?: number;
   isFurnished: boolean;
   area: number;
   yearOfConstruction: number;
   ownerId: string;
-  categories: string[];
-  features: string[];
+  categories?: string[];
+  features?: string[];
   images: CreateImage[];
 };
 
