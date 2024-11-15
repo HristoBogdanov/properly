@@ -64,8 +64,6 @@ export const createPropertySchema = z.object({
     .number(numberErrorMessage)
     .min(0, "Price must be at least 0")
     .max(100000000, "Price must be at most 100000000"),
-  forSale: z.boolean(),
-  forRent: z.boolean(),
   area: z
     .number(numberErrorMessage)
     .min(0, "Area must be at least 0")
@@ -75,20 +73,32 @@ export const createPropertySchema = z.object({
     .int()
     .min(1800, "Year of construction must be at least 1800")
     .max(2100, "Year of construction must be at most 2100"),
-  bedrooms: z
-    .number(numberErrorMessage)
-    .int()
-    .min(0, "Bedrooms must be at least 0")
-    .max(100, "Bedrooms must be at most 100"),
-  bathrooms: z
-    .number(numberErrorMessage)
-    .int()
-    .min(0, "Bathrooms must be at least 0")
-    .max(100, "Bathrooms must be at most 100"),
+  // Check if its Nan and map it to undefined
+  bedrooms: z.preprocess(
+    (val: any) => (isNaN(val) ? undefined : val),
+    z
+      .number(numberErrorMessage)
+      .int()
+      .min(0, "Bedrooms must be at least 0")
+      .max(100, "Bedrooms must be at most 100")
+      .optional()
+  ),
+  // Check if its Nan and map it to undefined
+  bathrooms: z.preprocess(
+    (val: any) => (isNaN(val) ? undefined : val),
+    z
+      .number(numberErrorMessage)
+      .int()
+      .min(0, "Bathrooms must be at least 0")
+      .max(100, "Bathrooms must be at most 100")
+      .optional()
+  ),
+  forSale: z.boolean(),
+  forRent: z.boolean(),
   isFurnished: z.boolean(),
   ownerId: z.string(),
-  categories: z.array(z.string()),
-  features: z.array(z.string()),
+  categories: z.optional(z.array(z.string())),
+  features: z.optional(z.array(z.string())),
   images: z.array(
     z.object({
       name: z.string().min(1, "Image name is required"),
