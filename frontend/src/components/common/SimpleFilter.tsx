@@ -37,7 +37,7 @@ export default function SimpleFilter() {
   };
 
   return (
-    <div className="w-fit p-3 border rounded-lg mx-6">
+    <div className="w-fit p-3 border rounded-lg">
       <div className="rounded-lg bg-white p-6">
         <FormProvider {...methods}>
           <form

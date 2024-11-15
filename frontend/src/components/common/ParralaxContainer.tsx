@@ -16,7 +16,9 @@ export default function ParralaxContainer() {
         <p className="text-lg md:text-xl">
           We have over a million properties for you.
         </p>
-        <SimpleFilter />
+        <div className="mx-6">
+          <SimpleFilter />
+        </div>
       </div>
     </div>
   );
