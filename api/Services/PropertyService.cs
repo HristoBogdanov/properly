@@ -50,6 +50,10 @@ namespace api.Services
 
             properties = FilterProperties(properties, queryParams);
             properties = SortProperties(properties, queryParams);
+
+            // Calculate the total count before pagination
+            int totalCount = await properties.CountAsync();
+
             properties = PaginateProperties(properties, queryParams);
 
             var propertyList = await properties.ToListAsync();
@@ -62,7 +66,7 @@ namespace api.Services
 
             int Page = queryParams.page == 0 ? 1 : queryParams.page;
             int PerPage = queryParams.perPage == 0 ? 10 : queryParams.perPage;
-            int TotalPages = (int)Math.Ceiling((double)await _propertyRepository.CountAsync() / PerPage);
+            int TotalPages = (int)Math.Ceiling((double)totalCount / PerPage);
 
             PropertyPages pages = new PropertyPages
             {
