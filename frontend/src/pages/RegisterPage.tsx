@@ -28,9 +28,14 @@ export default function RegisterPage() {
           <h2 className="text-3xl md:text-4xl text-white font-black mx-auto">
             Register
           </h2>
-          <Input id="username" isRequired={true} />
-          <Input id="email" type="email" isRequired={true} />
-          <Input id="password" type="password" isRequired={true} />
+          <Input id="username" name="username" isRequired={true} />
+          <Input id="email" name="email" type="email" isRequired={true} />
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            isRequired={true}
+          />
           <div className="w-full flex-col md:flex-row flex justify-between gap-5">
             <CustomButton text="Register" type="submit" classes="w-full" />
             <CustomButton

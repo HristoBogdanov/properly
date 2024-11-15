@@ -46,6 +46,7 @@ export default function SimpleFilter() {
           >
             <Input
               id="search"
+              name="search"
               showError={false}
               classes="border border-[#d5d5d2] rounded-md"
             />

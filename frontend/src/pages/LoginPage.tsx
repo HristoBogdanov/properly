@@ -28,8 +28,13 @@ export default function LoginPage() {
           <h2 className="text-3xl md:text-4xl text-white font-black mx-auto">
             Log in
           </h2>
-          <Input id="username" isRequired={true} />
-          <Input id="password" type="password" isRequired={true} />
+          <Input id="username" name="username" isRequired={true} />
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            isRequired={true}
+          />
           <div className="w-full flex-col md:flex-row flex justify-between gap-5">
             <CustomButton text="Log in" type="submit" classes="w-full" />
             <CustomButton
