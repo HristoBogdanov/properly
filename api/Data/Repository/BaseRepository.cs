@@ -176,5 +176,15 @@ namespace api.Data.Repository
                 return false;
             }
         }
+
+        public int Count()
+        {
+            return _dbSet.Count();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _dbSet.CountAsync();
+        }
     }
 }

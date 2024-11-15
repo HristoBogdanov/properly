@@ -23,5 +23,7 @@ namespace api.Data.Repository.Interfaces
         Task<bool> SoftDeleteAsync(TType entity);
         bool Update(TType item);
         Task<bool> UpdateAsync(TType item);
+        int Count();
+        Task<int> CountAsync();
     }
 }
