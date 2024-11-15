@@ -1,10 +1,6 @@
 [
   { "Title": "Room" },
   { "Title": "Studio" },
-  { "Title": "1-bedroom" },
-  { "Title": "2-bedroom" },
-  { "Title": "3-bedroom" },
-  { "Title": "4-bedroom" },
   { "Title": "Multi-room" },
   { "Title": "Maisonette" },
   { "Title": "Studio, attic" },

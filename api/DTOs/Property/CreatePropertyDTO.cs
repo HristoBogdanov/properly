@@ -44,7 +44,6 @@ namespace api.DTOs.Property
 
         public bool IsFurnished { get; set; }
 
-        //TODO: Refactor this after Broker is separate entity
         public string OwnerId { get; set; } = null!;
 
         public virtual IEnumerable<string> Categories { get; set; } = new List<string>();
