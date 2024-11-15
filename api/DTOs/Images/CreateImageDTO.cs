@@ -10,7 +10,7 @@ namespace api.DTOs.Images
         public string Name { get; set; } = null!;
 
         [Required(ErrorMessage = ImageErrorMessages.ImagePathRequired)]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = ImageErrorMessages.InvalidImagePathLength)]
+        [StringLength(1000, MinimumLength = 3, ErrorMessage = ImageErrorMessages.InvalidImagePathLength)]
         public string Path { get; set; } = null!;
     }
 }
