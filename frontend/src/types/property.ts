@@ -27,11 +27,22 @@ export type Property = SimpleProperty & {
   images: CreateImage[];
 };
 
+export type PropertyPagesResult = {
+  pages: PropertyPages;
+  properties: Property[];
+};
+
 export type CreateProperty = SimpleProperty & {
   categories: string[];
   features: string[];
   images: CreateImage[];
-}
+};
+
+export type PropertyPages = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+};
 
 export type PropertyQueryParams = {
   search?: string;
