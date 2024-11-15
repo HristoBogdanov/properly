@@ -5,11 +5,13 @@ import Input from "@/components/inputs/Input";
 import CustomButton from "@/components/common/CustomButton";
 import { createPropertySchema } from "@/lib/schemas";
 import Heading from "@/components/common/Heading";
-import { useFeaturesStore } from "@/stores/featuresStore";
-import { useCategoriesStore } from "@/stores/categoriesStore";
 import Checkbox from "@/components/inputs/Checkbox";
+import { useCategoriesStore } from "@/stores/categoriesStore";
+import { useFeaturesStore } from "@/stores/featuresStore";
 import { usePropertiesStore } from "@/stores/propertiesStore";
 import { handleError } from "@/helpers/ErrorHandler";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -18,23 +20,29 @@ export default function AddListingPage() {
     resolver: zodResolver(createPropertySchema),
   });
 
+  const navigate = useNavigate();
+
   const { categories } = useCategoriesStore();
   const { features } = useFeaturesStore();
   const { addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+    if (data.forSale === false && data.forRent === false) {
+      toast.error("Mark whether the house is for sale, for rent or both!");
+      return;
+    }
+
     try {
       await addProperty(data);
-      console.log(data);
-      // Handle success
+      toast.success("You have successfully created a new property");
+      navigate("/properties");
     } catch (error: any) {
       handleError(error, "Error adding property");
     }
   };
 
   return (
-    <div className="mt-[200px] container mx-auto flex flex-col justify-center items-center gap-10 lg:gap20 mb-10 lg:mb-20 px-6">
+    <div className="mt-[200px] container mx-auto flex flex-col justify-center items-center gap-10 lg:gap-20 mb-10 lg:mb-20 px-6">
       <Heading title="Add Property" />
       <FormProvider {...methods}>
         <form
@@ -47,6 +55,7 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Title"
+            defaultValue="test title no collections"
           />
           <Input
             id="description"
@@ -54,6 +63,7 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Description"
+            defaultValue="testtesttesttesttesttesttesttest"
           />
           <Input
             id="address"
@@ -61,6 +71,15 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Address"
+            defaultValue="jelio manolov"
+          />
+          <Input
+            id="ownerId"
+            name="ownerId"
+            isRequired={true}
+            errorColor="primary"
+            placeholder="Owner ID"
+            defaultValue="A943FA8B-7525-4DC6-84EE-50BEBF957EE4"
           />
           <Input
             id="price"
@@ -70,6 +89,7 @@ export default function AddListingPage() {
             errorColor="primary"
             placeholder="Price"
             valueAsNumber
+            defaultValue={300000}
           />
           <Input
             id="bedrooms"
@@ -97,6 +117,7 @@ export default function AddListingPage() {
             errorColor="primary"
             placeholder="Area (sq ft)"
             valueAsNumber
+            defaultValue={150}
           />
           <Input
             id="yearOfConstruction"
@@ -106,6 +127,7 @@ export default function AddListingPage() {
             errorColor="primary"
             placeholder="Year of Construction"
             valueAsNumber
+            defaultValue={2002}
           />
           <Checkbox id="forSale" name="forSale" label="For Sale" />
           <Checkbox id="forRent" name="forRent" label="For Rent" />
@@ -114,14 +136,17 @@ export default function AddListingPage() {
             name="isFurnished"
             label="Property is furnished"
           />
+
           <h3 className="text-2xl font-semibold">Categories</h3>
           <div className="w-full flex flex-wrap gap-6">
             {categories.map((category) => (
               <Checkbox
                 key={category.id}
                 id={category.id}
-                name={`categories.${category.id}`}
+                value={category.title}
+                name="categories"
                 label={category.title}
+                showError={false}
               />
             ))}
           </div>
@@ -131,8 +156,10 @@ export default function AddListingPage() {
               <Checkbox
                 key={feature.id}
                 id={feature.id}
-                name={`features.${feature.id}`}
+                value={feature.title}
+                name="features"
                 label={feature.title}
+                showError={false}
               />
             ))}
           </div>
@@ -142,6 +169,7 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Image Name"
+            defaultValue="test"
           />
           <Input
             id="images.path"
@@ -149,6 +177,7 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Image Path"
+            defaultValue="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/Paris_Exterior_4-Edit-e1714649473120.png"
           />
           <CustomButton text="Add Property" type="submit" classes="w-full" />
         </form>
