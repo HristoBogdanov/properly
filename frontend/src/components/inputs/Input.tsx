@@ -23,6 +23,7 @@ export default function Input({
   showError = true,
   classes,
   valueAsNumber,
+  ...rest
 }: InputProps) {
   const {
     register,
@@ -43,6 +44,7 @@ export default function Input({
           valueAsNumber: valueAsNumber,
         })}
         className="border rounded-md p-2"
+        {...rest}
       />
       {showError && errors[name] && (
         <p className={`text-sm text-${errorColor} font-semibold text-wrap`}>
