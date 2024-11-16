@@ -33,9 +33,13 @@ export default function AddListingPage() {
     }
 
     try {
-      await addProperty(data);
-      toast.success("You have successfully created a new property");
-      navigate("/properties");
+      const result = await addProperty(data);
+      if (result) {
+        toast.success("You have successfully created a new property");
+        navigate("/properties");
+      } else {
+        toast.error("Error adding property");
+      }
     } catch (error: any) {
       handleError(error, "Error adding property");
     }
@@ -79,7 +83,7 @@ export default function AddListingPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Owner ID"
-            defaultValue="A943FA8B-7525-4DC6-84EE-50BEBF957EE4"
+            defaultValue="1F98816B-BB8A-4C45-8D03-19628A4550EA"
           />
           <Input
             id="price"
