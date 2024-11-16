@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { UserProfile } from "@/types/user";
-import { loginAPI, registerAPI } from "@/api/auth";
+import { loginAPI, registerAPI, registerBrokerAPI } from "@/api/auth";
 import { handleError } from "@/helpers/ErrorHandler";
 
 type UserContextType = {
   user: UserProfile | null;
   token: string | null;
   registerUser: (email: string, username: string, password: string) => void;
+  registerBroker: (email: string, username: string, password: string) => void;
   loginUser: (username: string, password: string) => void;
   logout: () => void;
   isLoggedIn: () => boolean;
@@ -41,7 +42,7 @@ export const UserProvider = ({ children }: Props) => {
     username: string,
     password: string
   ) => {
-    await registerAPI(email, username, password)
+    await registerAPI({ email, username, password })
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
@@ -61,8 +62,33 @@ export const UserProvider = ({ children }: Props) => {
       });
   };
 
+  const registerBroker = async (
+    email: string,
+    username: string,
+    password: string
+  ) => {
+    await registerBrokerAPI({ email, username, password })
+      .then((res) => {
+        if (res) {
+          localStorage.setItem("token", res?.data.token);
+          const userObj = {
+            userName: res?.data.userName,
+            email: res?.data.email,
+          };
+          localStorage.setItem("user", JSON.stringify(userObj));
+          setToken(res.data.token);
+          setUser(userObj!);
+          toast.success("Login Success!");
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        handleError(error, "Error registering broker");
+      });
+  };
+
   const loginUser = async (username: string, password: string) => {
-    await loginAPI(username, password)
+    await loginAPI({ username, password })
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
@@ -96,7 +122,15 @@ export const UserProvider = ({ children }: Props) => {
 
   return (
     <UserContext.Provider
-      value={{ loginUser, user, token, logout, isLoggedIn, registerUser }}
+      value={{
+        loginUser,
+        user,
+        token,
+        logout,
+        isLoggedIn,
+        registerUser,
+        registerBroker,
+      }}
     >
       {isReady ? children : null}
     </UserContext.Provider>
