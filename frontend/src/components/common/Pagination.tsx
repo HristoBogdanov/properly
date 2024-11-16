@@ -22,7 +22,7 @@ export default function Pagination({
     window.scrollTo({ top: 0, behavior: "smooth" });
     navigate(
       `${baseUrl}${
-        baseUrl === "/properties" ? "?" : "&"
+        baseUrl.includes("?") ? "&" : "?"
       }page=${page}&perPage=${perPage}`
     );
   }
