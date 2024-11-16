@@ -6,9 +6,9 @@ import { getImages, addImage, updateImage, removeImage } from "@/api/images";
 type ImagesStore = {
   images: Image[];
   getImages: () => Promise<Image[]>;
-  addImage: (image: CreateImage) => Promise<void>;
-  updateImage: (image: CreateImage, id: string) => Promise<void>;
-  removeImage: (id: string) => Promise<void>;
+  addImage: (image: CreateImage) => Promise<boolean>;
+  updateImage: (image: CreateImage, id: string) => Promise<boolean>;
+  removeImage: (id: string) => Promise<boolean>;
   loading: boolean;
   total: number;
 };
@@ -19,6 +19,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
   total: 0,
 
   getImages: async () => {
+    set({ loading: true });
     try {
       const response = await getImages();
       if (response) {
@@ -37,35 +38,53 @@ export const useImagesStore = create<ImagesStore>((set) => ({
   },
 
   addImage: async (image: CreateImage) => {
+    set({ loading: true });
     try {
       const response = await addImage(image);
       if (response?.data) {
         await useImagesStore.getState().getImages();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error adding image");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   updateImage: async (image: CreateImage, id: string) => {
+    set({ loading: true });
     try {
       const response = await updateImage(image, id);
       if (response?.data) {
         await useImagesStore.getState().getImages();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error updating image");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   removeImage: async (id: string) => {
+    set({ loading: true });
     try {
       const response = await removeImage(id);
       if (response?.data) {
         await useImagesStore.getState().getImages();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error removing image");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 }));

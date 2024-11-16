@@ -5,6 +5,7 @@ import {
   getProperties,
   updateProperty,
   removeProperty,
+  getPropertyById,
 } from "@/api/properties";
 import {
   CreateProperty,
@@ -16,9 +17,10 @@ import {
 type PropertiesStore = {
   properties: Property[];
   getProperties: (params?: PropertyQueryParams) => Promise<Property[]>;
+  getPropertyById: (id: string) => Promise<Property>;
   addProperty: (property: CreateProperty) => Promise<boolean>;
-  updateProperty: (property: CreateProperty, id: string) => Promise<void>;
-  removeProperty: (id: string) => Promise<void>;
+  updateProperty: (property: CreateProperty, id: string) => Promise<boolean>;
+  removeProperty: (id: string) => Promise<boolean>;
   loading: boolean;
   pages: PropertyPages;
 };
@@ -26,7 +28,6 @@ type PropertiesStore = {
 export const usePropertiesStore = create<PropertiesStore>((set) => ({
   properties: [],
   loading: true,
-  total: 0,
   pages: {
     page: 1,
     perPage: 10,
@@ -34,6 +35,7 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
   },
 
   getProperties: async (params?: PropertyQueryParams) => {
+    set({ loading: true });
     try {
       const response = await getProperties(params);
       if (response) {
@@ -51,7 +53,25 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     }
   },
 
+  getPropertyById: async (id: string) => {
+    set({ loading: true });
+    try {
+      const response = await getPropertyById(id);
+      if (response) {
+        return response.data;
+      } else {
+        return {} as Property;
+      }
+    } catch (error) {
+      handleError(error, "Error getting property");
+      return {} as Property;
+    } finally {
+      set({ loading: false });
+    }
+  },
+
   addProperty: async (property: CreateProperty) => {
+    set({ loading: true });
     try {
       const response = await addProperty(property);
       if (response?.data) {
@@ -62,28 +82,42 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     } catch (error) {
       handleError(error, "Error adding property");
       return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   updateProperty: async (property: CreateProperty, id: string) => {
+    set({ loading: true });
     try {
       const response = await updateProperty(property, id);
       if (response?.data) {
         await usePropertiesStore.getState().getProperties();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error updating property");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   removeProperty: async (id: string) => {
+    set({ loading: true });
     try {
       const response = await removeProperty(id);
       if (response?.data) {
         await usePropertiesStore.getState().getProperties();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error removing property");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 }));

@@ -11,9 +11,9 @@ import {
 type CategoriesStore = {
   categories: Category[];
   getCategories: () => Promise<Category[]>;
-  addCategory: (category: CreateCategory) => Promise<void>;
-  updateCategory: (category: CreateCategory, id: string) => Promise<void>;
-  removeCategory: (id: string) => Promise<void>;
+  addCategory: (category: CreateCategory) => Promise<boolean>;
+  updateCategory: (category: CreateCategory, id: string) => Promise<boolean>;
+  removeCategory: (id: string) => Promise<boolean>;
   loading: boolean;
   total: number;
 };
@@ -24,6 +24,7 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
   total: 0,
 
   getCategories: async () => {
+    set({ loading: true });
     try {
       const response = await getCategories();
       if (response) {
@@ -42,35 +43,53 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
   },
 
   addCategory: async (category: CreateCategory) => {
+    set({ loading: true });
     try {
       const response = await addCategory(category);
       if (response?.data) {
         await useCategoriesStore.getState().getCategories();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error adding category");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   updateCategory: async (category: CreateCategory, id: string) => {
+    set({ loading: true });
     try {
       const response = await updateCategory(category, id);
       if (response?.data) {
         await useCategoriesStore.getState().getCategories();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error updating category");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   removeCategory: async (id: string) => {
+    set({ loading: true });
     try {
       const response = await removeCategory(id);
       if (response?.data) {
         await useCategoriesStore.getState().getCategories();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error removing category");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 }));

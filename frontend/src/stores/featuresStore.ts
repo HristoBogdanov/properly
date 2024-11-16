@@ -11,9 +11,9 @@ import {
 type FeaturesStore = {
   features: Feature[];
   getFeatures: () => Promise<Feature[]>;
-  addFeature: (feature: CreateFeature) => Promise<void>;
-  updateFeature: (feature: CreateFeature, id: string) => Promise<void>;
-  removeFeature: (id: string) => Promise<void>;
+  addFeature: (feature: CreateFeature) => Promise<boolean>;
+  updateFeature: (feature: CreateFeature, id: string) => Promise<boolean>;
+  removeFeature: (id: string) => Promise<boolean>;
   loading: boolean;
   total: number;
 };
@@ -24,6 +24,7 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
   total: 0,
 
   getFeatures: async () => {
+    set({ loading: true });
     try {
       const response = await getFeatures();
       if (response) {
@@ -42,35 +43,53 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
   },
 
   addFeature: async (feature: CreateFeature) => {
+    set({ loading: true });
     try {
       const response = await addFeature(feature);
       if (response?.data) {
         await useFeaturesStore.getState().getFeatures();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error adding feature");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   updateFeature: async (feature: CreateFeature, id: string) => {
+    set({ loading: true });
     try {
       const response = await updateFeature(feature, id);
       if (response?.data) {
         await useFeaturesStore.getState().getFeatures();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error updating feature");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 
   removeFeature: async (id: string) => {
+    set({ loading: true });
     try {
       const response = await removeFeature(id);
       if (response?.data) {
         await useFeaturesStore.getState().getFeatures();
+        return true;
       }
+      return false;
     } catch (error) {
       handleError(error, "Error removing feature");
+      return false;
+    } finally {
+      set({ loading: false });
     }
   },
 }));
