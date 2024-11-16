@@ -51,10 +51,10 @@ export default function MobileMenu() {
         </div>
         <Link
           className="flex justify-center items-center gap-2 bg-white text-primary px-5 py-2 rounded-lg hover:border-white hover:bg-primary hover:text-white border-2 border-primary transition-all duration-300 ease-in-out"
-          to="/add-listing"
+          to="/dashboard"
         >
           <FaHouseUser className="text-3xl" />
-          Add listing
+          Dashboard
         </Link>
       </div>
     </>

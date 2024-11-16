@@ -12,29 +12,24 @@ import { usePropertiesStore } from "@/stores/propertiesStore";
 import { handleError } from "@/helpers/ErrorHandler";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Textarea from "@/components/inputs/Textarea";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
-export default function AddListingPage() {
+export default function AddListingForm() {
   const methods = useForm<FormData>({
     resolver: zodResolver(createPropertySchema),
   });
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const { categories } = useCategoriesStore();
   const { features } = useFeaturesStore();
-  const { addProperty } = usePropertiesStore();
+  const { loading, addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true);
     if (data.forSale === false && data.forRent === false) {
       toast.error("Mark whether the house is for sale, for rent or both!");
-      setIsLoading(false);
       return;
     }
 
@@ -48,13 +43,11 @@ export default function AddListingPage() {
       }
     } catch (error: any) {
       handleError(error, "Error adding property");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
-    <div className="mt-[200px] container mx-auto flex flex-col justify-center items-center gap-10 lg:gap-20 mb-10 lg:mb-20 px-6">
+    <div className="w-full flex flex-col justify-center items-center gap-10 lg:gap-20 my-20">
       <Heading title="Add Property" />
       <FormProvider {...methods}>
         <form
@@ -193,11 +186,11 @@ export default function AddListingPage() {
             defaultValue="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/Paris_Exterior_4-Edit-e1714649473120.png"
           />
           <CustomButton
-            text={isLoading ? "Loading..." : "Add Property"}
-            disabled={isLoading}
+            text={loading ? "Loading..." : "Add Property"}
+            disabled={loading}
             type="submit"
             classes={`${
-              isLoading && "opacity-60 hover:opacity-60 cursor-wait"
+              loading && "opacity-60 hover:opacity-60 cursor-wait"
             } w-full`}
           />
         </form>
