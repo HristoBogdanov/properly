@@ -12,6 +12,8 @@ import { usePropertiesStore } from "@/stores/propertiesStore";
 import { handleError } from "@/helpers/ErrorHandler";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Textarea from "@/components/inputs/Textarea";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -20,6 +22,8 @@ export default function AddListingPage() {
     resolver: zodResolver(createPropertySchema),
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const { categories } = useCategoriesStore();
@@ -27,8 +31,10 @@ export default function AddListingPage() {
   const { addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
+    setIsLoading(true);
     if (data.forSale === false && data.forRent === false) {
       toast.error("Mark whether the house is for sale, for rent or both!");
+      setIsLoading(false);
       return;
     }
 
@@ -42,6 +48,8 @@ export default function AddListingPage() {
       }
     } catch (error: any) {
       handleError(error, "Error adding property");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,13 +69,14 @@ export default function AddListingPage() {
             placeholder="Title"
             defaultValue="test title no collections"
           />
-          <Input
+          <Textarea
             id="description"
             name="description"
             isRequired={true}
             errorColor="primary"
             placeholder="Description"
             defaultValue="testtesttesttesttesttesttesttest"
+            classes="min-h-[200px]"
           />
           <Input
             id="address"
@@ -183,7 +192,14 @@ export default function AddListingPage() {
             placeholder="Image Path"
             defaultValue="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/Paris_Exterior_4-Edit-e1714649473120.png"
           />
-          <CustomButton text="Add Property" type="submit" classes="w-full" />
+          <CustomButton
+            text={isLoading ? "Loading..." : "Add Property"}
+            disabled={isLoading}
+            type="submit"
+            classes={`${
+              isLoading && "opacity-60 hover:opacity-60 cursor-wait"
+            } w-full`}
+          />
         </form>
       </FormProvider>
     </div>
