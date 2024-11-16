@@ -68,7 +68,7 @@ export default function PropertyListCard({ property }: { property: Property }) {
         </div>
       </div>
       <Link
-        to={`/properties/${property.slug}`}
+        to={`/properties/${property.id}`}
         className="absolute inset-0 w-full h-full"
       ></Link>
     </div>
