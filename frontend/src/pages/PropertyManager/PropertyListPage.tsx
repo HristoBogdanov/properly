@@ -1,15 +1,15 @@
 import { usePropertiesStore } from "@/stores/propertiesStore";
 import { Property } from "@/types/property";
-import Pagination from "../common/Pagination";
+import Pagination from "../../components/common/Pagination";
 import { useEffect, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import Heading from "../common/Heading";
-import CustomButton from "../common/CustomButton";
+import Heading from "../../components/common/Heading";
+import CustomButton from "../../components/common/CustomButton";
 
-export default function PropertyList() {
+export default function PropertyListPage() {
   const { pages, properties, getProperties, removeProperty } =
     usePropertiesStore();
   const [searchParams] = useSearchParams();
@@ -27,7 +27,7 @@ export default function PropertyList() {
   };
 
   return (
-    <div className="w-full flex flex-col gap-10">
+    <div className="w-full flex flex-col justify-center items-center gap-10 my-20">
       <Heading title="Manage Properties" />
       <div className="flex w-full flex-col gap-4 p-4 text-xl">
         {properties.map((property: Property) => (
@@ -38,13 +38,13 @@ export default function PropertyList() {
             {property.title}
             <div className="flex gap-2">
               <Link
-                to={`/dashboard/properties/information/${property.slug}`}
+                to={`/dashboard/properties/information/${property.id}`}
                 className="text-2xl hover:text-primary transition-all duration-300 ease-in-out"
               >
                 <IoMdInformationCircleOutline />
               </Link>
               <Link
-                to={`/dashboard/properties/edit/${property.slug}`}
+                to={`/dashboard/properties/edit/${property.id}`}
                 className="text-2xl hover:text-primary transition-all duration-300 ease-in-out"
               >
                 <MdModeEdit />
