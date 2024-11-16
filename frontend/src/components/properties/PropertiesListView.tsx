@@ -38,7 +38,7 @@ export default function PropertiesListView() {
   if (loading) {
     return (
       <div className="w-full flex flex-col justify-center items-center gap-6 lg:gap-10">
-        {Array.from({ length: 6 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <SkeletonPropertyListCard key={index} />
         ))}
       </div>
