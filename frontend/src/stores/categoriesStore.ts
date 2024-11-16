@@ -46,8 +46,8 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await addCategory(category);
+      await useCategoriesStore.getState().getCategories();
       if (response?.data) {
-        await useCategoriesStore.getState().getCategories();
         return true;
       }
       return false;
@@ -63,8 +63,8 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await updateCategory(category, id);
+      await useCategoriesStore.getState().getCategories();
       if (response?.data) {
-        await useCategoriesStore.getState().getCategories();
         return true;
       }
       return false;
@@ -80,8 +80,8 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await removeCategory(id);
+      await useCategoriesStore.getState().getCategories();
       if (response?.data) {
-        await useCategoriesStore.getState().getCategories();
         return true;
       }
       return false;

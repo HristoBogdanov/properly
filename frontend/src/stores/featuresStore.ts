@@ -46,8 +46,8 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await addFeature(feature);
+      await useFeaturesStore.getState().getFeatures();
       if (response?.data) {
-        await useFeaturesStore.getState().getFeatures();
         return true;
       }
       return false;
@@ -63,8 +63,8 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await updateFeature(feature, id);
+      await useFeaturesStore.getState().getFeatures();
       if (response?.data) {
-        await useFeaturesStore.getState().getFeatures();
         return true;
       }
       return false;
@@ -80,8 +80,8 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await removeFeature(id);
+      await useFeaturesStore.getState().getFeatures();
       if (response?.data) {
-        await useFeaturesStore.getState().getFeatures();
         return true;
       }
       return false;

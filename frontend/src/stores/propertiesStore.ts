@@ -74,8 +74,8 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await addProperty(property);
+      await usePropertiesStore.getState().getProperties();
       if (response?.data) {
-        await usePropertiesStore.getState().getProperties();
         return true;
       }
       return false;
@@ -91,8 +91,8 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await updateProperty(property, id);
+      await usePropertiesStore.getState().getProperties();
       if (response?.data) {
-        await usePropertiesStore.getState().getProperties();
         return true;
       }
       return false;
@@ -108,8 +108,8 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await removeProperty(id);
+      await usePropertiesStore.getState().getProperties();
       if (response?.data) {
-        await usePropertiesStore.getState().getProperties();
         return true;
       }
       return false;

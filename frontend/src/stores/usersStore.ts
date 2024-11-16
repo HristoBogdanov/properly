@@ -57,8 +57,8 @@ export const useUsersStore = create<UsersStore>((set) => ({
     set({ loading: true });
     try {
       const response = await deleteUser(id);
+      await useUsersStore.getState().getUsers();
       if (response?.data) {
-        await useUsersStore.getState().getUsers();
         return true;
       }
       return false;

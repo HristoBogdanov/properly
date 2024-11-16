@@ -41,8 +41,8 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await addImage(image);
+      await useImagesStore.getState().getImages();
       if (response?.data) {
-        await useImagesStore.getState().getImages();
         return true;
       }
       return false;
@@ -58,8 +58,8 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await updateImage(image, id);
+      await useImagesStore.getState().getImages();
       if (response?.data) {
-        await useImagesStore.getState().getImages();
         return true;
       }
       return false;
@@ -75,8 +75,8 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     set({ loading: true });
     try {
       const response = await removeImage(id);
+      await useImagesStore.getState().getImages();
       if (response?.data) {
-        await useImagesStore.getState().getImages();
         return true;
       }
       return false;
