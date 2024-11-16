@@ -28,7 +28,12 @@ export const loginSchema = z.object({
 });
 
 export const simpleSeacrhPropertySchema = z.object({
-  search: z.string().min(3, "Search should be at least 3 characters"),
+  search: z.optional(
+    z
+      .string()
+      .min(3, "Search should be at least 3 characters")
+      .or(z.literal(""))
+  ),
   sortBy: z
     .enum(["price", "area", "yearOfConstruction"])
     .optional()

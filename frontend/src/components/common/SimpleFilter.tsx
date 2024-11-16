@@ -54,7 +54,7 @@ export default function SimpleFilter() {
               id="sortBy"
               classes="border border-[#d5d5d2] rounded-md"
               options={sortOptions}
-              placeholder="Sort by"
+              placeholder="Order by"
             />
             <Dropdown
               id="descending"
