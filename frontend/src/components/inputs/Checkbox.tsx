@@ -1,13 +1,14 @@
+import { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
 
-type CheckboxProps = {
+type CheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
   name: string;
   label: string;
   value?: string;
   isRequired?: boolean;
   classes?: string;
-  showError?:boolean;
+  showError?: boolean;
 };
 
 export default function Checkbox({
@@ -17,7 +18,7 @@ export default function Checkbox({
   value,
   isRequired,
   classes,
-  showError = true
+  showError = true,
 }: CheckboxProps) {
   const {
     register,
