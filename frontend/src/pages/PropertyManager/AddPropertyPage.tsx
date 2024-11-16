@@ -16,7 +16,7 @@ import Textarea from "@/components/inputs/Textarea";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
-export default function AddListingForm() {
+export default function AddPropertyPage() {
   const methods = useForm<FormData>({
     resolver: zodResolver(createPropertySchema),
   });
@@ -47,7 +47,7 @@ export default function AddListingForm() {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-10 lg:gap-20 my-20">
+    <div className="w-full flex flex-col justify-center items-center gap-10 my-20">
       <Heading title="Add Property" />
       <FormProvider {...methods}>
         <form
