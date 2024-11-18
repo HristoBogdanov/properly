@@ -9,6 +9,7 @@ import DashboardPage from "@/pages/DashboardPage";
 import AddPropertyPage from "@/pages/PropertyManager/AddPropertyPage";
 import PropertyListPage from "@/pages/PropertyManager/PropertyListPage";
 import InfoPropertyPage from "@/pages/PropertyManager/InfoPropertyPage";
+import UpdatePropertyPage from "@/pages/PropertyManager/UpdatePropertyPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
           {
             path: "/dashboard/properties/information/:id",
             element: <InfoPropertyPage />,
+          },
+          {
+            path: "/dashboard/properties/edit/:id",
+            element: <UpdatePropertyPage />,
           },
         ],
       },
