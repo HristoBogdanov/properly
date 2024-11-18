@@ -19,6 +19,7 @@ export default function Checkbox({
   isRequired,
   classes,
   showError = true,
+  ...rest
 }: CheckboxProps) {
   const {
     register,
@@ -33,6 +34,7 @@ export default function Checkbox({
         value={value}
         className="border rounded-md"
         {...register(name, { required: isRequired })}
+        {...rest}
       />
       <label htmlFor={id}>{label}</label>
       {showError && errors[name] && (
