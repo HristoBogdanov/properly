@@ -9,25 +9,57 @@ import { Property } from "@/types/property";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPropertySchema } from "@/lib/schemas";
+import { z } from "zod";
+
+type FormData = z.infer<typeof createPropertySchema>;
 
 export default function InfoPropertyPage() {
   const { id } = useParams<{ id: string }>();
   const { getPropertyById } = usePropertiesStore();
   const [property, setProperty] = useState<Property | null>(null);
 
+  // Set default data to the form, before fetching the property
   const methods = useForm<FormData>({
     resolver: zodResolver(createPropertySchema),
+    defaultValues: {
+      title: "",
+      description: "",
+      address: "",
+      price: 0,
+      bedrooms: 0,
+      bathrooms: 0,
+      area: 0,
+      yearOfConstruction: 0,
+      forSale: false,
+      forRent: false,
+      isFurnished: false,
+      ownerId: "",
+      categories: [],
+      features: [],
+      images: [{ name: "", path: "" }],
+    },
   });
 
+  // After the property is fetched, set the property data to the form
   useEffect(() => {
     const fetchProperty = async () => {
       if (id) {
+        // Fetch the property data by ID
         const fetchedProperty = await getPropertyById(id);
+        // Set the fetched property data to the state
         setProperty(fetchedProperty);
+        // Reset the form values with the fetched property data
+        methods.reset({
+          ...fetchedProperty,
+          // Map the categories to an array of category IDs
+          categories: fetchedProperty.categories.map((c) => c.id),
+          // Map the features to an array of feature IDs
+          features: fetchedProperty.features.map((f) => f.id),
+        });
       }
     };
     fetchProperty();
-  }, [id, getPropertyById]);
+  }, [id, getPropertyById, methods]);
 
   if (!property) {
     return <div>Loading...</div>;
@@ -46,7 +78,6 @@ export default function InfoPropertyPage() {
               isRequired={true}
               errorColor="primary"
               placeholder="Title"
-              defaultValue={property.title}
               disabled
             />
           </div>
@@ -58,7 +89,6 @@ export default function InfoPropertyPage() {
               isRequired={true}
               errorColor="primary"
               placeholder="Description"
-              defaultValue={property.description}
               classes="min-h-[200px]"
               disabled
             />
@@ -71,7 +101,6 @@ export default function InfoPropertyPage() {
               isRequired={true}
               errorColor="primary"
               placeholder="Address"
-              defaultValue={property.address}
               disabled
             />
             <div className="flex flex-col gap-2"></div>
@@ -84,7 +113,6 @@ export default function InfoPropertyPage() {
               errorColor="primary"
               placeholder="Price"
               valueAsNumber
-              defaultValue={property.price}
               disabled
             />
           </div>
@@ -98,7 +126,6 @@ export default function InfoPropertyPage() {
               errorColor="primary"
               placeholder="Bedrooms"
               valueAsNumber
-              defaultValue={property.bedrooms}
               disabled
             />
           </div>
@@ -112,7 +139,6 @@ export default function InfoPropertyPage() {
               errorColor="primary"
               placeholder="Bathrooms"
               valueAsNumber
-              defaultValue={property.bathrooms}
               disabled
             />
           </div>
@@ -126,7 +152,6 @@ export default function InfoPropertyPage() {
               errorColor="primary"
               placeholder="Area (sq ft)"
               valueAsNumber
-              defaultValue={property.area}
               disabled
             />
           </div>
@@ -140,29 +165,15 @@ export default function InfoPropertyPage() {
               errorColor="primary"
               placeholder="Year of Construction"
               valueAsNumber
-              defaultValue={property.yearOfConstruction}
               disabled
             />
           </div>
-          <Checkbox
-            id="forSale"
-            name="forSale"
-            label="For Sale"
-            checked={property.forSale}
-            disabled
-          />
-          <Checkbox
-            id="forRent"
-            name="forRent"
-            label="For Rent"
-            checked={property.forRent}
-            disabled
-          />
+          <Checkbox id="forSale" name="forSale" label="For Sale" disabled />
+          <Checkbox id="forRent" name="forRent" label="For Rent" disabled />
           <Checkbox
             id="isFurnished"
             name="isFurnished"
             label="Property is furnished"
-            checked={property.isFurnished}
             disabled
           />
 
@@ -175,7 +186,7 @@ export default function InfoPropertyPage() {
                 value={category.title}
                 name="categories"
                 label={category.title}
-                checked
+                defaultChecked
                 disabled
                 showError={false}
               />
@@ -216,8 +227,8 @@ export default function InfoPropertyPage() {
                   errorColor="primary"
                   placeholder="Image Path"
                   defaultValue={image.path}
-                  disabled
                   classes="w-full"
+                  disabled
                 />
               </div>
             ))}
