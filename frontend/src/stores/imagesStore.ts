@@ -42,7 +42,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     try {
       const response = await addImage(image);
       await useImagesStore.getState().getImages();
-      if (response?.data) {
+      if (response?.status === 200) {
         return true;
       }
       return false;

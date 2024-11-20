@@ -64,7 +64,7 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
     try {
       const response = await updateCategory(category, id);
       await useCategoriesStore.getState().getCategories();
-      if (response?.data) {
+      if (response?.status === 200) {
         return true;
       }
       return false;

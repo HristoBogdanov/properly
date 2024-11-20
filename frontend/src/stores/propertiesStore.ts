@@ -92,7 +92,7 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
     try {
       const response = await updateProperty(property, id);
       await usePropertiesStore.getState().getProperties();
-      if (response?.data) {
+      if (response?.status === 200) {
         return true;
       }
       return false;

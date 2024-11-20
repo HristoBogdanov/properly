@@ -64,7 +64,7 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
     try {
       const response = await updateFeature(feature, id);
       await useFeaturesStore.getState().getFeatures();
-      if (response?.data) {
+      if (response?.status === 200) {
         return true;
       }
       return false;
