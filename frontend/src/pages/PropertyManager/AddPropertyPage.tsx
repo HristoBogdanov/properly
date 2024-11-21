@@ -13,6 +13,7 @@ import { handleError } from "@/helpers/ErrorHandler";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Textarea from "@/components/inputs/Textarea";
+import Upload from "@/components/inputs/Upload/Upload";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -194,6 +195,7 @@ export default function AddPropertyPage() {
             } w-full`}
           />
         </form>
+        <Upload />
       </FormProvider>
     </div>
   );
