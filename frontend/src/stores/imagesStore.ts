@@ -10,6 +10,9 @@ type ImagesStore = {
   updateImage: (image: CreateImage, id: string) => Promise<boolean>;
   removeImage: (id: string) => Promise<boolean>;
   imagesToAddToProperty: CreateImage[];
+  setImagesToAddToProperty: (images: CreateImage[]) => void;
+  addImageToAddToProperty: (image: CreateImage) => void;
+  removeImageFromImagesToAddToProperty: (name: string, path: string) => void;
   clearImagesToAddToProperty: () => void;
   loading: boolean;
   total: number;
@@ -89,6 +92,34 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     } finally {
       set({ loading: false });
     }
+  },
+
+  setImagesToAddToProperty: (images: CreateImage[]) => {
+    useImagesStore.getState().clearImagesToAddToProperty();
+    images.forEach((image) => {
+      useImagesStore.getState().addImageToAddToProperty(image);
+    });
+  },
+
+  addImageToAddToProperty: (image: CreateImage) => {
+    if (
+      !useImagesStore
+        .getState()
+        .imagesToAddToProperty.find(
+          (existingImage) => existingImage.path === image.path
+        )
+    ) {
+      useImagesStore.getState().imagesToAddToProperty.push(image);
+    }
+  },
+
+  removeImageFromImagesToAddToProperty: (name: string, path: string) => {
+    let filteredImages: CreateImage[] =
+      useImagesStore.getState().imagesToAddToProperty;
+    filteredImages = filteredImages.filter(
+      (image) => image.name !== name && image.path !== path
+    );
+    set({ imagesToAddToProperty: filteredImages });
   },
 
   clearImagesToAddToProperty: () => {
