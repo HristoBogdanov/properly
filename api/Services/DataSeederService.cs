@@ -177,7 +177,10 @@ namespace api.Services
             for(int i = 0; i < numberOfCategories; i++)
             {
                 var randomIndex = random.Next(0, categories.Count());
-                categories.Add(allCategories[randomIndex].Title);
+                if(!categories.Any(c => c == allCategories[randomIndex].Title))
+                {
+                    categories.Add(allCategories[randomIndex].Title);
+                }
             }
 
             return categories;
@@ -194,7 +197,10 @@ namespace api.Services
             for(int i = 0; i < numberOfFeatures; i++)
             {
                 var randomIndex = random.Next(0, features.Count());
-                features.Add(allFeatures[randomIndex].Title);
+                if(!features.Any(f => f == allFeatures[randomIndex].Title))
+                {
+                    features.Add(allFeatures[randomIndex].Title);
+                }
             }
 
             return features;
@@ -217,7 +223,10 @@ namespace api.Services
                 for(int i = 0; i < numberOfImages; i++)
                 {
                     var randomIndex = random.Next(0, allImages.Count());
-                    images.Add(allImages[randomIndex]);
+                    if(!images.Any(i => i.Path == allImages[randomIndex].Path))
+                    {
+                        images.Add(allImages[randomIndex]);
+                    }
                 }
 
                 return images;
