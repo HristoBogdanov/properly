@@ -6,11 +6,13 @@ import {
   addFeature,
   updateFeature,
   removeFeature,
+  getFeatureById,
 } from "@/api/features";
 
 type FeaturesStore = {
   features: Feature[];
   getFeatures: () => Promise<Feature[]>;
+  getFeatureById: (id: string) => Promise<Feature>;
   addFeature: (feature: CreateFeature) => Promise<boolean>;
   updateFeature: (feature: CreateFeature, id: string) => Promise<boolean>;
   removeFeature: (id: string) => Promise<boolean>;
@@ -37,6 +39,23 @@ export const useFeaturesStore = create<FeaturesStore>((set) => ({
     } catch (error) {
       handleError(error, "Error getting features");
       return [];
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  getFeatureById: async (id: string) => {
+    set({ loading: true });
+    try {
+      const response = await getFeatureById(id);
+      if (response) {
+        return response.data;
+      } else {
+        return {} as Feature;
+      }
+    } catch (error) {
+      handleError(error, "Error getting feature");
+      return {} as Feature;
     } finally {
       set({ loading: false });
     }

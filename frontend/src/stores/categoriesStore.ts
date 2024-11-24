@@ -1,16 +1,18 @@
 import { create } from "zustand";
 import { handleError } from "@/helpers/ErrorHandler";
-import { CreateCategory, Category } from "@/types/category";
+import { CreateCategory, Category, SimpleCategory } from "@/types/category";
 import {
   getCategories,
   addCategory,
   updateCategory,
   removeCategory,
+  getCategoryById,
 } from "@/api/categories";
 
 type CategoriesStore = {
   categories: Category[];
   getCategories: () => Promise<Category[]>;
+  getCategoryById: (id: string) => Promise<SimpleCategory>;
   addCategory: (category: CreateCategory) => Promise<boolean>;
   updateCategory: (category: CreateCategory, id: string) => Promise<boolean>;
   removeCategory: (id: string) => Promise<boolean>;
@@ -37,6 +39,23 @@ export const useCategoriesStore = create<CategoriesStore>((set) => ({
     } catch (error) {
       handleError(error, "Error getting categories");
       return [];
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  getCategoryById: async (id: string) => {
+    set({ loading: true });
+    try {
+      const response = await getCategoryById(id);
+      if (response) {
+        return response.data;
+      } else {
+        return {} as SimpleCategory;
+      }
+    } catch (error) {
+      handleError(error, "Error getting category");
+      return {} as SimpleCategory;
     } finally {
       set({ loading: false });
     }
