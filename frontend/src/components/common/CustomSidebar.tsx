@@ -5,7 +5,7 @@ import {
   SidebarMenu,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { FaHome, FaWifi, FaImage } from "react-icons/fa";
+import { FaHome, FaWifi } from "react-icons/fa";
 import { TbCategoryPlus } from "react-icons/tb";
 import SidebarItem from "./SidebarItem";
 
@@ -17,7 +17,7 @@ const items = [
         Properties
       </>
     ),
-    link: "/dashboard",
+    link: "/dashboard/properties",
   },
   {
     content: (
@@ -37,15 +37,6 @@ const items = [
     ),
     link: "/dashboard/features",
   },
-  {
-    content: (
-      <>
-        <FaImage />
-        Images
-      </>
-    ),
-    link: "/dashboard/images",
-  },
 ];
 
 export default function CustomSidebar() {
@@ -61,7 +52,9 @@ export default function CustomSidebar() {
       <SidebarContent className="flex-1 p-4 max-sm:bg-gray-700 max-sm:text-white">
         <SidebarMenu className="gap-4">
           {items.map((item) => (
-            <SidebarItem link={item.link}>{item.content}</SidebarItem>
+            <SidebarItem key={item.link} link={item.link}>
+              {item.content}
+            </SidebarItem>
           ))}
         </SidebarMenu>
       </SidebarContent>

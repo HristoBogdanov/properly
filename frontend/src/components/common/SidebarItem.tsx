@@ -11,14 +11,14 @@ export default function SidebarItem({
 }) {
   const { pathname } = useLocation();
 
-  const isTabActive = (path: string) => {
-    return pathname.includes(path);
+  const isTabActive = () => {
+    return pathname.includes(link);
   };
 
   return (
     <Link
       className={`${
-        isTabActive(link) ? "text-primary" : ""
+        isTabActive() ? "text-primary" : ""
       } hover:text-primary hover:bg-gray-700 rounded-md transition-all duration-300 ease-in-out flex w-full gap-2`}
       to={link}
     >

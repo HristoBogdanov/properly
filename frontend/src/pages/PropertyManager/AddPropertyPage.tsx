@@ -32,7 +32,6 @@ export default function AddPropertyPage() {
   const { loading, addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
     if (imagesToAddToProperty.length === 0) {
       toast.error("Please upload at least one image");
       return;

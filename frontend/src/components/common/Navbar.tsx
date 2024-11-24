@@ -39,7 +39,7 @@ export default function Navbar() {
           </div>
           <Link
             className="flex justify-center items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg border-2 border-primary hover:bg-white hover:text-primary transition-all duration-300 ease-in-out"
-            to="/dashboard"
+            to="/dashboard/properties"
           >
             <FaHouseUser className="text-3xl" />
             Dashboard
