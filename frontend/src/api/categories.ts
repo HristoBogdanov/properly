@@ -1,5 +1,5 @@
 import { handleError } from "@/helpers/ErrorHandler";
-import { Category, CreateCategory } from "@/types/category";
+import { Category, CreateCategory, SimpleCategory } from "@/types/category";
 import axios from "axios";
 
 export const getCategories = async () => {
@@ -10,6 +10,17 @@ export const getCategories = async () => {
     return data;
   } catch (error) {
     handleError(error, "Error getting categories");
+  }
+};
+
+export const getCategoryById = async (id: string) => {
+  try {
+    const data = await axios.get<SimpleCategory>(
+      import.meta.env.VITE_API_URL + `categories/all/${id}`
+    );
+    return data;
+  } catch (error) {
+    handleError(error, "Error getting category");
   }
 };
 
