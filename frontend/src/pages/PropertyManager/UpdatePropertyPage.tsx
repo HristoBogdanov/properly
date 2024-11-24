@@ -15,6 +15,8 @@ import CustomButton from "@/components/common/CustomButton";
 import { toast } from "react-toastify";
 import { handleError } from "@/helpers/ErrorHandler";
 import { z } from "zod";
+import { useImagesStore } from "@/stores/imagesStore";
+import UploadSection from "@/components/inputs/UploadSection";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -26,6 +28,11 @@ export default function UpdatePropertyPage() {
 
   const { categories } = useCategoriesStore();
   const { features } = useFeaturesStore();
+  const {
+    imagesToAddToProperty,
+    setImagesToAddToProperty,
+    clearImagesToAddToProperty,
+  } = useImagesStore();
 
   // Set default data to the form, before fetching the property
   const methods = useForm<FormData>({
@@ -45,7 +52,7 @@ export default function UpdatePropertyPage() {
       ownerId: "",
       categories: [],
       features: [],
-      images: [{ name: "", path: "" }],
+      images: [],
     },
   });
 
@@ -65,16 +72,20 @@ export default function UpdatePropertyPage() {
           // Map the features to an array of feature IDs
           features: fetchedProperty.features.map((f) => f.id),
         });
+        setImagesToAddToProperty(fetchedProperty.images);
       }
     };
     fetchProperty();
-  }, [id, getPropertyById, methods]);
+  }, [id, getPropertyById, methods, setImagesToAddToProperty]);
 
   if (!property) {
     return <div>Loading...</div>;
   }
-
   const onSubmit = async (data: FormData) => {
+    if (imagesToAddToProperty.length === 0) {
+      toast.error("Please upload at least one image");
+      return;
+    }
     if (data.forSale === false && data.forRent === false) {
       toast.error("Mark whether the house is for sale, for rent or both!");
       return;
@@ -86,9 +97,14 @@ export default function UpdatePropertyPage() {
     }
 
     try {
+      data.images = imagesToAddToProperty.map((image) => ({
+        name: image.name,
+        path: image.path,
+      }));
       const result = await updateProperty(data, id);
       if (result) {
         toast.success("You have successfully updated the property");
+        clearImagesToAddToProperty();
         navigate("/dashboard");
       } else {
         toast.error("Error updating property");
@@ -237,29 +253,7 @@ export default function UpdatePropertyPage() {
             ))}
           </div>
           <h3 className="text-2xl font-semibold">Images</h3>
-          <div className="w-full flex flex-col gap-4">
-            {property.images.map((image, index) => (
-              <div key={index} className="flex w-full gap-2">
-                <Input
-                  id={`images.${index}.name`}
-                  name={`images.${index}.name`}
-                  isRequired={true}
-                  errorColor="primary"
-                  placeholder="Image Name"
-                  defaultValue={image.name}
-                />
-                <Input
-                  id={`images.${index}.path`}
-                  name={`images.${index}.path`}
-                  isRequired={true}
-                  errorColor="primary"
-                  placeholder="Image Path"
-                  defaultValue={image.path}
-                  classes="w-full"
-                />
-              </div>
-            ))}
-          </div>
+          <UploadSection />
           <CustomButton
             text={loading ? "Loading..." : "Update Property"}
             disabled={loading}

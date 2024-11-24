@@ -13,8 +13,8 @@ import { handleError } from "@/helpers/ErrorHandler";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Textarea from "@/components/inputs/Textarea";
-import Upload from "@/components/inputs/Upload/Upload";
 import { useImagesStore } from "@/stores/imagesStore";
+import UploadSection from "@/components/inputs/UploadSection";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -32,6 +32,7 @@ export default function AddPropertyPage() {
   const { loading, addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
+    console.log(data);
     if (imagesToAddToProperty.length === 0) {
       toast.error("Please upload at least one image");
       return;
@@ -182,6 +183,7 @@ export default function AddPropertyPage() {
               />
             ))}
           </div>
+          <UploadSection />
           <CustomButton
             text={loading ? "Loading..." : "Add Property"}
             disabled={loading}
@@ -191,7 +193,6 @@ export default function AddPropertyPage() {
             } w-full`}
           />
         </form>
-        <Upload />
       </FormProvider>
     </div>
   );

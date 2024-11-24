@@ -10,6 +10,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPropertySchema } from "@/lib/schemas";
 import { z } from "zod";
+import LockedImageGrid from "@/components/properties/LockedImageGrid";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -208,31 +209,7 @@ export default function InfoPropertyPage() {
             ))}
           </div>
           <h3 className="text-2xl font-semibold">Images</h3>
-          <div className="w-full flex flex-col gap-4">
-            {property.images.map((image, index) => (
-              <div key={index} className="flex w-full gap-2">
-                <Input
-                  id={`images.${index}.name`}
-                  name={`images.${index}.name`}
-                  isRequired={true}
-                  errorColor="primary"
-                  placeholder="Image Name"
-                  defaultValue={image.name}
-                  disabled
-                />
-                <Input
-                  id={`images.${index}.path`}
-                  name={`images.${index}.path`}
-                  isRequired={true}
-                  errorColor="primary"
-                  placeholder="Image Path"
-                  defaultValue={image.path}
-                  classes="w-full"
-                  disabled
-                />
-              </div>
-            ))}
-          </div>
+          <LockedImageGrid images={property.images} />
         </form>
       </FormProvider>
     </div>
