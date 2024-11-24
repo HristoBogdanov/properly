@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Textarea from "@/components/inputs/Textarea";
 import { useImagesStore } from "@/stores/imagesStore";
 import UploadSection from "@/components/inputs/UploadSection";
+import { useEffect } from "react";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -30,6 +31,10 @@ export default function AddPropertyPage() {
   const { imagesToAddToProperty, clearImagesToAddToProperty } =
     useImagesStore();
   const { loading, addProperty } = usePropertiesStore();
+
+  useEffect(() => {
+    clearImagesToAddToProperty();
+  }, [clearImagesToAddToProperty]);
 
   const onSubmit = async (data: FormData) => {
     if (imagesToAddToProperty.length === 0) {
@@ -50,7 +55,7 @@ export default function AddPropertyPage() {
       if (result) {
         toast.success("You have successfully created a new property");
         clearImagesToAddToProperty();
-        navigate("/properties");
+        navigate("/dashboard/properties");
       } else {
         toast.error("Error adding property");
       }

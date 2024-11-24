@@ -11,12 +11,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createPropertySchema } from "@/lib/schemas";
 import { z } from "zod";
 import LockedImageGrid from "@/components/properties/LockedImageGrid";
+import { toast } from "react-toastify";
+import { useImagesStore } from "@/stores/imagesStore";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
 export default function InfoPropertyPage() {
   const { id } = useParams<{ id: string }>();
   const { getPropertyById } = usePropertiesStore();
+  const { clearImagesToAddToProperty } = useImagesStore();
   const [property, setProperty] = useState<Property | null>(null);
 
   // Set default data to the form, before fetching the property
@@ -57,10 +60,13 @@ export default function InfoPropertyPage() {
           // Map the features to an array of feature IDs
           features: fetchedProperty.features.map((f) => f.id),
         });
+      } else {
+        toast.error("That property does not exist");
       }
+      clearImagesToAddToProperty();
     };
     fetchProperty();
-  }, [id, getPropertyById, methods]);
+  }, [id, getPropertyById, clearImagesToAddToProperty, methods]);
 
   if (!property) {
     return <div>Loading...</div>;
