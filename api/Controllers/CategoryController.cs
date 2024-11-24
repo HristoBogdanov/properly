@@ -29,6 +29,20 @@ namespace api.Controllers
             }
         }
 
+        [HttpGet("all/{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            try
+            {
+                var category = await _categoryService.GetCategoryByIdAsync(id);
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateCategory(CreateCategoryDTO createCategoryDTO)
         {

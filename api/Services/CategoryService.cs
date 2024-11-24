@@ -51,6 +51,25 @@ namespace api.Services
             return categories;
         }
 
+        public async Task<DisplayCategoryDTO> GetCategoryByIdAsync(string id)
+        {
+            Guid IdGuid = Guid.Parse(id);
+
+            var category = await _categoryRepository
+            .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
+
+            if (category == null)
+            {
+                throw new Exception(CategoryErrorMessages.CategoryNotFound);
+            }
+
+            return new DisplayCategoryDTO
+            {
+                Id = category.Id.ToString(),
+                Title = category.Title
+            };
+        }
+
         public async Task<DisplayCategoryDTO> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
         {
             var existingCategory = await _categoryRepository
