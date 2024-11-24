@@ -45,11 +45,11 @@ export const createImageSchema = z.object({
   name: z
     .string()
     .min(3, "Image name must be at least 3 characters")
-    .max(100, "Image name must be at most 100 characters"),
+    .max(1000, "Image name must be at most 1000 characters"),
   path: z
     .string()
     .min(3, "Image path must be at least 3 characters")
-    .max(100, "Image path must be at most 100 characters"),
+    .max(1000, "Image path must be at most 1000 characters"),
 });
 
 export const createPropertySchema = z.object({
@@ -104,5 +104,5 @@ export const createPropertySchema = z.object({
   ownerId: z.string(),
   categories: z.optional(z.array(z.string())),
   features: z.optional(z.array(z.string())),
-  images: z.array(createImageSchema).optional().default([]),
+  images: z.optional(z.array(createImageSchema)).default([]),
 });
