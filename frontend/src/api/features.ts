@@ -13,6 +13,17 @@ export const getFeatures = async () => {
   }
 };
 
+export const getFeatureById = async (id: string) => {
+  try {
+    const data = await axios.get<Feature>(
+      import.meta.env.VITE_API_URL + `features/all/${id}`
+    );
+    return data;
+  } catch (error) {
+    handleError(error, "Error getting feature");
+  }
+};
+
 export const addFeature = async (feature: CreateFeature) => {
   try {
     const data = await axios.post<Feature>(
