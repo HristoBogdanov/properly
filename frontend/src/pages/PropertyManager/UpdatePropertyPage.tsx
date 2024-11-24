@@ -75,7 +75,6 @@ export default function UpdatePropertyPage() {
   }
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
     if (data.forSale === false && data.forRent === false) {
       toast.error("Mark whether the house is for sale, for rent or both!");
       return;

@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Textarea from "@/components/inputs/Textarea";
 import Upload from "@/components/inputs/Upload/Upload";
+import { useImagesStore } from "@/stores/imagesStore";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -26,18 +27,29 @@ export default function AddPropertyPage() {
 
   const { categories } = useCategoriesStore();
   const { features } = useFeaturesStore();
+  const { imagesToAddToProperty, clearImagesToAddToProperty } =
+    useImagesStore();
   const { loading, addProperty } = usePropertiesStore();
 
   const onSubmit = async (data: FormData) => {
+    if (imagesToAddToProperty.length === 0) {
+      toast.error("Please upload at least one image");
+      return;
+    }
     if (data.forSale === false && data.forRent === false) {
       toast.error("Mark whether the house is for sale, for rent or both!");
       return;
     }
 
     try {
+      data.images = imagesToAddToProperty.map((image) => ({
+        name: image.name,
+        path: image.path,
+      }));
       const result = await addProperty(data);
       if (result) {
         toast.success("You have successfully created a new property");
+        clearImagesToAddToProperty();
         navigate("/properties");
       } else {
         toast.error("Error adding property");
@@ -86,7 +98,7 @@ export default function AddPropertyPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Owner ID"
-            defaultValue="1F98816B-BB8A-4C45-8D03-19628A4550EA"
+            defaultValue="3DA9D6C5-AB0E-4A5A-8DB6-11105CD9E3AB"
           />
           <Input
             id="price"
@@ -170,22 +182,6 @@ export default function AddPropertyPage() {
               />
             ))}
           </div>
-          <Input
-            id="images.name"
-            name="images.0.name"
-            isRequired={true}
-            errorColor="primary"
-            placeholder="Image Name"
-            defaultValue="test"
-          />
-          <Input
-            id="images.path"
-            name="images.0.path"
-            isRequired={true}
-            errorColor="primary"
-            placeholder="Image Path"
-            defaultValue="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/Paris_Exterior_4-Edit-e1714649473120.png"
-          />
           <CustomButton
             text={loading ? "Loading..." : "Add Property"}
             disabled={loading}
