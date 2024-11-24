@@ -1,16 +1,14 @@
 import { Property } from "@/types/property";
-import {
-  MdOutlinePlace,
-  MdOutlineBedroomChild,
-  MdOutlineBathroom,
-  MdOutlineConstruction,
-} from "react-icons/md";
+import { MdOutlinePlace } from "react-icons/md";
 import { TbMeterSquare } from "react-icons/tb";
 import { FaHouseUser } from "react-icons/fa";
 import { formatDate } from "@/helpers/formatDate";
 import { Link } from "react-router-dom";
 import ForSaleTag from "./ForSaleTag";
 import ForRentTag from "./ForRentTag";
+import BedroomsCount from "./BedroomsCount";
+import BathroomsCount from "./BathroomsCount";
+import YearOfConstruction from "./YearOfConstruction";
 
 export default function PropertyListCard({ property }: { property: Property }) {
   return (
@@ -38,24 +36,17 @@ export default function PropertyListCard({ property }: { property: Property }) {
           <p>{property.address}</p>
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-y-2">
-          <div className="flex items-center gap-2 text-lg lg:text-xl">
-            <MdOutlineBedroomChild className="text-primary" />
-            <p>{property.bedrooms} Bedrooms</p>
-          </div>
-          <div className="flex items-center gap-2 text-lg lg:text-xl">
-            <MdOutlineBathroom className="text-primary" />
-            <p>{property.bathrooms} Bathrooms</p>
-          </div>
+          <BedroomsCount bedrooms={property.bedrooms} />
+          <BathroomsCount bathrooms={property.bathrooms} />
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-y-2">
           <div className="flex items-center gap-2 text-lg lg:text-xl">
             <TbMeterSquare className="text-primary" />
             <p>{property.area} Square metres</p>
           </div>
-          <div className="flex items-center gap-2 text-lg lg:text-xl">
-            <MdOutlineConstruction className="text-primary" />
-            <p>Year of construction: {property.yearOfConstruction}</p>
-          </div>
+          <YearOfConstruction
+            yearOfConstruction={property.yearOfConstruction}
+          />
         </div>
         <div className="w-full border-t mt-4 pt-4 flex items-center justify-between text-lg lg:text-xl">
           <div className="flex items-center gap-2">
