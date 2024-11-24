@@ -18,6 +18,7 @@ import FeatureListPage from "@/pages/FeatureManager/FeatureListPage";
 import AddFeaturePage from "@/pages/FeatureManager/AddFeaturePage";
 import InfoFeaturePage from "@/pages/FeatureManager/InfoFeaturePage";
 import UpdateFeaturePage from "@/pages/FeatureManager/UpdateFeaturePage";
+import PropertyPage from "@/pages/PropertyPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: "/register", element: <RegisterPage /> },
       { path: "/login", element: <LoginPage /> },
       { path: "/properties", element: <PropertiesPage /> },
+      { path: "/properties/:id", element: <PropertyPage /> },
       { path: "/server-error", element: <ServerErrorPage /> },
       {
         path: "/dashboard",
