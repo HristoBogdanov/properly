@@ -1,4 +1,5 @@
 import { useImagesStore } from "@/stores/imagesStore";
+import { CreateImage } from "@/types/image";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -12,7 +13,6 @@ declare global {
 type CloudinaryUploadWidgetProps = {
   uwConfig: any;
   setPublicId: any;
-  propertyId: string;
 };
 
 // Create a context to manage the script loading state
@@ -21,11 +21,10 @@ const CloudinaryScriptContext = createContext({ loaded: false });
 function CloudinaryUploadWidget({
   uwConfig,
   setPublicId,
-  propertyId,
 }: CloudinaryUploadWidgetProps) {
   const [loaded, setLoaded] = useState(false);
 
-  const { addImage } = useImagesStore();
+  const { addImage, imagesToAddToProperty } = useImagesStore();
 
   useEffect(() => {
     // Check if the Cloudinary script is loaded
@@ -46,17 +45,13 @@ function CloudinaryUploadWidget({
         uwConfig,
         (error: any, result: any) => {
           if (!error && result && result.event === "success") {
-            console.log("Done! Here is the image info: ", result.info);
-            console.log("Done! Here is the image url: ", result.info.url);
-            console.log(
-              "Done! Here is the image name: ",
-              result.info.display_name
-            );
             if (result.info.url && result.info.display_name) {
-              addImage({
+              const image: CreateImage = {
                 name: result.info.display_name,
                 path: result.info.url,
-              });
+              };
+              addImage(image);
+              imagesToAddToProperty.push(image);
               toast.success("Image uploaded successfully");
             } else {
               toast.error("Error uploading image");
