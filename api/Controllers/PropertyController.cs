@@ -1,3 +1,4 @@
+using api.DTOs.Images;
 using api.DTOs.Property;
 using api.Helpers;
 using api.Services.Interfaces;
@@ -64,6 +65,20 @@ namespace api.Controllers
             try
             {
                 await _propertyService.UpdatePropertyAsync(id, createPropertyDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("add-image/{id}")]
+        public async Task<IActionResult> AddImageToProperty(string id, CreateImageDTO image)
+        {
+            try
+            {
+                await _propertyService.AddImageToPropertyAsync(id, image);
                 return Ok();
             }
             catch (Exception ex)

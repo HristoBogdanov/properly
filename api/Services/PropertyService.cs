@@ -177,6 +177,39 @@ namespace api.Services
             return true;
         }
 
+        public async Task AddImageToPropertyAsync(string propertyId, CreateImageDTO image)
+        {
+            Guid propertyIdGuid = Guid.Parse(propertyId);
+
+            var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == propertyIdGuid && !p.IsDeleted);
+
+            if (existingProperty == null)
+            {
+                throw new Exception(PropertiesErrorMessages.PropertyNotFound);
+            }
+
+            var existingImage = await _imageRepository.FirstOrDefaultAsync(i => i.Name == image.Name && i.Path == image.Path);
+
+            if (existingImage == null)
+            {
+                existingImage = new Image
+                {
+                    Name = image.Name,
+                    Path = image.Path
+                };
+
+                await _imageRepository.AddAsync(existingImage);
+            }
+
+            var propertyImage = new PropertyImages
+            {
+                ImageId = existingImage.Id,
+                PropertyId = existingProperty.Id
+            };
+
+            await _propertyImagesRepository.AddAsync(propertyImage);
+        }
+
         public async Task<bool> DeletePropertyAsync(string id)
         {
             Guid idGuid = Guid.Parse(id);
