@@ -106,3 +106,18 @@ export const createPropertySchema = z.object({
   features: z.optional(z.array(z.string())),
   images: z.optional(z.array(createImageSchema)).default([]),
 });
+
+export const createCategorySchema = z.object({
+  title: z
+    .string()
+    .min(3, "Category name must be at least 3 characters long")
+    .max(200, "Category name must have at most 200 characters"),
+});
+
+export const createFeatureSchema = z.object({
+  title: z
+    .string()
+    .min(3, "Feature name must be at least 3 characters long")
+    .max(200, "Feature name must have at most 200 characters"),
+  image: z.optional(createImageSchema).default({ name: "test", path: "test" }),
+});
