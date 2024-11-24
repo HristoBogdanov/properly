@@ -40,6 +40,23 @@ namespace api.Services
             return features;
         }
 
+        public async Task<DisplayFeatureDTO> GetFeatureByIdAsync(string id)
+        {
+            Guid idGuid = Guid.Parse(id);
+            var feature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid && !f.IsDeleted);
+
+            return new DisplayFeatureDTO
+            {
+                Id = feature.Id.ToString(),
+                Title = feature.Title,
+                Image = new CreateImageDTO
+                {
+                    Name = feature.Image.Name,
+                    Path = feature.Image.Path
+                }
+            };
+        }
+
         public async Task<DisplayFeatureDTO> CreateFeatureAsync(CreateFeatureDTO createFeatureDTO)
         {
             if(await _featureRepository.ContainsAsync(i => i.Title == createFeatureDTO.Title && !i.IsDeleted))

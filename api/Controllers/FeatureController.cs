@@ -29,6 +29,20 @@ namespace api.Controllers
             }
         }
 
+        [HttpGet("all/{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            try
+            {
+                var feature = await _featureService.GetFeatureByIdAsync(id);
+                return Ok(feature);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateFeature(CreateFeatureDTO createFeatureDTO)
         {
