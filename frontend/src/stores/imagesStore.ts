@@ -9,6 +9,8 @@ type ImagesStore = {
   addImage: (image: CreateImage) => Promise<boolean>;
   updateImage: (image: CreateImage, id: string) => Promise<boolean>;
   removeImage: (id: string) => Promise<boolean>;
+  imagesToAddToProperty: CreateImage[];
+  clearImagesToAddToProperty: () => void;
   loading: boolean;
   total: number;
 };
@@ -17,6 +19,7 @@ export const useImagesStore = create<ImagesStore>((set) => ({
   images: [],
   loading: true,
   total: 0,
+  imagesToAddToProperty: [],
 
   getImages: async () => {
     set({ loading: true });
@@ -86,6 +89,10 @@ export const useImagesStore = create<ImagesStore>((set) => ({
     } finally {
       set({ loading: false });
     }
+  },
+
+  clearImagesToAddToProperty: () => {
+    set({ imagesToAddToProperty: [] });
   },
 }));
 
