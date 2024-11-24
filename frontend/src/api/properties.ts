@@ -1,4 +1,5 @@
 import { handleError } from "@/helpers/ErrorHandler";
+import { CreateImage } from "@/types/image";
 import {
   CreateProperty,
   Property,
@@ -44,6 +45,18 @@ export const addProperty = async (property: CreateProperty) => {
     return data;
   } catch (error) {
     handleError(error, "Error adding property");
+  }
+};
+
+export const addImageToProperty = async (id: string, image: CreateImage) => {
+  try {
+    const data = await axios.post<boolean>(
+      import.meta.env.VITE_API_URL + `properties/add-image/${id}`,
+      image
+    );
+    return data;
+  } catch (error) {
+    handleError(error, "Error adding image to property");
   }
 };
 

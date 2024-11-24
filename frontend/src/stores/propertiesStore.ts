@@ -6,6 +6,7 @@ import {
   updateProperty,
   removeProperty,
   getPropertyById,
+  addImageToProperty,
 } from "@/api/properties";
 import {
   CreateProperty,
@@ -13,12 +14,14 @@ import {
   PropertyPages,
   PropertyQueryParams,
 } from "@/types/property";
+import { CreateImage } from "@/types/image";
 
 type PropertiesStore = {
   properties: Property[];
   getProperties: (params?: PropertyQueryParams) => Promise<Property[]>;
   getPropertyById: (id: string) => Promise<Property>;
   addProperty: (property: CreateProperty) => Promise<boolean>;
+  addImageToProperty: (id: string, image: CreateImage) => Promise<boolean>;
   updateProperty: (property: CreateProperty, id: string) => Promise<boolean>;
   removeProperty: (id: string) => Promise<boolean>;
   loading: boolean;
@@ -81,6 +84,22 @@ export const usePropertiesStore = create<PropertiesStore>((set) => ({
       return false;
     } catch (error) {
       handleError(error, "Error adding property");
+      return false;
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  addImageToProperty: async (id: string, image: CreateImage) => {
+    set({ loading: true });
+    try {
+      const response = await addImageToProperty(id, image);
+      if (response?.status === 200) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      handleError(error, "Error adding image to property");
       return false;
     } finally {
       set({ loading: false });
