@@ -104,10 +104,5 @@ export const createPropertySchema = z.object({
   ownerId: z.string(),
   categories: z.optional(z.array(z.string())),
   features: z.optional(z.array(z.string())),
-  images: z.array(
-    z.object({
-      name: z.string().min(1, "Image name is required"),
-      path: z.string().min(1, "Image path is required"),
-    })
-  ),
+  images: z.array(createImageSchema).optional().default([]),
 });
