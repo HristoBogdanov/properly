@@ -43,7 +43,6 @@ namespace ProperlyAPI.Migrations
             values: new object[,]
             {
                     { new Guid("7675ebf3-f186-4da8-93e3-05aafc241306"), null, "User", "USER" },
-                    { new Guid("b2cdec91-7ab2-4778-b5d4-4d78aaa218eb"), null, "Broker", "BROKER" },
                     { new Guid("b48b4c9e-4953-47f2-a82f-f44d27270e01"), null, "Admin", "ADMIN" }
             });
         }

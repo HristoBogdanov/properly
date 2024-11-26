@@ -241,7 +241,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.Feature", b =>
@@ -269,7 +269,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("Features");
+                    b.ToTable("Features", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.Image", b =>
@@ -293,7 +293,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Images", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.Property", b =>
@@ -374,7 +374,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Properties");
+                    b.ToTable("Properties", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.PropertyCategories", b =>
@@ -391,7 +391,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("PropertiesCategories");
+                    b.ToTable("PropertiesCategories", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.PropertyFeatures", b =>
@@ -408,7 +408,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("PropertiesFeatures");
+                    b.ToTable("PropertiesFeatures", (string)null);
                 });
 
             modelBuilder.Entity("api.Models.PropertyImages", b =>
@@ -425,7 +425,7 @@ namespace ProperlyAPI.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("PropertiesImages");
+                    b.ToTable("PropertiesImages", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

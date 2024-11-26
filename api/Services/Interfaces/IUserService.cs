@@ -8,7 +8,6 @@ namespace api.Services.Interfaces
         Task<DisplayUserDTO> GetUserByIdAsync(string id);
         Task<NewUserDTO> Login(LoginDTO loginDto);
         Task<NewUserDTO> Register(RegisterDTO registerDto);
-        Task<NewUserDTO> RegisterBroker(RegisterDTO registerDto);
         Task<NewUserDTO> RegisterAdmin(RegisterDTO registerDto);
         Task<bool> DeleteUser(Guid id);
     }

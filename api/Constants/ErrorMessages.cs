@@ -64,6 +64,8 @@ namespace api.Constants
 
     public static class DataSeederErrorMessages{
         public const string ErrorSeedingData = "Error seeding data: ";
+        public const string AdminCredentialsError = "Admin credentials not configured!";
+        public const string AdminNotSeeded = "Admin user does not exist!";
         public const string AddAdminCredentials = "Add admin credentials to user secrets!";
         public const string NoDataInFile = "No valid data was found in the provided path for entity: ";
         public const string CollectionNotEmpty = "The data could not be added, bacause the collection is not empty for entity: ";

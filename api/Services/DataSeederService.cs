@@ -18,12 +18,12 @@ namespace api.Services
         private readonly IPropertyService _propertyService;
         private readonly IUserService _userService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConfiguration _configuration;
 
         private readonly string featureJsonDataPath = "SeedData/Features.json";
         private readonly string categoryJsonDataPath = "SeedData/Categories.json";
         private readonly string propertyJsonDataPath = "SeedData/Properties.json";
         private readonly string userJsonDataPath = "SeedData/Users.json";
-        private readonly string brokerJsonDataPath = "SeedData/Brokers.json";
         private readonly string imagesJsonDataPath = "SeedData/Images.json";
 
         public DataSeederService(
@@ -31,13 +31,15 @@ namespace api.Services
             IFeatureService featureService,
             IPropertyService propertyService,
             IUserService userService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IConfiguration configuration)
         {
             _categoryService = categoryService;
             _featureService = featureService;
             _propertyService = propertyService;
             _userService = userService;
             _userManager = userManager;
+            _configuration = configuration;
         }
 
         public async Task SeedDataAsync()
@@ -47,7 +49,7 @@ namespace api.Services
                 await SeedCategoriesAsync();
                 await SeedFeaturesAsync();
                 await SeedUsersAsync();
-                await SeedBrokersAsync();
+                await SeedAdminAsync();
                 await SeedPropertiesAsync();
             }
             catch (Exception ex)
@@ -117,22 +119,24 @@ namespace api.Services
             }
         }
 
-        private async Task SeedBrokersAsync()
-        {
-            var brokersData = await File.ReadAllTextAsync(brokerJsonDataPath);
-            var brokers = JsonSerializer.Deserialize<List<RegisterDTO>>(brokersData);
-            if (brokers != null)
-            {
-                foreach (var broker in brokers)
-                {
-                    await _userService.RegisterBroker(broker);
+        private async Task SeedAdminAsync()
+        {       
+                string adminUsername = _configuration["AdminCredentials:Username"]!;
+                string adminEmail = _configuration["AdminCredentials:Email"]!;
+                string adminPassword = _configuration["AdminCredentials:Password"]!;
+
+                if(adminUsername == null || adminEmail == null || adminPassword == null){
+                    throw new ArgumentNullException(DataSeederErrorMessages.AdminCredentialsError);
                 }
-                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Brokers");
-            }
-            else
-            {
-                throw new Exception(DataSeederErrorMessages.NoDataInFile + "Brokers");
-            }
+
+                RegisterDTO adminDTO = new RegisterDTO(){
+                    Username = adminUsername,
+                    Email = adminEmail,
+                    Password = adminPassword
+                };
+
+                await _userService.RegisterAdmin(adminDTO);
+                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Admin user");
         }
 
         private async Task SeedPropertiesAsync()
@@ -143,7 +147,8 @@ namespace api.Services
             {
                 foreach (var property in properties)
                 {
-                    property.OwnerId = await GetRandomBrokerIdAsync();
+
+                    property.OwnerId = await GetAdminId();
                     property.Categories = await GetRandomCategoriesAsync();
                     property.Features = await GetRandomFeaturesAsync();
                     property.Images = await GetRandomImageAsync();
@@ -158,12 +163,15 @@ namespace api.Services
             }
         }
 
-        private async Task<string> GetRandomBrokerIdAsync()
+        private async Task<string> GetAdminId()
         {
-            var brokers = await _userManager.GetUsersInRoleAsync("Broker");
-            var random = new Random();
-            var randomIndex = random.Next(0, brokers.Count());
-            return brokers[randomIndex].Id.ToString();
+            var admins = await _userManager.GetUsersInRoleAsync("Admin");
+            var admin = admins.FirstOrDefault();
+            if(admin == null)
+            {
+                throw new ArgumentNullException(DataSeederErrorMessages.AdminNotSeeded);
+            }
+            return admin.Id.ToString();
         }
 
         private async Task<List<string>> GetRandomCategoriesAsync()
@@ -172,7 +180,8 @@ namespace api.Services
 
             var allCategories = await _categoryService.GetCategoriesAsync();
             var random = new Random();
-            var numberOfCategories = random.Next(0, allCategories.Count());
+            int minNumberOfCategories = 2;
+            var numberOfCategories = random.Next(minNumberOfCategories, allCategories.Count());
 
             for(int i = 0; i < numberOfCategories; i++)
             {
@@ -192,7 +201,9 @@ namespace api.Services
 
             var allFeatures = await _featureService.GetFeaturesAsync();
             var random = new Random();
-            var numberOfFeatures = random.Next(0, allFeatures.Count());
+            int minNumberOfFeatures = 5;
+            var numberOfFeatures = random.Next(minNumberOfFeatures, allFeatures.Count());
+
 
             for(int i = 0; i < numberOfFeatures; i++)
             {

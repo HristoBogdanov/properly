@@ -125,34 +125,6 @@ namespace api.Services
             }
         }
 
-        public async Task<NewUserDTO> RegisterBroker(RegisterDTO registerDto)
-        {
-            var broker = new ApplicationUser
-            {
-                UserName = registerDto.Username,
-                Email = registerDto.Email
-            };
-
-            var result = await _userManager.CreateAsync(broker, registerDto.Password);
-            if (!result.Succeeded)
-            {
-                throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
-            }
-
-            var roleResult = await _userManager.AddToRoleAsync(broker, "Broker");
-            if (!roleResult.Succeeded)
-            {
-                throw new Exception(string.Join(", ", roleResult.Errors.Select(e => e.Description)));
-            }
-
-            return new NewUserDTO
-            {
-                UserName = broker.UserName,
-                Email = broker.Email,
-                Token = _tokenService.CreateToken(broker)
-            };
-        }
-
         // TODO: Remove this and add the admin using seed
         public async Task<NewUserDTO> RegisterAdmin(RegisterDTO registerDto)
         {

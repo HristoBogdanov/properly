@@ -73,36 +73,6 @@ namespace api.Controllers
             }
         }
 
-        [HttpPost("register-broker")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> RegisterBroker(RegisterDTO registerDto)
-        {
-            try
-            {
-                var broker = await _userService.RegisterBroker(registerDto);
-                return Ok(broker);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        // TO DO: REMOVE THIS AND ADD AN ADMIN THROUGH SEED
-        [HttpPost("register-admin")]
-        public async Task<IActionResult> RegisterAdmin(RegisterDTO registerDto)
-        {
-            try
-            {
-                var admin = await _userService.RegisterAdmin(registerDto);
-                return Ok(admin);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpDelete("users/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(Guid id)
