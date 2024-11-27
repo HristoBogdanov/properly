@@ -1,5 +1,6 @@
 using api.DTOs.Features;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -16,6 +17,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -30,6 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetById(string id)
         {
             try
@@ -44,6 +47,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateFeature(CreateFeatureDTO createFeatureDTO)
         {
             try
@@ -58,6 +62,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateFeature(string id, CreateFeatureDTO displayFeatureDTO)
         {
             try
@@ -72,6 +77,7 @@ namespace api.Controllers
         }
 
         [HttpPost("delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteFeature(string id)
         {
             try

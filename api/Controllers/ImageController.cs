@@ -1,5 +1,6 @@
 using api.DTOs.Images;
 using api.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -15,6 +16,7 @@ namespace api.Controllers
         }
 
         [HttpGet("all")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -29,6 +31,7 @@ namespace api.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateImage(CreateImageDTO createImageDTO)
         {
             try
@@ -43,6 +46,7 @@ namespace api.Controllers
         }
 
         [HttpPut("update/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateImage(string id, CreateImageDTO updateImageDTO)
         {
             try
@@ -57,6 +61,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteImage(string id)
         {
             try
