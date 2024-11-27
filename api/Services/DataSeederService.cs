@@ -120,23 +120,25 @@ namespace api.Services
         }
 
         private async Task SeedAdminAsync()
-        {       
-                string adminUsername = _configuration["AdminCredentials:Username"]!;
-                string adminEmail = _configuration["AdminCredentials:Email"]!;
-                string adminPassword = _configuration["AdminCredentials:Password"]!;
+        {
+            string adminUsername = _configuration["AdminCredentials:Username"]!;
+            string adminEmail = _configuration["AdminCredentials:Email"]!;
+            string adminPassword = _configuration["AdminCredentials:Password"]!;
 
-                if(adminUsername == null || adminEmail == null || adminPassword == null){
-                    throw new ArgumentNullException(DataSeederErrorMessages.AdminCredentialsError);
-                }
+            if (adminUsername == null || adminEmail == null || adminPassword == null)
+            {
+                throw new ArgumentNullException(DataSeederErrorMessages.AdminCredentialsError);
+            }
 
-                RegisterDTO adminDTO = new RegisterDTO(){
-                    Username = adminUsername,
-                    Email = adminEmail,
-                    Password = adminPassword
-                };
+            RegisterDTO adminDTO = new RegisterDTO()
+            {
+                Username = adminUsername,
+                Email = adminEmail,
+                Password = adminPassword
+            };
 
-                await _userService.RegisterAdmin(adminDTO);
-                Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Admin user");
+            await _userService.RegisterAdmin(adminDTO);
+            Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Admin user");
         }
 
         private async Task SeedPropertiesAsync()
@@ -153,7 +155,7 @@ namespace api.Services
                     property.Features = await GetRandomFeaturesAsync();
                     property.Images = await GetRandomImageAsync();
 
-                    await _propertyService.CreatePropertyAsync(property);
+                    await _propertyService.CreatePropertyAsync(property, null);
                 }
                 Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Properties");
             }
@@ -167,7 +169,7 @@ namespace api.Services
         {
             var admins = await _userManager.GetUsersInRoleAsync("Admin");
             var admin = admins.FirstOrDefault();
-            if(admin == null)
+            if (admin == null)
             {
                 throw new ArgumentNullException(DataSeederErrorMessages.AdminNotSeeded);
             }
@@ -181,14 +183,19 @@ namespace api.Services
             var allCategories = await _categoryService.GetCategoriesAsync();
             var random = new Random();
             int minNumberOfCategories = 2;
-            var numberOfCategories = random.Next(minNumberOfCategories, allCategories.Count());
+            var maxNumberOfCategories = 6;
+            var numberOfCategories = random.Next(minNumberOfCategories, maxNumberOfCategories + 1);
 
-            for(int i = 0; i < numberOfCategories; i++)
+            for (int i = 0; i < numberOfCategories; i++)
             {
-                var randomIndex = random.Next(0, categories.Count());
-                if(!categories.Any(c => c == allCategories[randomIndex].Title))
+                var randomIndex = random.Next(0, allCategories.Count());
+                if (!categories.Any(c => c == allCategories[randomIndex].Title))
                 {
                     categories.Add(allCategories[randomIndex].Title);
+                }
+                else
+                {
+                    i--;
                 }
             }
 
@@ -202,15 +209,20 @@ namespace api.Services
             var allFeatures = await _featureService.GetFeaturesAsync();
             var random = new Random();
             int minNumberOfFeatures = 5;
-            var numberOfFeatures = random.Next(minNumberOfFeatures, allFeatures.Count());
+            int maxNumberOfFeatures = 10;
+            var numberOfFeatures = random.Next(minNumberOfFeatures, maxNumberOfFeatures + 1);
 
 
-            for(int i = 0; i < numberOfFeatures; i++)
+            for (int i = 0; i < numberOfFeatures; i++)
             {
-                var randomIndex = random.Next(0, features.Count());
-                if(!features.Any(f => f == allFeatures[randomIndex].Title))
+                var randomIndex = random.Next(0, allFeatures.Count());
+                if (!features.Any(f => f == allFeatures[randomIndex].Title))
                 {
                     features.Add(allFeatures[randomIndex].Title);
+                }
+                else
+                {
+                    i--;
                 }
             }
 
@@ -226,15 +238,15 @@ namespace api.Services
             var allImagesData = await File.ReadAllTextAsync(imagesJsonDataPath);
             var allImages = JsonSerializer.Deserialize<List<CreateImageDTO>>(allImagesData);
 
-            if(allImages != null)
+            if (allImages != null)
             {
                 var random = new Random();
                 var numberOfImages = random.Next(minNumberOfImages, maxNumberOfImages + 1);
-                
-                for(int i = 0; i < numberOfImages; i++)
+
+                for (int i = 0; i < numberOfImages; i++)
                 {
                     var randomIndex = random.Next(0, allImages.Count());
-                    if(!images.Any(i => i.Path == allImages[randomIndex].Path))
+                    if (!images.Any(i => i.Path == allImages[randomIndex].Path))
                     {
                         images.Add(allImages[randomIndex]);
                     }
