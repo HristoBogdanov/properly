@@ -49,7 +49,7 @@ namespace api.Helpers
         [Range(1, int.MaxValue, ErrorMessage = PropertiesErrorMessages.InvalidPageParameter)]
         public int page { get; set; } = 1;
 
-        [Range(1, int.MaxValue, ErrorMessage = PropertiesErrorMessages.InvalidPerPageParameter)]
+        [Range(1, 20, ErrorMessage = PropertiesErrorMessages.InvalidPerPageParameter)]
         public int perPage { get; set; } = 10;
     }
 }
