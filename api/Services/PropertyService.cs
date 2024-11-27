@@ -1,16 +1,15 @@
+using System.Linq.Expressions;
+using api.Constants;
 using api.Data.Repository.Interfaces;
 using api.DTOs.Category;
 using api.DTOs.Features;
 using api.DTOs.Images;
 using api.DTOs.Property;
+using api.Helpers;
 using api.Models;
 using api.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using api.Constants;
-using api.Helpers;
-using System.Linq.Expressions;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Services
 {
@@ -102,9 +101,10 @@ namespace api.Services
             return property;
         }
 
-        public async Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO)
+        public async Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO, string? userId)
         {
-            var user = await _userManager.FindByIdAsync(createPropertyDTO.OwnerId);
+            string ownerId = GetOwnerId(userId, createPropertyDTO);
+            var user = await _userManager.FindByIdAsync(ownerId);
 
             if (user == null)
             {
@@ -112,7 +112,7 @@ namespace api.Services
             }
 
             var newProperty = new Property();
-            MapPropertyFields(newProperty, createPropertyDTO);
+            MapPropertyFields(newProperty, createPropertyDTO, ownerId);
 
             await _propertyRepository.AddAsync(newProperty);
             await AddDataToProperty(createPropertyDTO, newProperty);
@@ -133,7 +133,7 @@ namespace api.Services
                 IsFurnished = newProperty.IsFurnished,
                 Area = newProperty.Area,
                 YearOfConstruction = newProperty.YearOfConstruction,
-                OwnerId = newProperty.OwnerId.ToString(),
+                OwnerId = ownerId,
                 OwnerName = user.UserName!,
                 Categories = newProperty.PropertiesCategories.Select(c => new DisplayCategoryDTO
                 {
@@ -158,8 +158,9 @@ namespace api.Services
             };
         }
 
-        public async Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO)
+        public async Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO, string? userId)
         {
+            string ownerId = GetOwnerId(userId, updatePropertyDTO);
             Guid idGuid = Guid.Parse(id);
 
             var existingProperty = await _propertyRepository.FirstOrDefaultAsync(p => p.Id == idGuid && !p.IsDeleted);
@@ -169,7 +170,7 @@ namespace api.Services
                 throw new Exception(PropertiesErrorMessages.PropertyNotFound);
             }
 
-            MapPropertyFields(existingProperty, updatePropertyDTO);
+            MapPropertyFields(existingProperty, updatePropertyDTO, ownerId);
 
             await _propertyRepository.UpdateAsync(existingProperty);
             await AddDataToProperty(updatePropertyDTO, existingProperty);
@@ -225,7 +226,7 @@ namespace api.Services
             return true;
         }
 
-        private void MapPropertyFields(Property property, CreatePropertyDTO propertyDTO)
+        private void MapPropertyFields(Property property, CreatePropertyDTO propertyDTO, string ownerId)
         {
             property.Title = propertyDTO.Title;
             property.Description = propertyDTO.Description;
@@ -239,7 +240,7 @@ namespace api.Services
             property.Bedrooms = propertyDTO.Bedrooms;
             property.Bathrooms = propertyDTO.Bathrooms;
             property.IsFurnished = propertyDTO.IsFurnished;
-            property.OwnerId = Guid.Parse(propertyDTO.OwnerId);
+            property.OwnerId = Guid.Parse(ownerId);
         }
         private IQueryable<DisplayPropertyDTO> GetDisplayProperties(Expression<Func<Property, bool>> predicate)
         {
@@ -389,6 +390,25 @@ namespace api.Services
             return properties
             .Skip((queryParams.page - 1) * queryParams.perPage)
             .Take(queryParams.perPage);
+        }
+
+        private string GetOwnerId(string? userId, CreatePropertyDTO createPropertyDTO)
+        {
+            string OwnerId = String.Empty;
+            if (userId != null)
+            {
+                OwnerId = userId;
+            }
+            else if (createPropertyDTO.OwnerId != null)
+            {
+                OwnerId = createPropertyDTO.OwnerId;
+            }
+            else
+            {
+                throw new ArgumentNullException(UserErrorMessages.UserNotFound);
+            }
+
+            return OwnerId;
         }
 
         private async Task AddDataToProperty(CreatePropertyDTO propertyDTO, Property newProperty)

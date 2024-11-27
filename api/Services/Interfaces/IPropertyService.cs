@@ -8,9 +8,9 @@ namespace api.Services.Interfaces
     {
         Task<PropertyPagesResult> GetPropertiesAsync(PropertyQueryParams queryParams);
         Task<DisplayPropertyDTO> GetPropertyByIdAsync(string id);
-        Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO);
+        Task<DisplayPropertyDTO> CreatePropertyAsync(CreatePropertyDTO createPropertyDTO, string? userId);
         Task AddImageToPropertyAsync(string propertyId, CreateImageDTO image);
-        Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO);
+        Task<bool> UpdatePropertyAsync(string id, CreatePropertyDTO updatePropertyDTO, string? userId);
         Task<bool> DeletePropertyAsync(string id);
     }
 }

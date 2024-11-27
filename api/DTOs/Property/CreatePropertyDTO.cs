@@ -44,7 +44,7 @@ namespace api.DTOs.Property
 
         public bool IsFurnished { get; set; }
 
-        public string OwnerId { get; set; } = null!;
+        public string? OwnerId { get; set; }
 
         public virtual IEnumerable<string> Categories { get; set; } = new List<string>();
 
