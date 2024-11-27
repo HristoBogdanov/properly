@@ -58,7 +58,7 @@ project.fragment.lock.json
 
 # Ignore appsettings files
 appsettings.json
-appsettings.Development.json
+appsettings.*
 
 # Ignore HTTP files
 *.http
