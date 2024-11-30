@@ -1,19 +1,19 @@
+import { loginAPI, registerAPI } from "@/api/auth";
+import { handleError } from "@/helpers/ErrorHandler";
+import { UserProfile } from "@/types/user";
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
-import { UserProfile } from "@/types/user";
-import { loginAPI, registerAPI, registerBrokerAPI } from "@/api/auth";
-import { handleError } from "@/helpers/ErrorHandler";
 
 type UserContextType = {
   user: UserProfile | null;
   token: string | null;
   registerUser: (email: string, username: string, password: string) => void;
-  registerBroker: (email: string, username: string, password: string) => void;
   loginUser: (username: string, password: string) => void;
   logout: () => void;
   isLoggedIn: () => boolean;
+  isUserAdmin: () => boolean;
 };
 
 type Props = { children: React.ReactNode };
@@ -32,6 +32,7 @@ export const UserProvider = ({ children }: Props) => {
     if (user && token) {
       setUser(JSON.parse(user));
       setToken(token);
+      // this token is not getting added correctly, so I am adding it via an axios interceptor
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     }
     setIsReady(true);
@@ -46,14 +47,15 @@ export const UserProvider = ({ children }: Props) => {
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
-          const userObj = {
+          const userObj: UserProfile = {
             userName: res?.data.userName,
             email: res?.data.email,
+            role: res?.data.role,
           };
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res.data.token);
           setUser(userObj!);
-          toast.success("Login Success!");
+          toast.success("Register Successfull!");
           navigate("/");
         }
       })
@@ -62,44 +64,20 @@ export const UserProvider = ({ children }: Props) => {
       });
   };
 
-  const registerBroker = async (
-    email: string,
-    username: string,
-    password: string
-  ) => {
-    await registerBrokerAPI({ email, username, password })
-      .then((res) => {
-        if (res) {
-          localStorage.setItem("token", res?.data.token);
-          const userObj = {
-            userName: res?.data.userName,
-            email: res?.data.email,
-          };
-          localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res.data.token);
-          setUser(userObj!);
-          toast.success("Login Success!");
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        handleError(error, "Error registering broker");
-      });
-  };
-
   const loginUser = async (username: string, password: string) => {
     await loginAPI({ username, password })
       .then((res) => {
         if (res) {
           localStorage.setItem("token", res?.data.token);
-          const userObj = {
+          const userObj: UserProfile = {
             userName: res?.data.userName,
             email: res?.data.email,
+            role: res?.data.role,
           };
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res.data.token);
           setUser(userObj!);
-          toast.success("Login Success!");
+          toast.success("Login Successfull!");
           navigate("/");
         }
       })
@@ -112,12 +90,17 @@ export const UserProvider = ({ children }: Props) => {
     return !!user;
   };
 
+  const isUserAdmin = () => {
+    return user?.role == "Admin";
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
     setToken("");
     navigate("/");
+    toast.success("You logged out of your account.");
   };
 
   return (
@@ -129,7 +112,7 @@ export const UserProvider = ({ children }: Props) => {
         logout,
         isLoggedIn,
         registerUser,
-        registerBroker,
+        isUserAdmin,
       }}
     >
       {isReady ? children : null}
