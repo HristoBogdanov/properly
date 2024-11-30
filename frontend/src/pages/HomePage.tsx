@@ -1,8 +1,8 @@
 import ParralaxContainer from "@/components/common/ParralaxContainer";
-import { usePropertiesStore } from "@/stores/propertiesStore";
-import { useEffect, useState } from "react";
-import { Property } from "@/types/property";
 import PropertiesSection from "@/components/properties/PropertiesSection";
+import { usePropertiesStore } from "@/stores/propertiesStore";
+import { Property } from "@/types/property";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const { loading, getProperties } = usePropertiesStore();
@@ -14,7 +14,7 @@ export default function HomePage() {
     const fetchProperties = async () => {
       const latestResponse = await getProperties({ page: "1", perPage: "6" });
       const budgetResponse = await getProperties({
-        maxPrice: "200000",
+        maxPrice: "3000000",
         page: "1",
         perPage: "6",
       });

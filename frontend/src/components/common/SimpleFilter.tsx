@@ -1,11 +1,11 @@
-import { FormProvider, useForm } from "react-hook-form";
-import Input from "../inputs/Input";
-import Dropdown from "../inputs/Dropdown";
-import { z } from "zod";
 import { simpleSeacrhPropertySchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CustomButton from "./CustomButton";
+import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { z } from "zod";
+import Dropdown from "../inputs/Dropdown";
+import Input from "../inputs/Input";
+import CustomButton from "./CustomButton";
 
 type FormData = z.infer<typeof simpleSeacrhPropertySchema>;
 
@@ -37,18 +37,18 @@ export default function SimpleFilter() {
   };
 
   return (
-    <div className="w-fit p-3 border rounded-lg">
+    <div className="w-fit p-3 border rounded-lg max-lg:w-full">
       <div className="rounded-lg bg-white p-6">
         <FormProvider {...methods}>
           <form
-            className="flex flex-col lg:flex-row justify-center items-center gap-3 w-fit text-lg text-black"
+            className="flex flex-col lg:flex-row justify-center items-center gap-3 w-full lg:w-fit text-lg text-black"
             onSubmit={methods.handleSubmit(onSubmit)}
           >
             <Input
               id="search"
               name="search"
               showError={false}
-              classes="border border-[#d5d5d2] rounded-md"
+              classes="border border-[#d5d5d2] rounded-md max-lg:w-full"
             />
             <Dropdown
               id="sortBy"

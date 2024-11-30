@@ -1,9 +1,9 @@
-import { useForm, FormProvider } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/contexts/useAuth";
 import CustomButton from "@/components/common/CustomButton";
 import Input from "@/components/inputs/Input";
+import { useAuth } from "@/contexts/useAuth";
 import { registerSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 type FormData = z.infer<typeof registerSchema>;
@@ -36,14 +36,14 @@ export default function RegisterPage() {
             type="password"
             isRequired={true}
           />
-          <div className="w-full flex-col md:flex-row flex justify-between gap-5">
-            <CustomButton text="Register" type="submit" classes="w-full" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <CustomButton
-              text="Log in"
-              link="/login"
+              text="Register"
+              type="submit"
               variant="secondary"
               classes="w-full"
             />
+            <CustomButton text="Log in" link="/login" classes="w-full" />
           </div>
         </form>
       </FormProvider>

@@ -35,14 +35,14 @@ export default function LoginPage() {
             type="password"
             isRequired={true}
           />
-          <div className="w-full flex-col md:flex-row flex justify-between gap-5">
-            <CustomButton text="Log in" type="submit" classes="w-full" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <CustomButton
-              text="Register"
-              link="/register"
+              text="Log in"
+              type="submit"
               variant="secondary"
               classes="w-full"
             />
+            <CustomButton text="Register" link="/register" classes="w-full" />
           </div>
         </form>
       </FormProvider>
