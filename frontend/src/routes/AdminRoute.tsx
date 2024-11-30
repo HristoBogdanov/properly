@@ -3,12 +3,12 @@ import { Navigate, useLocation } from "react-router-dom";
 
 type Props = { children: React.ReactNode };
 
-export default function ProtectedRoute({ children }: Props) {
+export default function AdminRoute({ children }: Props) {
   const location = useLocation();
-  const { isLoggedIn } = useAuth();
-  return isLoggedIn() ? (
+  const { isUserAdmin } = useAuth();
+  return isUserAdmin() ? (
     <>{children}</>
   ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
+    <Navigate to="/not-found" state={{ from: location }} replace />
   );
 }
