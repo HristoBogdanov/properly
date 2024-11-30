@@ -1,5 +1,6 @@
 import PropertyPageMainSection from "@/components/properties/PropertyPageMainSection";
 import PropertyPageSidebar from "@/components/properties/PropertyPageSidebar";
+import ProtectedRoute from "@/routes/ProtectedRoute";
 import { usePropertiesStore } from "@/stores/propertiesStore";
 import { Property } from "@/types/property";
 import { useEffect, useState } from "react";
@@ -39,9 +40,11 @@ export default function PropertyPage() {
   }
 
   return (
-    <div className="mt-[200px] container mx-auto grid grid-cols-4 gap-10 lg:gap-20 mb-10 lg:mb-20 px-6">
-      <PropertyPageMainSection property={property} />
-      <PropertyPageSidebar property={property} />
-    </div>
+    <ProtectedRoute>
+      <div className="mt-[200px] container mx-auto grid grid-cols-4 gap-10 lg:gap-20 mb-10 lg:mb-20 px-6">
+        <PropertyPageMainSection property={property} />
+        <PropertyPageSidebar property={property} />
+      </div>
+    </ProtectedRoute>
   );
 }
