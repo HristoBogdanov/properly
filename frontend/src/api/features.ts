@@ -1,10 +1,10 @@
 import { handleError } from "@/helpers/ErrorHandler";
 import { CreateFeature, Feature } from "@/types/feature";
-import axios from "axios";
+import API from "./API";
 
 export const getFeatures = async () => {
   try {
-    const data = await axios.get<Feature[]>(
+    const data = await API.get<Feature[]>(
       import.meta.env.VITE_API_URL + "features/all"
     );
     return data;
@@ -15,7 +15,7 @@ export const getFeatures = async () => {
 
 export const getFeatureById = async (id: string) => {
   try {
-    const data = await axios.get<Feature>(
+    const data = await API.get<Feature>(
       import.meta.env.VITE_API_URL + `features/all/${id}`
     );
     return data;
@@ -26,7 +26,7 @@ export const getFeatureById = async (id: string) => {
 
 export const addFeature = async (feature: CreateFeature) => {
   try {
-    const data = await axios.post<Feature>(
+    const data = await API.post<Feature>(
       import.meta.env.VITE_API_URL + "features/create",
       feature
     );
@@ -38,7 +38,7 @@ export const addFeature = async (feature: CreateFeature) => {
 
 export const updateFeature = async (feature: CreateFeature, id: string) => {
   try {
-    const data = await axios.put<boolean>(
+    const data = await API.put<boolean>(
       import.meta.env.VITE_API_URL + `features/update/${id}`,
       feature
     );
@@ -50,7 +50,7 @@ export const updateFeature = async (feature: CreateFeature, id: string) => {
 
 export const removeFeature = async (id: string) => {
   try {
-    const data = await axios.post<boolean>(
+    const data = await API.post<boolean>(
       import.meta.env.VITE_API_URL + `features/delete/${id}`
     );
     return data;

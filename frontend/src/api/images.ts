@@ -1,10 +1,10 @@
 import { handleError } from "@/helpers/ErrorHandler";
 import { CreateImage, Image } from "@/types/image";
-import axios from "axios";
+import API from "./API";
 
 export const getImages = async () => {
   try {
-    const data = await axios.get<Image[]>(
+    const data = await API.get<Image[]>(
       import.meta.env.VITE_API_URL + "images/all"
     );
     return data;
@@ -15,7 +15,7 @@ export const getImages = async () => {
 
 export const addImage = async (image: CreateImage) => {
   try {
-    const data = await axios.post<Image>(
+    const data = await API.post<Image>(
       import.meta.env.VITE_API_URL + "images/create",
       image
     );
@@ -27,7 +27,7 @@ export const addImage = async (image: CreateImage) => {
 
 export const updateImage = async (image: CreateImage, id: string) => {
   try {
-    const data = await axios.put<boolean>(
+    const data = await API.put<boolean>(
       import.meta.env.VITE_API_URL + `images/update/${id}`,
       image
     );
@@ -38,12 +38,12 @@ export const updateImage = async (image: CreateImage, id: string) => {
 };
 
 export const removeImage = async (id: string) => {
-    try {
-        const data = await axios.delete<boolean>(
-        import.meta.env.VITE_API_URL + `images/delete/${id}`
-        );
-        return data;
-    } catch (error) {
-        handleError(error, "Error removing image");
-    }
-    }
+  try {
+    const data = await API.delete<boolean>(
+      import.meta.env.VITE_API_URL + `images/delete/${id}`
+    );
+    return data;
+  } catch (error) {
+    handleError(error, "Error removing image");
+  }
+};

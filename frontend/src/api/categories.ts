@@ -1,10 +1,10 @@
 import { handleError } from "@/helpers/ErrorHandler";
 import { Category, CreateCategory, SimpleCategory } from "@/types/category";
-import axios from "axios";
+import API from "./API";
 
 export const getCategories = async () => {
   try {
-    const data = await axios.get<Category[]>(
+    const data = await API.get<Category[]>(
       import.meta.env.VITE_API_URL + "categories/all"
     );
     return data;
@@ -15,7 +15,7 @@ export const getCategories = async () => {
 
 export const getCategoryById = async (id: string) => {
   try {
-    const data = await axios.get<SimpleCategory>(
+    const data = await API.get<SimpleCategory>(
       import.meta.env.VITE_API_URL + `categories/all/${id}`
     );
     return data;
@@ -26,7 +26,7 @@ export const getCategoryById = async (id: string) => {
 
 export const addCategory = async (category: CreateCategory) => {
   try {
-    const data = await axios.post<Category>(
+    const data = await API.post<Category>(
       import.meta.env.VITE_API_URL + "categories/create",
       category
     );
@@ -38,7 +38,7 @@ export const addCategory = async (category: CreateCategory) => {
 
 export const updateCategory = async (category: CreateCategory, id: string) => {
   try {
-    const data = await axios.put<boolean>(
+    const data = await API.put<boolean>(
       import.meta.env.VITE_API_URL + `categories/update/${id}`,
       category
     );
@@ -50,7 +50,7 @@ export const updateCategory = async (category: CreateCategory, id: string) => {
 
 export const removeCategory = async (id: string) => {
   try {
-    const data = await axios.post<boolean>(
+    const data = await API.post<boolean>(
       import.meta.env.VITE_API_URL + `categories/delete/${id}`
     );
     return data;

@@ -7,12 +7,12 @@ import {
   PropertyPagesResult,
   PropertyQueryParams,
 } from "@/types/property";
-import axios from "axios";
+import API from "./API";
 
 export const getProperties = async (params?: PropertyQueryParams) => {
   try {
     const query = constructQuery(params);
-    const result = await axios.get<PropertyPagesResult>(
+    const result = await API.get<PropertyPagesResult>(
       import.meta.env.VITE_API_URL + `properties/all?${query}`
     );
     if (result) {
@@ -27,7 +27,7 @@ export const getProperties = async (params?: PropertyQueryParams) => {
 
 export const getPropertyById = async (id: string) => {
   try {
-    const data = await axios.get<Property>(
+    const data = await API.get<Property>(
       import.meta.env.VITE_API_URL + `properties/all/${id}`
     );
     return data;
@@ -38,7 +38,7 @@ export const getPropertyById = async (id: string) => {
 
 export const addProperty = async (property: CreateProperty) => {
   try {
-    const data = await axios.post<Property>(
+    const data = await API.post<Property>(
       import.meta.env.VITE_API_URL + "properties/create",
       property
     );
@@ -50,7 +50,7 @@ export const addProperty = async (property: CreateProperty) => {
 
 export const addImageToProperty = async (id: string, image: CreateImage) => {
   try {
-    const data = await axios.post<boolean>(
+    const data = await API.post<boolean>(
       import.meta.env.VITE_API_URL + `properties/add-image/${id}`,
       image
     );
@@ -62,7 +62,7 @@ export const addImageToProperty = async (id: string, image: CreateImage) => {
 
 export const updateProperty = async (property: CreateProperty, id: string) => {
   try {
-    const data = await axios.put<boolean>(
+    const data = await API.put<boolean>(
       import.meta.env.VITE_API_URL + `properties/update/${id}`,
       property
     );
@@ -74,7 +74,7 @@ export const updateProperty = async (property: CreateProperty, id: string) => {
 
 export const removeProperty = async (id: string) => {
   try {
-    const data = await axios.post<boolean>(
+    const data = await API.post<boolean>(
       import.meta.env.VITE_API_URL + `properties/delete/${id}`
     );
     return data;

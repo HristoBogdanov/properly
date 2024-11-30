@@ -1,10 +1,10 @@
-import axios from "axios";
-import { CreateUser, LoginUser, UserProfileToken } from "@/types/user";
 import { handleError } from "@/helpers/ErrorHandler";
+import { CreateUser, LoginUser, UserProfileToken } from "@/types/user";
+import API from "./API";
 
 export const loginAPI = async (loginUser: LoginUser) => {
   try {
-    const data = await axios.post<UserProfileToken>(
+    const data = await API.post<UserProfileToken>(
       import.meta.env.VITE_API_URL + "account/login",
       loginUser
     );
@@ -16,24 +16,12 @@ export const loginAPI = async (loginUser: LoginUser) => {
 
 export const registerAPI = async (createUser: CreateUser) => {
   try {
-    const data = await axios.post<UserProfileToken>(
+    const data = await API.post<UserProfileToken>(
       import.meta.env.VITE_API_URL + "account/register",
       createUser
     );
     return data;
   } catch (error) {
     handleError(error, "Error registering user");
-  }
-};
-
-export const registerBrokerAPI = async (createUser: CreateUser) => {
-  try {
-    const data = await axios.post<UserProfileToken>(
-      import.meta.env.VITE_API_URL + "account/register-broker",
-      createUser
-    );
-    return data;
-  } catch (error) {
-    handleError(error, "Error registering broker");
   }
 };
