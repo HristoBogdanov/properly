@@ -15,5 +15,9 @@ namespace api.DTOs.User
 
         [Required]
         public string Token { get; set; } = null!;
+
+        [Required(ErrorMessage = UserErrorMessages.RoleRequired)]
+        [RegularExpression(Regexes.RolesRegex, ErrorMessage = UserErrorMessages.InvalidRole)]
+        public string Role { get; set; } = null!;
     }
 }

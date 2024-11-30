@@ -84,12 +84,21 @@ namespace api.Services
 
             if (!result.Succeeded) throw new UnauthorizedAccessException(UserErrorMessages.InvalidUsernameOrPassword);
 
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault();
+
+            if (role == null)
+            {
+                role = "User";
+            }
+
             return new NewUserDTO
-                {
-                    UserName = user.UserName!,
-                    Email = user.Email!,
-                    Token = _tokenService.CreateToken(user)
-                };
+            {
+                UserName = user.UserName!,
+                Email = user.Email!,
+                Token = _tokenService.CreateToken(user),
+                Role = role,
+            };
         }
 
         public async Task<NewUserDTO> Register(RegisterDTO registerDto)
@@ -111,7 +120,8 @@ namespace api.Services
                     {
                         UserName = appUser.UserName,
                         Email = appUser.Email,
-                        Token = _tokenService.CreateToken(appUser)
+                        Token = _tokenService.CreateToken(appUser),
+                        Role = "User"
                     };
                 }
                 else
@@ -125,7 +135,6 @@ namespace api.Services
             }
         }
 
-        // TODO: Remove this and add the admin using seed
         public async Task<NewUserDTO> RegisterAdmin(RegisterDTO registerDto)
         {
             var admin = new ApplicationUser
@@ -142,11 +151,12 @@ namespace api.Services
 
             await _userManager.AddToRoleAsync(admin, "Admin");
             return new NewUserDTO
-                {
-                    UserName = admin.UserName,
-                    Email = admin.Email,
-                    Token = _tokenService.CreateToken(admin)
-                };
+            {
+                UserName = admin.UserName,
+                Email = admin.Email,
+                Token = _tokenService.CreateToken(admin),
+                Role = "Admin"
+            };
         }
 
         public async Task<bool> DeleteUser(Guid id)

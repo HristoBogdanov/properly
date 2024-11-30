@@ -1,6 +1,7 @@
 namespace api.Constants
 {
-    public static class UserErrorMessages{
+    public static class UserErrorMessages
+    {
         public const string InvalidUsernameLength = "Invalid username length!";
         public const string UsernameRequired = "Username is required!";
         public const string InvalidPasswordLength = "Invalid password length!";
@@ -9,28 +10,34 @@ namespace api.Constants
         public const string EmailRequired = "Email is required!";
         public const string InvalidUsernameOrPassword = "Invalid username or password!";
         public const string UserNotFound = "User not found!";
+        public const string InvalidRole = "Role should be either user or admin!";
+        public const string RoleRequired = "Role is required!";
     }
 
-    public static class CategoryErrorMessages{
+    public static class CategoryErrorMessages
+    {
         public const string CategoryExists = "Category with that name already exists!";
         public const string TitleRequired = "Title is required!";
         public const string InvalidTitleLength = "Invalid title length!";
         public const string CategoryNotFound = "Category not found!";
     }
 
-    public static class FeatureErrorMessages{
+    public static class FeatureErrorMessages
+    {
         public const string FeatureNotFound = "Feature not found!";
         public const string FeatureAlreadyExists = "Feature with that title already exists!";
         public const string TitleRequired = "Title is required!";
         public const string InvalidTitleLength = "Invalid title length!";
     }
 
-    public static class CommonErrorMessages{
+    public static class CommonErrorMessages
+    {
         public const string EntityNotFound = "Entity not found!";
         public const string InvalidServiceType = "Service type could not be obtained for the service :";
     }
 
-    public static class ImageErrorMessages{
+    public static class ImageErrorMessages
+    {
         public const string ImageAlreadyExists = "Image on this path already exists!";
         public const string ImageNameRequired = "Image name is required!";
         public const string InvalidImageNameLength = "Invalid image name length!";
@@ -38,7 +45,8 @@ namespace api.Constants
         public const string InvalidImagePathLength = "Invalid image path length!";
     }
 
-    public static class PropertiesErrorMessages{
+    public static class PropertiesErrorMessages
+    {
         public const string PropertyNotFound = "Property not found!";
         public const string InvalidTitleLength = "Invalid title length!";
         public const string InvalidPrice = "Invalid price!";
@@ -62,7 +70,8 @@ namespace api.Constants
         public const string InvalidPerPageParameter = "Invalid parameter entered for page size!";
     }
 
-    public static class DataSeederErrorMessages{
+    public static class DataSeederErrorMessages
+    {
         public const string ErrorSeedingData = "Error seeding data: ";
         public const string AdminCredentialsError = "Admin credentials not configured!";
         public const string AdminNotSeeded = "Admin user does not exist!";
@@ -72,15 +81,19 @@ namespace api.Constants
         public const string SuccessSeedingData = "Seeded data successfully for entity: ";
     }
 
-    public static class MissingConfigurationMessages {
+    public static class MissingConfigurationMessages
+    {
         public const string MissingFEUrl = "FrontendUrl is not configured. Please configure it in the user secrets or environment variables.";
     }
 
-    public static class Regexes{
+    public static class Regexes
+    {
         public const string SortParamRegex = "^(price|area|yearOfConstruction)$";
+        public const string RolesRegex = "^(User|Admin)$";
     }
 
-    public static class Formats{
+    public static class Formats
+    {
         public const string DateFormat = "dd/MM/yyyy";
     }
 }
