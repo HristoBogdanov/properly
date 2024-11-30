@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
-import { FaHouseUser } from "react-icons/fa";
-import MobileMenu from "./MobileMenu";
 import { navbarItems } from "@/lib/navbarItems";
+import { Link, useLocation } from "react-router-dom";
+import DashboardButton from "./DashboardButton";
+import LoginRegisterButtons from "./LoginRegisterButtons";
+import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   const location = useLocation();
@@ -28,22 +29,8 @@ export default function Navbar() {
           ))}
         </div>
         <div className="w-fit hidden lg:flex gap-10 justify-center items-center">
-          <div className="flex gap-3">
-            <Link className="link" to="/login">
-              Login
-            </Link>
-            <p>|</p>
-            <Link className="link" to="/register">
-              Sign up
-            </Link>
-          </div>
-          <Link
-            className="flex justify-center items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg border-2 border-primary hover:bg-white hover:text-primary transition-all duration-300 ease-in-out"
-            to="/dashboard/properties"
-          >
-            <FaHouseUser className="text-3xl" />
-            Dashboard
-          </Link>
+          <LoginRegisterButtons />
+          <DashboardButton />
         </div>
       </div>
       <MobileMenu />
