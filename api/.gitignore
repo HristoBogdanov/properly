@@ -57,8 +57,8 @@ project.fragment.lock.json
 *.sln.ide.*
 
 # Ignore appsettings files
-appsettings.json
-appsettings.*
+# appsettings.json
+# appsettings.*
 
 # Ignore HTTP files
 *.http
