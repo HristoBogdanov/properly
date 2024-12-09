@@ -4,7 +4,6 @@ using api.DTOs.Features;
 using api.DTOs.Images;
 using api.Models;
 using api.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Services
@@ -96,16 +95,32 @@ namespace api.Services
             Guid idGuid = Guid.Parse(id);
             var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid && !f.IsDeleted);
 
+            if (existingFeature == null)
+            {
+                throw new Exception(FeatureErrorMessages.FeatureNotFound);
+            }
+
+            // Update the Image information
+            existingFeature.Title = updateFeatureDTO.Title;
+
             var newImage = new Image
             {
                 Name = updateFeatureDTO.Image.Name,
                 Path = updateFeatureDTO.Image.Path
             };
 
-            await _imageRepository.AddAsync(newImage);
-
-            existingFeature.Title = updateFeatureDTO.Title;
-            existingFeature.ImageId = newImage.Id;
+            // If the Image already exists, we should update the existing image
+            if (existingFeature.Image != null)
+            {
+                existingFeature.Image.Name = newImage.Name;
+                existingFeature.Image.Path = newImage.Path;
+            }
+            else
+            {
+                // Otherwise, create a new image and set the ImageId
+                await _imageRepository.AddAsync(newImage);
+                existingFeature.ImageId = newImage.Id;
+            }
 
             await _featureRepository.UpdateAsync(existingFeature);
 
@@ -116,6 +131,11 @@ namespace api.Services
         {
             Guid idGuid = Guid.Parse(id);
             var existingFeature = await _featureRepository.FirstOrDefaultAsync(f => f.Id == idGuid && !f.IsDeleted);
+
+            if (existingFeature == null)
+            {
+                return false;
+            }
 
             await _featureRepository.SoftDeleteAsync(existingFeature);
             return true;
