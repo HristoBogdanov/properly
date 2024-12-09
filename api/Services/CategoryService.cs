@@ -99,7 +99,12 @@ namespace api.Services
             Guid IdGuid = Guid.Parse(id);
 
             var existingCategory = await _categoryRepository
-            .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
+                .FirstOrDefaultAsync(c => c.Id == IdGuid && !c.IsDeleted);
+
+            if (existingCategory == null)
+            {
+                throw new Exception(CategoryErrorMessages.CategoryNotFound);
+            }
 
             existingCategory.Title = updateCategoryDTO.Title;
             await _categoryRepository.UpdateAsync(existingCategory);

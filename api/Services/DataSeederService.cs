@@ -94,7 +94,7 @@ namespace api.Services
             }
         }
 
-        private async Task SeedUsersAsync()
+        public async Task SeedUsersAsync()
         {
             if (_userManager.Users.Count() == 0)
             {
@@ -119,7 +119,7 @@ namespace api.Services
             }
         }
 
-        private async Task SeedAdminAsync()
+        public async Task SeedAdminAsync()
         {
             string adminUsername = _configuration["AdminCredentials:Username"]!;
             string adminEmail = _configuration["AdminCredentials:Email"]!;
@@ -141,7 +141,7 @@ namespace api.Services
             Console.WriteLine(DataSeederErrorMessages.SuccessSeedingData + "Admin user");
         }
 
-        private async Task SeedPropertiesAsync()
+        public async Task SeedPropertiesAsync()
         {
             var propertiesData = await File.ReadAllTextAsync(propertyJsonDataPath);
             var properties = JsonSerializer.Deserialize<List<CreatePropertyDTO>>(propertiesData);
