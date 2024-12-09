@@ -6,6 +6,7 @@ using api.Models;
 using api.Services;
 using MockQueryable;
 using Moq;
+using NuGet.Frameworks;
 
 namespace Properly.Services.Tests
 {
@@ -132,6 +133,87 @@ namespace Properly.Services.Tests
             var exception = Assert.ThrowsAsync<Exception>(async () =>
                 await _categoryService.CreateCategoryAsync(newCategoryDto));
             Assert.AreEqual(CategoryErrorMessages.CategoryExists, exception.Message);
+        }
+
+        [Test]
+        public async Task UpdateCategoryAsync_ShouldUpdateCategory_WhenCategoryExists()
+        {
+            // Arrange
+            var categoryId = Guid.Parse("C994999B-02DD-46C2-ABC4-00C4787E629F");
+            var updateCategoryDto = new CreateCategoryDTO { Title = "Updated Category" };
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync(categoriesData.First(c => c.Id == categoryId && !c.IsDeleted));
+
+            _categoryRepositoryMock
+                .Setup(r => r.UpdateAsync(It.IsAny<Category>()))
+                .ReturnsAsync(true);
+
+            // Act
+            var result = await _categoryService.UpdateCategoryAsync(categoryId.ToString(), updateCategoryDto);
+
+            // Assert
+            Assert.IsTrue(result);
+            var updatedCategory = categoriesData.First(c => c.Id == categoryId);
+            Assert.AreEqual("Updated Category", updatedCategory.Title);
+        }
+
+        [Test]
+        public async Task UpdateCategoryAsync_ShouldThrowException_WhenCategoryNotFound()
+        {
+            // Arrange
+            var categoryId = Guid.NewGuid().ToString(); // Non-existing ID
+            var updateCategoryDto = new CreateCategoryDTO { Title = "Updated Category" };
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync((Category)null); // Category not found
+
+            // Act & Assert
+            var exception = Assert.ThrowsAsync<Exception>(async () =>
+                await _categoryService.UpdateCategoryAsync(categoryId, updateCategoryDto));
+            Assert.AreEqual(CategoryErrorMessages.CategoryNotFound, exception.Message);
+        }
+
+        [Test]
+        public async Task DeleteCategoryAsync_ShouldDeleteCategory_WhenCategoryExists()
+        {
+            // Arrange
+            var categoryId = Guid.Parse("C994999B-02DD-46C2-ABC4-00C4787E629F");
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync(categoriesData.First(c => c.Id == categoryId && !c.IsDeleted));
+
+            _categoryRepositoryMock
+                .Setup(r => r.SoftDeleteAsync(It.IsAny<Category>()))
+                .Callback<Category>(category => category.IsDeleted = true) // Simulate the deletion
+                .ReturnsAsync(true);
+
+            // Act
+            var result = await _categoryService.DeleteCategoryAsync(categoryId.ToString());
+
+            // Assert
+            Assert.IsTrue(result);
+            var deletedCategory = categoriesData.First(c => c.Id == categoryId);
+            Assert.IsTrue(deletedCategory.IsDeleted);
+        }
+
+        [Test]
+        public async Task DeleteCategoryAsync_ShouldThrowException_WhenCategoryNotFound()
+        {
+            // Arrange
+            var categoryId = Guid.NewGuid().ToString(); // Non-existing ID
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync((Category)null); // Category not found
+
+            // Act & Assert
+            var exception = Assert.ThrowsAsync<Exception>(async () =>
+                await _categoryService.DeleteCategoryAsync(categoryId));
+            Assert.AreEqual(CategoryErrorMessages.CategoryNotFound, exception.Message);
         }
     }
 }
