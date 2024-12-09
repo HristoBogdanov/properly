@@ -43,6 +43,7 @@ namespace api.Constants
         public const string InvalidImageNameLength = "Invalid image name length!";
         public const string ImagePathRequired = "Image path is required!";
         public const string InvalidImagePathLength = "Invalid image path length!";
+        public const string ImageNotFound = "Image not found!";
     }
 
     public static class PropertiesErrorMessages

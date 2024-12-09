@@ -70,6 +70,11 @@ namespace api.Services
             Guid idGuid = Guid.Parse(id);
             var existingImage = await _imageRepository.FirstOrDefaultAsync(i => i.Id == idGuid);
 
+            if(existingImage == null)
+            {
+                throw new Exception(ImageErrorMessages.ImageNotFound);
+            }
+
             await _imageRepository.DeleteAsync(existingImage);
             return true;
         }
