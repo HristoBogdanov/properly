@@ -1,5 +1,8 @@
 ﻿using System.Linq.Expressions;
+using api.Constants;
 using api.Data.Repository.Interfaces;
+using api.DTOs.Images;
+using api.DTOs.Property;
 using api.Helpers;
 using api.Models;
 using api.Services;
@@ -439,6 +442,251 @@ namespace Properly.Services.Tests
             Assert.IsNotNull(result);
             Assert.That(result.Properties.Count, Is.EqualTo(2));
             Assert.That(result.Properties.First().YearOfConstruction, Is.EqualTo(2010));
+        }
+
+        [Test]
+        public async Task GetPropertyByIdAsync_ShouldReturnProperty_WhenPropertyExists()
+        {
+            // Arrange
+            var propertyId = propertiesData.First().Id.ToString();
+            var mockQueryable = propertiesData.AsQueryable().BuildMock();
+            var mockUserQueryable = new List<ApplicationUser>().AsQueryable().BuildMock();
+
+            _propertyRepositoryMock
+                .Setup(p => p.GetAllAttached())
+                .Returns(mockQueryable);
+
+            _userManagerMock
+                .Setup(u => u.Users)
+                .Returns(mockUserQueryable);
+
+            // Act
+            var result = await _propertyService.GetPropertyByIdAsync(propertyId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(propertyId, result.Id);
+        }
+
+        [Test]
+        public void GetPropertyByIdAsync_ShouldThrowException_WhenPropertyDoesNotExist()
+        {
+            // Arrange
+            var propertyId = Guid.NewGuid().ToString();
+            var mockQueryable = propertiesData.AsQueryable().BuildMock();
+
+            _propertyRepositoryMock
+                .Setup(p => p.GetAllAttached())
+                .Returns(mockQueryable);
+
+            // Act & Assert
+            var exception = Assert.ThrowsAsync<Exception>(async () =>
+                await _propertyService.GetPropertyByIdAsync(propertyId));
+            Assert.AreEqual(PropertiesErrorMessages.PropertyNotFound, exception.Message);
+        }
+
+        [Test]
+        public async Task CreatePropertyAsync_ShouldCreateProperty_WhenValidData()
+        {
+            // Arrange
+            var createPropertyDto = new CreatePropertyDTO
+            {
+                Title = "New Property",
+                Description = "New Description",
+                Address = "New Address",
+                Price = 300000,
+                ForSale = true,
+                ForRent = false,
+                Bedrooms = 5,
+                Bathrooms = 4,
+                Area = 2000,
+                YearOfConstruction = 2020,
+                IsFurnished = true,
+                Categories = new List<string> { "Category 1" },
+                Features = new List<string> { "Feature 1" },
+                Images = new List<CreateImageDTO> { new CreateImageDTO { Name = "Image 1", Path = "/path/1" } }
+            };
+
+            var existingCategory = new Category { Id = Guid.NewGuid(), Title = "Category 1" };
+            var existingFeature = new Feature { Id = Guid.NewGuid(), Title = "Feature 1" };
+            var existingImage = new Image { Id = Guid.NewGuid(), Name = "Image 1", Path = "/path/1" };
+
+            var user = new ApplicationUser { Id = Guid.NewGuid(), UserName = "User1" };
+
+            _propertyRepositoryMock
+                .Setup(r => r.AddAsync(It.IsAny<Property>()))
+                .Callback<Property>(p => propertiesData.Add(p))
+                .Returns(Task.CompletedTask);
+
+            _userManagerMock
+                .Setup(u => u.FindByIdAsync(It.IsAny<string>()))
+                .ReturnsAsync(user);
+
+            _propertyCategoriesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyCategories>().AsQueryable().BuildMock());
+
+            _propertyCategoriesRepositoryMock
+                .Setup(r => r.AddAsync(It.IsAny<PropertyCategories>()))
+                .Returns(Task.CompletedTask);
+
+            _propertyFeaturesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyFeatures>().AsQueryable().BuildMock());
+
+            _propertyImagesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyImages>().AsQueryable().BuildMock());
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync(existingCategory);
+
+            _featureRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Feature, bool>>>()))
+                .ReturnsAsync(existingFeature);
+
+            _imageRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Image, bool>>>()))
+                .ReturnsAsync(existingImage);
+
+            // Act
+            var result = await _propertyService.CreatePropertyAsync(createPropertyDto, user.Id.ToString());
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("New Property", result.Title);
+            Assert.AreEqual("User1", result.OwnerName);
+        }
+
+        [Test]
+        public async Task UpdatePropertyAsync_ShouldUpdateProperty_WhenPropertyExists()
+        {
+            // Arrange
+            var propertyId = propertiesData.First().Id.ToString();
+            var updatePropertyDto = new CreatePropertyDTO
+            {
+                Title = "Updated Property",
+                Description = "Updated Description",
+                Address = "Updated Address",
+                Price = 400000,
+                ForSale = false,
+                ForRent = true,
+                Bedrooms = 6,
+                Bathrooms = 5,
+                Area = 2500,
+                YearOfConstruction = 2021,
+                IsFurnished = false,
+                Categories = new List<string> { "Category 2" },
+                Features = new List<string> { "Feature 2" },
+                Images = new List<CreateImageDTO> { new CreateImageDTO { Name = "Image 2", Path = "/path/2" } }
+            };
+
+            var user = new ApplicationUser { Id = Guid.NewGuid(), UserName = "User2" };
+
+            var existingCategory = new Category { Id = Guid.NewGuid(), Title = "Category 1" };
+            var existingFeature = new Feature { Id = Guid.NewGuid(), Title = "Feature 1" };
+            var existingImage = new Image { Id = Guid.NewGuid(), Name = "Image 1", Path = "/path/1" };
+
+            _propertyRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Property, bool>>>()))
+                .ReturnsAsync(propertiesData.First());
+
+            _propertyRepositoryMock
+                .Setup(r => r.UpdateAsync(It.IsAny<Property>()))
+                .ReturnsAsync(true);
+
+            _userManagerMock
+                .Setup(u => u.FindByIdAsync(It.IsAny<string>()))
+                .ReturnsAsync(user);
+
+            _propertyCategoriesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyCategories>().AsQueryable().BuildMock());
+
+            _propertyCategoriesRepositoryMock
+                .Setup(r => r.AddAsync(It.IsAny<PropertyCategories>()))
+                .Returns(Task.CompletedTask);
+
+            _propertyFeaturesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyFeatures>().AsQueryable().BuildMock());
+
+            _propertyImagesRepositoryMock
+                .Setup(r => r.GetAllAttached())
+                .Returns(new List<PropertyImages>().AsQueryable().BuildMock());
+
+            _categoryRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Category, bool>>>()))
+                .ReturnsAsync(existingCategory);
+
+            _featureRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Feature, bool>>>()))
+                .ReturnsAsync(existingFeature);
+
+            _imageRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Image, bool>>>()))
+                .ReturnsAsync(existingImage);
+
+            // Act
+            var result = await _propertyService.UpdatePropertyAsync(propertyId, updatePropertyDto, user.Id.ToString());
+
+            // Assert
+            Assert.IsTrue(result);
+            Assert.AreEqual("Updated Property", propertiesData.First().Title);
+        }
+
+        [Test]
+        public async Task AddImageToPropertyAsync_ShouldAddImage_WhenPropertyExists()
+        {
+            // Arrange
+            var propertyId = propertiesData.First().Id.ToString();
+            var createImageDto = new CreateImageDTO { Name = "New Image", Path = "/path/new" };
+
+            _propertyRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Property, bool>>>()))
+                .ReturnsAsync(propertiesData.First());
+
+            _imageRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Image, bool>>>()))
+                .ReturnsAsync((Image)null);
+
+            _imageRepositoryMock
+                .Setup(r => r.AddAsync(It.IsAny<Image>()))
+                .Returns(Task.CompletedTask);
+
+            _propertyImagesRepositoryMock
+                .Setup(r => r.AddAsync(It.IsAny<PropertyImages>()))
+                .Returns(Task.CompletedTask);
+
+            // Act
+            await _propertyService.AddImageToPropertyAsync(propertyId, createImageDto);
+
+            // Assert
+            _imageRepositoryMock.Verify(r => r.AddAsync(It.IsAny<Image>()), Times.Once);
+            _propertyImagesRepositoryMock.Verify(r => r.AddAsync(It.IsAny<PropertyImages>()), Times.Once);
+        }
+
+        [Test]
+        public async Task DeletePropertyAsync_ShouldDeleteProperty_WhenPropertyExists()
+        {
+            // Arrange
+            var propertyId = propertiesData.First().Id.ToString();
+
+            _propertyRepositoryMock
+                .Setup(r => r.FirstOrDefaultAsync(It.IsAny<Expression<Func<Property, bool>>>()))
+                .ReturnsAsync(propertiesData.First());
+
+            _propertyRepositoryMock
+                .Setup(r => r.SoftDeleteAsync(It.IsAny<Property>()))
+                .ReturnsAsync(true);
+
+            // Act
+            var result = await _propertyService.DeletePropertyAsync(propertyId);
+
+            // Assert
+            Assert.IsTrue(result);
+            _propertyRepositoryMock.Verify(r => r.SoftDeleteAsync(It.IsAny<Property>()), Times.Once);
         }
     }
 }
