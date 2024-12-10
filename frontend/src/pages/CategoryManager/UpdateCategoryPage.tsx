@@ -56,7 +56,7 @@ export default function UpdateCategoryPage() {
 
   return (
     <div className="w-full flex flex-col gap-10 my-20">
-      <Heading title="Add Category" />
+      <Heading title="Update Category" />
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input
