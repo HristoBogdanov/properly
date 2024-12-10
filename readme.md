@@ -46,8 +46,13 @@
 5. **Start the project using the Visual Studio Debugger.**
    - The database will be created and seeded upon starting the project.
    - The initial configuration is in `appsettings.development.json`.
-   - Test user accounts are pre-seeded. You can also register your own accounts.
+   - You can register your own user account to start interacting with the website.
    - **Admin Account:** The credentials are defined in the `appsettings.development.json` file.
+     - The creadentials are the following:
+       ```bash
+       username: admin
+       password: adminpassword123!
+       ```
      - This account cannot be modified or deleted.
      - No additional admin accounts can be created.
 6. **If the localhost ports differ on your machine, update them in the configuration files.**
