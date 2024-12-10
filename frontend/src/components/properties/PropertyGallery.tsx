@@ -18,7 +18,7 @@ export default function PropertyGallery({ property }: { property: Property }) {
             key={image.name}
             src={image.path}
             alt={image.name}
-            className="aspect-video w-full object-cover"
+            className="aspect-video w-full object-cover opacity-90 hover:opacity-100 transition-all duration-500 ease-in-out cursor-pointer"
           ></img>
         ))}
       </div>
