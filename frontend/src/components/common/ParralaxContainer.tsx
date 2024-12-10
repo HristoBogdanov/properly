@@ -11,9 +11,9 @@ export default function ParralaxContainer() {
         }}
       />
       <div className="absolute inset-0 bg-black opacity-60"></div>
-      <div className="absolute inset-0 mx-auto flex flex-col items-center justify-center gap-6 p-4 text-center font-black text-white lg:p-0 text-4xl md:text-5xl">
-        <h1>Find Your Dream House</h1>
-        <p className="text-lg md:text-xl">
+      <div className="absolute inset-0 mx-auto flex flex-col items-center justify-center gap-6 p-4 text-center text-white lg:p-0 text-4xl md:text-5xl">
+        <h1 className="font-black">Find Your Dream House</h1>
+        <p className="text-lg md:text-xl font-semibold">
           We have over a million properties for you.
         </p>
         <div className="mx-6">

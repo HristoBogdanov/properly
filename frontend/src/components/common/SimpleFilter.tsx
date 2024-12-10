@@ -1,8 +1,9 @@
 import { simpleSeacrhPropertySchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { z } from "zod";
+import { useEffect } from "react";
 import Dropdown from "../inputs/Dropdown";
 import Input from "../inputs/Input";
 import CustomButton from "./CustomButton";
@@ -14,6 +15,7 @@ export default function SimpleFilter() {
     resolver: zodResolver(simpleSeacrhPropertySchema),
   });
 
+  const [params] = useSearchParams();
   const navigate = useNavigate();
 
   const sortOptions = [
@@ -26,6 +28,14 @@ export default function SimpleFilter() {
     { value: "true", label: "Descending" },
     { value: "false", label: "Ascending" },
   ];
+
+  useEffect(() => {
+    const defaultValues: Partial<FormData> = {};
+    params.forEach((value, key) => {
+      defaultValues[key as keyof FormData] = value as any;
+    });
+    methods.reset(defaultValues);
+  }, [params, methods]);
 
   const onSubmit = (data: FormData) => {
     const filteredData = Object.fromEntries(
