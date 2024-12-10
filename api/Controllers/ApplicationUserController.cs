@@ -18,6 +18,7 @@ namespace api.Controllers
         }
 
         [HttpGet("users")]
+        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             try
@@ -32,6 +33,7 @@ namespace api.Controllers
         }
 
         [HttpGet("users/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetUserById(string id)
         {
             try
