@@ -7,14 +7,22 @@ using Extensions;
 using api.Configurations;
 using api.Constants;
 
-public class Program{
-    public static void Main(string[] args){
+public class Program
+{
+    public static void Main(string[] args)
+    {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options =>
+        {
+            // Adds xml documentation to Swagger
+            var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
+        });
 
         BuilderConfigurations.ConfigureSwagger(builder);
 
@@ -59,7 +67,7 @@ public class Program{
         app.MapControllers();
 
         app.ApplyMigrations();
-        
+
         if (app.Environment.IsDevelopment())
         {
             // Only enables Swagger in development mode.
