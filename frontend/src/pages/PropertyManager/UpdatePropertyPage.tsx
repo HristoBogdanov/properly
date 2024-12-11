@@ -26,6 +26,9 @@ export default function UpdatePropertyPage() {
   const { getPropertyById, loading, updateProperty } = usePropertiesStore();
   const [property, setProperty] = useState<Property | null>(null);
 
+  const [isForSale, setIsForSale] = useState(false);
+  const [isForRent, setIsForRent] = useState(false);
+
   const { categories } = useCategoriesStore();
   const { features } = useFeaturesStore();
   const {
@@ -33,6 +36,18 @@ export default function UpdatePropertyPage() {
     setImagesToAddToProperty,
     clearImagesToAddToProperty,
   } = useImagesStore();
+
+  const checkManualValidationFields = () => {
+    if (!isForSale && !isForRent) {
+      toast.error("Mark whether the house is for sale, for rent or both!");
+      return;
+    }
+
+    if (imagesToAddToProperty.length === 0) {
+      toast.error("Please upload at least one image");
+      return;
+    }
+  };
 
   // Set default data to the form, before fetching the property
   const methods = useForm<FormData>({
@@ -81,12 +96,8 @@ export default function UpdatePropertyPage() {
     return <div>Loading...</div>;
   }
   const onSubmit = async (data: FormData) => {
-    if (imagesToAddToProperty.length === 0) {
-      toast.error("Please upload at least one image");
-      return;
-    }
-    if (data.forSale === false && data.forRent === false) {
-      toast.error("Mark whether the house is for sale, for rent or both!");
+    // another check here just in case the onClick validation of the button is bipassed
+    if ((!isForSale && !isForRent) || imagesToAddToProperty.length === 0) {
       return;
     }
 
@@ -211,8 +222,18 @@ export default function UpdatePropertyPage() {
               valueAsNumber
             />
           </div>
-          <Checkbox id="forSale" name="forSale" label="For Sale" />
-          <Checkbox id="forRent" name="forRent" label="For Rent" />
+          <Checkbox
+            id="forSale"
+            name="forSale"
+            label="For Sale"
+            onChange={(e) => setIsForSale(e.target.checked)}
+          />
+          <Checkbox
+            id="forRent"
+            name="forRent"
+            label="For Rent"
+            onChange={(e) => setIsForRent(e.target.checked)}
+          />
           <Checkbox
             id="isFurnished"
             name="isFurnished"
@@ -260,6 +281,7 @@ export default function UpdatePropertyPage() {
             classes={`${
               loading && "opacity-60 hover:opacity-60 cursor-wait"
             } w-full`}
+            onClick={checkManualValidationFields}
           />
         </form>
       </FormProvider>

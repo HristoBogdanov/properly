@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Textarea from "@/components/inputs/Textarea";
 import { useImagesStore } from "@/stores/imagesStore";
 import UploadSection from "@/components/inputs/UploadSection";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type FormData = z.infer<typeof createPropertySchema>;
 
@@ -30,19 +30,27 @@ export default function AddPropertyPage() {
   const { features } = useFeaturesStore();
   const { imagesToAddToProperty, clearImagesToAddToProperty } =
     useImagesStore();
-  const { loading, addProperty } = usePropertiesStore();
 
-  useEffect(() => {
-    clearImagesToAddToProperty();
-  }, [clearImagesToAddToProperty]);
+  const [isForSale, setIsForSale] = useState(false);
+  const [isForRent, setIsForRent] = useState(false);
 
-  const onSubmit = async (data: FormData) => {
+  const { loading, addProperty, getProperties } = usePropertiesStore();
+
+  const checkManualValidationFields = () => {
+    if (!isForSale && !isForRent) {
+      toast.error("Mark whether the house is for sale, for rent or both!");
+      return;
+    }
+
     if (imagesToAddToProperty.length === 0) {
       toast.error("Please upload at least one image");
       return;
     }
-    if (data.forSale === false && data.forRent === false) {
-      toast.error("Mark whether the house is for sale, for rent or both!");
+  };
+
+  const onSubmit = async (data: FormData) => {
+    // another check here just in case the onClick validation of the button is bipassed
+    if ((!isForSale && !isForRent) || imagesToAddToProperty.length === 0) {
       return;
     }
 
@@ -63,6 +71,14 @@ export default function AddPropertyPage() {
       handleError(error, "Error adding property");
     }
   };
+
+  useEffect(() => {
+    getProperties();
+  }, [getProperties]);
+
+  useEffect(() => {
+    clearImagesToAddToProperty();
+  }, [clearImagesToAddToProperty]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 my-20">
@@ -139,8 +155,18 @@ export default function AddPropertyPage() {
             placeholder="Year of Construction"
             valueAsNumber
           />
-          <Checkbox id="forSale" name="forSale" label="For Sale" />
-          <Checkbox id="forRent" name="forRent" label="For Rent" />
+          <Checkbox
+            id="forSale"
+            name="forSale"
+            label="For Sale"
+            onChange={(e) => setIsForSale(e.target.checked)}
+          />
+          <Checkbox
+            id="forRent"
+            name="forRent"
+            label="For Rent"
+            onChange={(e) => setIsForRent(e.target.checked)}
+          />
           <Checkbox
             id="isFurnished"
             name="isFurnished"
@@ -181,6 +207,7 @@ export default function AddPropertyPage() {
             classes={`${
               loading && "opacity-60 hover:opacity-60 cursor-wait"
             } w-full`}
+            onClick={checkManualValidationFields}
           />
         </form>
       </FormProvider>
