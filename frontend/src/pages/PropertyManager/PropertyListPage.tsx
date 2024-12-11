@@ -29,11 +29,11 @@ export default function PropertyListPage() {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 my-20">
       <Heading title="Manage Properties" />
-      <div className="flex w-full flex-col gap-4 p-4 text-xl">
+      <div className="flex w-full flex-col gap-2 p-4 text-xl">
         {properties.map((property: Property) => (
           <div
             key={property.id}
-            className="w-full flex justify-between items-center"
+            className="w-full flex justify-between p-2 rounded-md cursor-pointer items-center hover:bg-[#ffb1c1] transition-all duration-500 ease-in-out"
           >
             {property.title}
             <div className="flex gap-2">
