@@ -32,15 +32,16 @@ export default function UpdateFeaturePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    clearImagesToAddToProperty();
     const fetchFeature = async () => {
       if (id) {
         const fetchedFeature = await getFeatureById(id);
         setFeature(fetchedFeature);
         setImagesToAddToProperty([fetchedFeature.image]);
+        methods.setValue("title", fetchedFeature.title);
       } else {
         toast.error("That feature does not exist");
       }
-      clearImagesToAddToProperty();
     };
     fetchFeature();
   }, [
@@ -48,6 +49,7 @@ export default function UpdateFeaturePage() {
     clearImagesToAddToProperty,
     setImagesToAddToProperty,
     id,
+    methods,
   ]);
 
   const onSubmit = async (data: FormData) => {
