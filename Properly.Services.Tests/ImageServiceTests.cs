@@ -13,6 +13,7 @@ namespace Properly.Services.Tests
     public class ImageServiceTests
     {
         private Mock<IRepository<Image, Guid>> _imageRepositoryMock;
+        private Mock<IRepository<PropertyImages, object>> _propertyImagesRepositoryMock;
         private ImageService _imageService;
 
         private List<Image> imagesData;
@@ -21,7 +22,8 @@ namespace Properly.Services.Tests
         public void Setup()
         {
             _imageRepositoryMock = new Mock<IRepository<Image, Guid>>();
-            _imageService = new ImageService(_imageRepositoryMock.Object);
+            _propertyImagesRepositoryMock = new Mock<IRepository<PropertyImages, object>>();
+            _imageService = new ImageService(_imageRepositoryMock.Object, _propertyImagesRepositoryMock.Object);
 
             // Seed data
             imagesData = new List<Image>
@@ -138,6 +140,14 @@ namespace Properly.Services.Tests
                 .ReturnsAsync(true);
 
             _imageRepositoryMock.Setup(r => r.GetAllAttached()).Returns(imagesData.AsQueryable().BuildMock());
+
+            _propertyImagesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyImages>().AsQueryable().BuildMock());
+
+            _propertyImagesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyImages>()))
+                .ReturnsAsync(true);
 
             // Act
             var result = await _imageService.DeleteImageAsync(imageId.ToString());

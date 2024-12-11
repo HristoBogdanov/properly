@@ -14,6 +14,7 @@ namespace Properly.Services.Tests
     public class CategoryServiceTests
     {
         private Mock<IRepository<Category, Guid>> _categoryRepositoryMock;
+        private Mock<IRepository<PropertyCategories, object>> _propertiesCategoriesRepositoryMock;
         private CategoryService _categoryService;
 
         private List<Category> categoriesData;
@@ -22,7 +23,8 @@ namespace Properly.Services.Tests
         public void Setup()
         {
             _categoryRepositoryMock = new Mock<IRepository<Category, Guid>>();
-            _categoryService = new CategoryService(_categoryRepositoryMock.Object);
+            _propertiesCategoriesRepositoryMock = new Mock<IRepository<PropertyCategories, object>>();
+            _categoryService = new CategoryService(_categoryRepositoryMock.Object, _propertiesCategoriesRepositoryMock.Object);
 
             // Seed data
             categoriesData = new List<Category>
@@ -189,6 +191,14 @@ namespace Properly.Services.Tests
             _categoryRepositoryMock
                 .Setup(r => r.SoftDeleteAsync(It.IsAny<Category>()))
                 .Callback<Category>(category => category.IsDeleted = true) // Simulate the deletion
+                .ReturnsAsync(true);
+
+            _propertiesCategoriesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyCategories>().AsQueryable().BuildMock());
+
+            _propertiesCategoriesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyCategories>()))
                 .ReturnsAsync(true);
 
             // Act

@@ -15,6 +15,7 @@ namespace Properly.Services.Tests
     {
         private Mock<IRepository<Feature, Guid>> _featureRepositoryMock;
         private Mock<IRepository<Image, Guid>> _imageRepositoryMock;
+        private Mock<IRepository<PropertyFeatures, object>> _featuresPropertiesRepositoryMock;
         private FeatureService _featureService;
 
         private List<Feature> featuresData;
@@ -24,7 +25,8 @@ namespace Properly.Services.Tests
         {
             _featureRepositoryMock = new Mock<IRepository<Feature, Guid>>();
             _imageRepositoryMock = new Mock<IRepository<Image, Guid>>();
-            _featureService = new FeatureService(_featureRepositoryMock.Object, _imageRepositoryMock.Object);
+            _featuresPropertiesRepositoryMock = new Mock<IRepository<PropertyFeatures, object>>();
+            _featureService = new FeatureService(_featureRepositoryMock.Object, _imageRepositoryMock.Object, _featuresPropertiesRepositoryMock.Object);
 
             Image image = new Image 
             { 
@@ -204,6 +206,14 @@ namespace Properly.Services.Tests
             _featureRepositoryMock
                 .Setup(r => r.SoftDeleteAsync(It.IsAny<Feature>()))
                 .Callback<Feature>(f => f.IsDeleted = true)
+                .ReturnsAsync(true);
+
+            _featuresPropertiesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyFeatures>().AsQueryable().BuildMock());
+
+            _featuresPropertiesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyFeatures>()))
                 .ReturnsAsync(true);
 
             // Act

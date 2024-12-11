@@ -681,6 +681,30 @@ namespace Properly.Services.Tests
                 .Setup(r => r.SoftDeleteAsync(It.IsAny<Property>()))
                 .ReturnsAsync(true);
 
+            _propertyCategoriesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyCategories>().AsQueryable().BuildMock());
+
+            _propertyFeaturesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyFeatures>().AsQueryable().BuildMock());
+
+            _propertyImagesRepositoryMock
+                .Setup(pc => pc.GetAllAttached())
+                .Returns(new List<PropertyImages>().AsQueryable().BuildMock());
+
+            _propertyCategoriesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyCategories>()))
+                .ReturnsAsync(true);
+
+            _propertyFeaturesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyFeatures>()))
+                .ReturnsAsync(true);
+
+            _propertyImagesRepositoryMock
+                .Setup(pc => pc.DeleteAsync(It.IsAny<PropertyImages>()))
+                .ReturnsAsync(true);
+
             // Act
             var result = await _propertyService.DeletePropertyAsync(propertyId);
 
