@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using static api.Constants.PropertyValidationConstants;
 
 namespace api.Models
 {
@@ -12,22 +13,22 @@ namespace api.Models
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(TitleMaxLength)]
         [Comment("The title of the property")]
         public string Title { get; set; } = String.Empty;
 
         [Required]
-        [MaxLength(5000)]
+        [MaxLength(DescriptionMaxLength)]
         [Comment("The description of the property")]
         public string Description { get; set; } = String.Empty;
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(SlugMaxLength)]
         [Comment("The slug of the property")]
         public string Slug { get; set; } = String.Empty;
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(AddressMaxLength)]
         [Comment("The address of the property")]
         public string Address { get; set; } = String.Empty;
 

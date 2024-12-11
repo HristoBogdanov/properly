@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using static api.Constants.CategoryValidationConstants;
 
 namespace api.Models
 {
@@ -12,7 +13,7 @@ namespace api.Models
         public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(TitleMaxLength)]
         [Comment("The title of the category")]
         public string Title { get; set; } = String.Empty;
 

@@ -1,45 +1,46 @@
 using System.ComponentModel.DataAnnotations;
-using api.Constants;
+using static api.Constants.PropertiesErrorMessages;
+using static api.Constants.PropertyValidationConstants;
 using api.DTOs.Images;
 
 namespace api.DTOs.Property
 {
     public class CreatePropertyDTO
     {
-        [Required(ErrorMessage = PropertiesErrorMessages.TitleRequired)]
-        [StringLength(200, MinimumLength = 3, ErrorMessage = PropertiesErrorMessages.InvalidTitleLength)]
+        [Required(ErrorMessage = TitleRequired)]
+        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength, ErrorMessage = InvalidTitleLength)]
         public string Title { get; set; } = null!;
 
-        [Required(ErrorMessage = PropertiesErrorMessages.DescriptionRequired)]
-        [StringLength(5000, MinimumLength = 20, ErrorMessage = PropertiesErrorMessages.InvalidDescriptionLength)]
+        [Required(ErrorMessage = DescriptionRequired)]
+        [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength, ErrorMessage = InvalidDescriptionLength)]
         public string Description { get; set; } = null!;
 
-        [Required(ErrorMessage = PropertiesErrorMessages.AddressRequired)]
-        [StringLength(500, MinimumLength = 3, ErrorMessage = PropertiesErrorMessages.InvalidAddressLength)]
+        [Required(ErrorMessage = AddressRequired)]
+        [StringLength(AddressMaxLength, MinimumLength = AddressMinLength, ErrorMessage = InvalidAddressLength)]
         public string Address { get; set; } = null!;
 
-        [Required(ErrorMessage = PropertiesErrorMessages.PriceRequired)]
-        [Range(0, 100000000, ErrorMessage = PropertiesErrorMessages.InvalidPrice)]
+        [Required(ErrorMessage = PriceRequired)]
+        [Range(PriceMinValue, PriceMaxValue, ErrorMessage = InvalidPrice)]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = PropertiesErrorMessages.ForSaleRequired)]
+        [Required(ErrorMessage = ForSaleRequired)]
         public bool ForSale { get; set; }
 
-        [Required(ErrorMessage = PropertiesErrorMessages.ForRentRequired)]
+        [Required(ErrorMessage = ForRentRequired)]
         public bool ForRent { get; set; }
 
-        [Required(ErrorMessage = PropertiesErrorMessages.AreaRequired)]
-        [Range(0, 10000, ErrorMessage = PropertiesErrorMessages.InvalidArea)]
+        [Required(ErrorMessage = AreaRequired)]
+        [Range(AreaMinValue, AreaMaxValue, ErrorMessage = InvalidArea)]
         public int Area { get; set; } = 0;
 
-        [Required(ErrorMessage = PropertiesErrorMessages.YearOfConstructionRequired)]
-        [Range(1800, 2100, ErrorMessage = PropertiesErrorMessages.InvalidYearOfConstruction)]
+        [Required(ErrorMessage = YearOfConstructionRequired)]
+        [Range(YearOfConstructionMinValue, YearOfConstructionMaxValue, ErrorMessage = InvalidYearOfConstruction)]
         public int YearOfConstruction { get; set; }
 
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBedrooms)]
+        [Range(BedroomsMinValue, BedroomsMaxValue, ErrorMessage = InvalidBedrooms)]
         public int Bedrooms { get; set; }
 
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBathrooms)]
+        [Range(BathroomsMinValue, BathroomsMaxValue, ErrorMessage = InvalidBathrooms)]
         public int Bathrooms { get; set; }
 
         public bool IsFurnished { get; set; }
