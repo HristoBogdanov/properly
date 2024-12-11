@@ -49,7 +49,6 @@ export default function UpdatePropertyPage() {
       forSale: false,
       forRent: false,
       isFurnished: false,
-      ownerId: "",
       categories: [],
       features: [],
       images: [],
@@ -105,7 +104,7 @@ export default function UpdatePropertyPage() {
       if (result) {
         toast.success("You have successfully updated the property");
         clearImagesToAddToProperty();
-        navigate("/dashboard");
+        navigate("/dashboard/properties");
       } else {
         toast.error("Error updating property");
       }
