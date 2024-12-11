@@ -141,14 +141,14 @@ namespace api.Services
                 return false;
             }
 
-            var properties = await _featuresPropertiesRepository
+            var propertyFeatures = await _featuresPropertiesRepository
                 .GetAllAttached()
                 .Where(fp => fp.FeatureId == idGuid)
                 .ToListAsync();
 
-            foreach (var property in properties)
+            foreach (var propertyFeature in propertyFeatures)
             {
-                await _featuresPropertiesRepository.SoftDeleteAsync(property);
+                await _featuresPropertiesRepository.DeleteAsync(propertyFeature);
             }
 
             await _featureRepository.SoftDeleteAsync(existingFeature);

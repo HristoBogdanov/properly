@@ -132,9 +132,9 @@ namespace api.Services
                 .Where(pc => pc.CategoryId == IdGuid)
                 .ToListAsync();
 
-            foreach (var pc in propertiesCategories)
+            foreach (var propertyCategory in propertiesCategories)
             {
-                await _propertyCategoryRepository.SoftDeleteAsync(pc);
+                await _propertyCategoryRepository.DeleteAsync(propertyCategory);
             }
 
             await _categoryRepository.SoftDeleteAsync(existingCategory);
