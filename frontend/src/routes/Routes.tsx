@@ -37,6 +37,7 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardPage />,
         children: [
+          { path: "", element: <PropertyListPage /> },
           { path: "/dashboard/properties", element: <PropertyListPage /> },
           { path: "/dashboard/properties/add", element: <AddPropertyPage /> },
           {
