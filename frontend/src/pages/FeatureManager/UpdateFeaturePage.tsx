@@ -94,7 +94,7 @@ export default function UpdateFeaturePage() {
           />
           <AddIconSection />
           <CustomButton
-            text={loading ? "Loading..." : "Add Feature"}
+            text={loading ? "Loading..." : "Update Feature"}
             disabled={loading}
             type="submit"
             classes={`${
