@@ -87,6 +87,8 @@ export default function UpdatePropertyPage() {
           features: fetchedProperty.features.map((f) => f.id),
         });
         setImagesToAddToProperty(fetchedProperty.images);
+        setIsForSale(fetchedProperty.forSale);
+        setIsForRent(fetchedProperty.forRent);
       }
     };
     fetchProperty();
