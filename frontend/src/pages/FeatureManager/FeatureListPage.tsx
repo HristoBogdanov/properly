@@ -6,13 +6,18 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useFeaturesStore } from "@/stores/featuresStore";
 import { Feature } from "@/types/feature";
+import { useEffect } from "react";
 
 export default function FeatureListPage() {
-  const { features, removeFeature } = useFeaturesStore();
+  const { features, removeFeature, getFeatures } = useFeaturesStore();
 
   const deleteItem = async (id: string) => {
     await removeFeature(id);
   };
+
+  useEffect(() => {
+    getFeatures();
+  }, [getFeatures]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 my-20">

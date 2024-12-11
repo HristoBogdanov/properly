@@ -6,13 +6,18 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useCategoriesStore } from "@/stores/categoriesStore";
 import { Category } from "@/types/category";
+import { useEffect } from "react";
 
 export default function CategoryListPage() {
-  const { categories, removeCategory } = useCategoriesStore();
+  const { categories, getCategories, removeCategory } = useCategoriesStore();
 
   const deleteItem = async (id: string) => {
     await removeCategory(id);
   };
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-10 my-20">
