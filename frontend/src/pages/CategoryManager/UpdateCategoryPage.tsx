@@ -29,12 +29,13 @@ export default function UpdateCategoryPage() {
       if (id) {
         const fetchedCategory = await getCategoryById(id);
         setCategory(fetchedCategory);
+        methods.setValue("title", fetchedCategory.title);
       } else {
         toast.error("That category does not exist");
       }
     };
     fetchCategory();
-  }, [getCategoryById, id]);
+  }, [getCategoryById, id, methods]);
 
   const onSubmit = async (data: FormData) => {
     if (!id) {
