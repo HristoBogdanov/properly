@@ -222,6 +222,33 @@ namespace api.Services
                 throw new Exception(PropertiesErrorMessages.PropertyNotFound);
             }
 
+            var propertyCategories = await _propertyCategoriesRepository.GetAllAttached()
+                .Where(pc => pc.PropertyId == existingProperty.Id)
+                .ToListAsync();
+
+            foreach (var propertyCategory in propertyCategories)
+            {
+                await _propertyCategoriesRepository.DeleteAsync(propertyCategory);
+            }
+
+            var propertyFeatures = await _propertyFeaturesRepository.GetAllAttached()
+                .Where(pf => pf.PropertyId == existingProperty.Id)
+                .ToListAsync();
+
+            foreach (var propertyFeature in propertyFeatures)
+            {
+                await _propertyFeaturesRepository.DeleteAsync(propertyFeature);
+            }
+
+            var propertyImages = await _propertyImagesRepository.GetAllAttached()
+                .Where(pi => pi.PropertyId == existingProperty.Id)
+                .ToListAsync();
+
+            foreach (var propertyImage in propertyImages)
+            {
+                await _propertyImagesRepository.DeleteAsync(propertyImage);
+            }
+
             await _propertyRepository.SoftDeleteAsync(existingProperty);
             return true;
         }

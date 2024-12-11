@@ -11,10 +11,13 @@ namespace api.Services
     public class CategoryService : BaseService, ICategoryService
     {
         private readonly IRepository<Category, Guid> _categoryRepository;
+        private readonly IRepository<PropertyCategories, object> _propertyCategoryRepository;
 
-        public CategoryService(IRepository<Category, Guid> categoryRepository)
+        public CategoryService(IRepository<Category, Guid> categoryRepository,
+            IRepository<PropertyCategories, object> propertyCategoryRepository)
         {
             _categoryRepository = categoryRepository;
+            _propertyCategoryRepository = propertyCategoryRepository;
         }
 
         public async Task<List<DisplayCategoryWithPropertiesDTO>> GetCategoriesAsync()
@@ -122,6 +125,16 @@ namespace api.Services
             if (existingCategory == null)
             {
                 throw new Exception(CategoryErrorMessages.CategoryNotFound);
+            }
+
+            var propertiesCategories = await _propertyCategoryRepository
+                .GetAllAttached()
+                .Where(pc => pc.CategoryId == IdGuid)
+                .ToListAsync();
+
+            foreach (var pc in propertiesCategories)
+            {
+                await _propertyCategoryRepository.SoftDeleteAsync(pc);
             }
 
             await _categoryRepository.SoftDeleteAsync(existingCategory);

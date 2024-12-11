@@ -10,10 +10,13 @@ namespace api.Services
     public class ImageService : IImageService
     {
         private readonly IRepository<Image, Guid> _imageRepository;
+        private readonly IRepository<PropertyImages, object> _propertyImagesRepository;
 
-        public ImageService(IRepository<Image, Guid> imageRepository)
+        public ImageService(IRepository<Image, Guid> imageRepository,
+            IRepository<PropertyImages, object> propertyImagesRepository)
         {
             _imageRepository = imageRepository;
+            _propertyImagesRepository = propertyImagesRepository;
         }
 
         public async Task<List<DisplayImageDTO>> GetImagesAsync()
@@ -73,6 +76,16 @@ namespace api.Services
             if(existingImage == null)
             {
                 throw new Exception(ImageErrorMessages.ImageNotFound);
+            }
+
+            var propertyImages = await _propertyImagesRepository
+                .GetAllAttached()
+                .Where(pi => pi.ImageId == idGuid)
+                .ToListAsync();
+
+            foreach (var propertyImage in propertyImages)
+            {
+                await _propertyImagesRepository.DeleteAsync(propertyImage);
             }
 
             await _imageRepository.DeleteAsync(existingImage);

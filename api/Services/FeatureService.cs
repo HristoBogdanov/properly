@@ -12,11 +12,15 @@ namespace api.Services
     {
         private readonly IRepository<Feature, Guid> _featureRepository;
         private readonly IRepository<Image, Guid> _imageRepository;
+        private readonly IRepository<PropertyFeatures, object> _featuresPropertiesRepository;
 
-        public FeatureService(IRepository<Feature, Guid> featureRepository, IRepository<Image, Guid> imageRepository)
+        public FeatureService(IRepository<Feature, Guid> featureRepository,
+            IRepository<Image, Guid> imageRepository,
+            IRepository<PropertyFeatures, object> featuresPropertiesRepository)
         {
             _featureRepository = featureRepository;
             _imageRepository = imageRepository;
+            _featuresPropertiesRepository = featuresPropertiesRepository;
         }
 
         public async Task<List<DisplayFeatureDTO>> GetFeaturesAsync()
@@ -135,6 +139,16 @@ namespace api.Services
             if (existingFeature == null)
             {
                 return false;
+            }
+
+            var properties = await _featuresPropertiesRepository
+                .GetAllAttached()
+                .Where(fp => fp.FeatureId == idGuid)
+                .ToListAsync();
+
+            foreach (var property in properties)
+            {
+                await _featuresPropertiesRepository.SoftDeleteAsync(property);
             }
 
             await _featureRepository.SoftDeleteAsync(existingFeature);
