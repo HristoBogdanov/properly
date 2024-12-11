@@ -1,0 +1,1 @@
+export type NavigationFunctionType = ((path:string) => void) | null
