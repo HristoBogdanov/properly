@@ -78,7 +78,6 @@ export default function AddPropertyPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Title"
-            defaultValue="test title no collections"
           />
           <Textarea
             id="description"
@@ -86,7 +85,6 @@ export default function AddPropertyPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Description"
-            defaultValue="testtesttesttesttesttesttesttest"
             classes="min-h-[200px]"
           />
           <Input
@@ -95,15 +93,6 @@ export default function AddPropertyPage() {
             isRequired={true}
             errorColor="primary"
             placeholder="Address"
-            defaultValue="jelio manolov"
-          />
-          <Input
-            id="ownerId"
-            name="ownerId"
-            isRequired={true}
-            errorColor="primary"
-            placeholder="Owner ID"
-            defaultValue="3DA9D6C5-AB0E-4A5A-8DB6-11105CD9E3AB"
           />
           <Input
             id="price"
@@ -113,7 +102,6 @@ export default function AddPropertyPage() {
             errorColor="primary"
             placeholder="Price"
             valueAsNumber
-            defaultValue={300000}
           />
           <Input
             id="bedrooms"
@@ -141,7 +129,6 @@ export default function AddPropertyPage() {
             errorColor="primary"
             placeholder="Area (sq ft)"
             valueAsNumber
-            defaultValue={150}
           />
           <Input
             id="yearOfConstruction"
@@ -151,7 +138,6 @@ export default function AddPropertyPage() {
             errorColor="primary"
             placeholder="Year of Construction"
             valueAsNumber
-            defaultValue={2002}
           />
           <Checkbox id="forSale" name="forSale" label="For Sale" />
           <Checkbox id="forRent" name="forRent" label="For Rent" />

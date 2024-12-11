@@ -44,7 +44,6 @@ export type CreateProperty = {
   isFurnished: boolean;
   area: number;
   yearOfConstruction: number;
-  ownerId: string;
   categories?: string[];
   features?: string[];
   images: CreateImage[];

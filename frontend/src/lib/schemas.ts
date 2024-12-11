@@ -101,7 +101,6 @@ export const createPropertySchema = z.object({
   forSale: z.boolean(),
   forRent: z.boolean(),
   isFurnished: z.boolean(),
-  ownerId: z.string(),
   categories: z.optional(z.array(z.string())),
   features: z.optional(z.array(z.string())),
   images: z.optional(z.array(createImageSchema)).default([]),
