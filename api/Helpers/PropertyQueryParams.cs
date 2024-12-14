@@ -1,36 +1,38 @@
 using System.ComponentModel.DataAnnotations;
-using api.Constants;
+using static api.Constants.PropertiesErrorMessages;
+using static api.Constants.Regexes;
+using static api.Constants.QueryParamsValidationConstants;
 
 namespace api.Helpers
 {
     public class PropertyQueryParams
     {
         // Filters
-        [StringLength(200, MinimumLength = 3, ErrorMessage = PropertiesErrorMessages.InvalidSearchQueryLength)]
+        [StringLength(SearchMaxLength, MinimumLength = SearchMinLength, ErrorMessage = InvalidSearchQueryLength)]
         public string? search { get; set; } = null;
 
-        [Range(0, 100000000, ErrorMessage = PropertiesErrorMessages.InvalidPrice)]
+        [Range(MinNumber, MaxPrice, ErrorMessage = InvalidPrice)]
         public decimal? minPrice { get; set; } = null;
 
-        [Range(0, 100000000, ErrorMessage = PropertiesErrorMessages.InvalidPrice)]
+        [Range(MinNumber, MaxPrice, ErrorMessage = InvalidPrice)]
         public decimal? maxPrice { get; set; } = null;
 
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBedrooms)]
+        [Range(MinNumber, MaxBathrooms, ErrorMessage = InvalidBedrooms)]
         public int? numberOfBedrooms { get; set; } = null;
 
-        [Range(0, 100, ErrorMessage = PropertiesErrorMessages.InvalidBathrooms)]
+        [Range(MinNumber, MaxBathrooms, ErrorMessage = InvalidBathrooms)]
         public int? numberOfBathrooms { get; set; } = null;
 
-        [Range(0, 10000, ErrorMessage = PropertiesErrorMessages.InvalidArea)]
+        [Range(MinNumber, MaxArea, ErrorMessage = InvalidArea)]
         public int? minArea { get; set; } = null;
 
-        [Range(0, 10000, ErrorMessage = PropertiesErrorMessages.InvalidArea)]
+        [Range(MinNumber, MaxArea, ErrorMessage = InvalidArea)]
         public int? maxArea { get; set; } = null;
 
-        [Range(1800, 2100, ErrorMessage = PropertiesErrorMessages.InvalidYearOfConstruction)]
+        [Range(MinYearOfConstruction, MaxYearOfConstruction, ErrorMessage = InvalidYearOfConstruction)]
         public int? minYearOfConstruction { get; set; } = null;
 
-        [Range(1800, 2100, ErrorMessage = PropertiesErrorMessages.InvalidYearOfConstruction)]
+        [Range(MinYearOfConstruction, MaxYearOfConstruction, ErrorMessage = InvalidYearOfConstruction)]
         public int? maxYearOfConstruction { get; set; } = null;
 
         public bool? forSale { get; set; } = null;
@@ -40,16 +42,16 @@ namespace api.Helpers
         public bool? isFurnished { get; set; } = null;
 
         // Sorting
-        [RegularExpression(Regexes.SortParamRegex, ErrorMessage = PropertiesErrorMessages.InvalidSortParameter)]
+        [RegularExpression(SortParamRegex, ErrorMessage = InvalidSortParameter)]
         public string? sortBy { get; set; } = null;
 
         public bool descending { get; set;} = false;
 
         // Pagination
-        [Range(1, int.MaxValue, ErrorMessage = PropertiesErrorMessages.InvalidPageParameter)]
+        [Range(MinPage, MaxPage, ErrorMessage = InvalidPageParameter)]
         public int page { get; set; } = 1;
 
-        [Range(1, 20, ErrorMessage = PropertiesErrorMessages.InvalidPerPageParameter)]
-        public int perPage { get; set; } = 10;
+        [Range(MinPerPage, MaxPerPage, ErrorMessage = InvalidPerPageParameter)]
+        public int perPage { get; set; } = DefaultPerPage;
     }
 }

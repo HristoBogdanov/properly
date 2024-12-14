@@ -11,7 +11,6 @@ namespace api.Entensions
         //Used to automatically register all repositories in the assembly
         public static void RegisterRepositories(this IServiceCollection services, Assembly modelsAssembly)
         {
-            // TODO: Re-write the implementation in such way that the user must create a single class for every repository
             Type[] typesToExclude = new Type[] { typeof(ApplicationUser) };
             Type[] modelTypes = modelsAssembly
                 .GetTypes()

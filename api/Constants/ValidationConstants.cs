@@ -51,4 +51,24 @@
         public const int TitleMinLength = 3;
         public const int TitleMaxLength = 200;
     }
+
+    public static class QueryParamsValidationConstants
+    {
+        public const int SearchMinLength = 3;
+        public const int SearchMaxLength = 200;
+        public const int SortByMinLength = 3;
+        public const int SortByMaxLength = 200;
+        public const int MinNumber = 0;
+        public const int MaxPrice = 100000000;
+        public const int MaxBedrooms = 100;
+        public const int MaxBathrooms = 100;
+        public const int MaxArea = 10000;
+        public const int MinYearOfConstruction = 1800;
+        public const int MaxYearOfConstruction = 2100;
+        public const int MinPage = 1;
+        public const int MaxPage = int.MaxValue;
+        public const int MinPerPage = 1;
+        public const int MaxPerPage = 20;
+        public const int DefaultPerPage = 10;
+    }
 }
